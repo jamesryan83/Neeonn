@@ -89,7 +89,8 @@ app.editStoryboard.view.Main = Backbone.View.extend({
         var index = $("#divScenes").children().length;
         $("#divScenes").append(new app.editStoryboard.view.Scene(type, { storyboard_index: index }).el);
         this.refreshSceneIndicies();
-        app.util.scrollDivToBottom("#divContentMain");
+        //app.util.scrollDivToBottom("#divContentMain");
+        this.$el.find(".divStoryboardSceneItem")[index - 1].scrollIntoView();
     },
 
 

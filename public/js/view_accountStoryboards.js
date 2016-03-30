@@ -145,7 +145,6 @@ app.account.view.StoryboardItem = Backbone.View.extend({
         // Show/hide title
         if (this.data.show_title === "0") {
             this.$el.find(".divTitle").hide();
-            console.log("hi")
             this.$el.find(".divContentArea").css({ "margin-top": (app.data.titleHeight / 2) + "px" });
         }
 
@@ -235,21 +234,21 @@ app.account.view.StoryboardItem = Backbone.View.extend({
 
         // text
         var text = this.data.scenes[this.selectedIndex].text;
-        if (text.length > 0) {
+        if (text !== null && text.length > 0) {
             this.$el.find(".divActualText").append(text);
         }
 
 
         // image
         var imageUrl = this.data.scenes[this.selectedIndex].image_url;
-        if (imageUrl.length > 0) {
+        if (imageUrl !== null && imageUrl.length > 0) {
             this.$el.find(".imgScene").attr("src", imageUrl);
         }
 
 
         // canvas image (append as svg)
         var canvasImage = this.data.scenes[this.selectedIndex].canvas_data_svg;
-        if (canvasImage.length > 0) {
+        if (canvasImage !== null && canvasImage.length > 0) {
             this.$el.find(".divPictureContainer").append($(canvasImage));
         }
     },

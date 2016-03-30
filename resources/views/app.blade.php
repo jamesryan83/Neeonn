@@ -27,12 +27,14 @@
         <script src="{{ asset('lib/jquery-file-upload/jquery.fileupload-validate.js') }}"></script>
         <script src="{{ asset('lib/caman.full.min.js') }}"></script>
         <script src="{{ asset('lib/cropper/cropper.min.js') }}"></script>
-        <script src="{{ asset('lib/jquery-toast/jquery.toast.min.js') }}"></script>        
+        <script src="{{ asset('lib/jquery-toast/jquery.toast.min.js') }}"></script>
 
         <script src="{{ asset('js/data.js') }}"></script>
         <script src="{{ asset('js/util.js') }}"></script>
         <script src="{{ asset('js/server.js') }}"></script>
         <script src="{{ asset('js/test.js') }}"></script>
+
+        @include('scriptsHead')
     </head>
 
 
