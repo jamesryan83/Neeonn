@@ -1,0 +1,15 @@
+/vendor
+
+/node_modules
+/old
+/resources/assets/sass
+Homestead.yaml
+
+Homestead.json
+
+.env
+
+.brackets.json
+package.json
+gulpfile.js
+MyIssues.txt

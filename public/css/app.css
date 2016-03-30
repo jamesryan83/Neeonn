@@ -1,0 +1,1216 @@
+button {
+  background-color: #ffffff;
+  border: 0;
+  border-radius: 3px;
+  width: 100px;
+  height: 30px;
+  cursor: pointer; }
+
+input, select {
+  background-color: #ffffff !important;
+  border: 0;
+  border-radius: 3px;
+  height: 35px;
+  outline: none;
+  padding: 0 10px; }
+
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0px 1000px white inset; }
+
+input::-ms-clear {
+  display: none; }
+
+input[type='checkbox'] {
+  cursor: pointer; }
+
+td {
+  padding: 5px;
+  vertical-align: middle; }
+
+input[type="text"], input[type="email"], input[type="password"] {
+  width: 250px; }
+
+hr {
+  border: none;
+  height: 1px;
+  background-color: #b3b3b3; }
+
+.noselect {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none; }
+
+.hidden {
+  display: none; }
+
+.clearfix {
+  clear: both; }
+
+.center, #divDialogPictureGallery #divPictures .divImage img {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%); }
+
+.buttonCustom1, .buttonCustom2, .buttonCustom3, div.upload {
+  width: 170px;
+  height: 35px;
+  background-color: transparent;
+  border: 1px solid #b3b3b3;
+  color: #b3b3b3; }
+  .buttonCustom1:hover, .buttonCustom2:hover, .buttonCustom3:hover, div.upload:hover {
+    color: #ff4082;
+    border: 1px solid #ff4082; }
+
+.buttonCustom2, .buttonCustom3 {
+  color: #333333 !important;
+  border: 1px solid transparent !important;
+  background-color: #68ff68 !important; }
+
+.buttonCustom3 {
+  background-color: #ff4f4f !important; }
+
+.h1PageHeading {
+  font-weight: 400;
+  font-size: 1.4em;
+  margin: 30px 0 5px 0; }
+
+.divTabMain {
+  display: inline-block;
+  width: 200px;
+  font-size: 1.1em;
+  margin: 20px 10px; }
+  .divTabMain:hover {
+    color: #ff4082; }
+  .divTabMain > a {
+    cursor: pointer; }
+
+.tabSelected hr {
+  background-color: #ff4082; }
+
+div.upload {
+  position: relative !important;
+  display: inline-block !important;
+  border-radius: 3px !important;
+  line-height: 35px !important;
+  pointer-events: none;
+  top: 1px; }
+  div.upload > label {
+    pointer-events: none; }
+
+div.upload input {
+  position: absolute !important;
+  width: 170px !important;
+  height: 35px !important;
+  left: 0 !important;
+  opacity: 0 !important;
+  overflow: hidden !important;
+  cursor: pointer !important;
+  font-size: 0 !important;
+  pointer-events: all; }
+
+input[type=checkbox].css-checkbox {
+  display: none;
+  margin: -1px;
+  padding: 0;
+  border: 0; }
+
+input[type=checkbox].css-checkbox + label.css-label {
+  display: inline-block;
+  padding-left: 35px;
+  height: 25px;
+  line-height: 25px;
+  background-repeat: no-repeat;
+  background-position: 0 0;
+  vertical-align: middle;
+  cursor: pointer; }
+
+input[type=checkbox].css-checkbox:checked + label.css-label {
+  background-position: 0 -25px; }
+
+label.css-label {
+  background-image: url(../../res/images/checkbox1.png);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none; }
+
+#divBackgroundImage {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%; }
+  #divBackgroundImage img {
+    width: 100%;
+    height: 100%; }
+
+#divHome {
+  position: relative;
+  height: 100%;
+  width: 912px;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+  transform: translateX(-50%);
+  padding-top: 80px;
+  color: #b3b3b3; }
+  #divHome #divTitle {
+    height: auto;
+    width: 100%;
+    text-align: center;
+    margin: 0 0 40px 0; }
+    #divHome #divTitle > h1 {
+      font-size: 1.2em;
+      margin: 0; }
+    #divHome #divTitle > h2 {
+      font-size: 0.9em;
+      margin: 0; }
+  #divHome #divPhone {
+    display: inline-block; }
+  #divHome #divLoginRegister {
+    display: inline-block;
+    float: right; }
+    #divHome #divLoginRegister h2 {
+      color: #ff4082;
+      font-size: 1.2em; }
+    #divHome #divLoginRegister hr {
+      margin-bottom: 10px; }
+    #divHome #divLoginRegister button {
+      float: right; }
+    #divHome #divLoginRegister #divErrors {
+      margin-top: 10px;
+      text-align: center; }
+      #divHome #divLoginRegister #divErrors p {
+        color: red; }
+
+#divPublic {
+  overflow: auto;
+  text-align: center; }
+  #divPublic * {
+    color: #b3b3b3; }
+  #divPublic #divPublicTabs a {
+    text-decoration: none; }
+    #divPublic #divPublicTabs a:visited {
+      color: #b3b3b3; }
+    #divPublic #divPublicTabs a:hover {
+      color: #ff4082; }
+  #divPublic #divPublicContent #divContentLatest {
+    display: inline-block;
+    position: relative;
+    text-align: left;
+    width: 700px;
+    height: 300px;
+    margin-top: 20px; }
+  #divPublic #divPublicContent #divContentTrending {
+    display: inline-block;
+    position: relative;
+    text-align: left;
+    width: 700px;
+    height: 300px;
+    margin-top: 20px; }
+
+#divEditStoryboard {
+  overflow: auto;
+  text-align: center; }
+  #divEditStoryboard * {
+    color: #b3b3b3; }
+  #divEditStoryboard #divEditStoryboardContent #divEditStoryboardControls {
+    margin: 20px 0; }
+    #divEditStoryboard #divEditStoryboardContent #divEditStoryboardControls > div {
+      margin: 10px 0; }
+    #divEditStoryboard #divEditStoryboardContent #divEditStoryboardControls #divInputs input, #divEditStoryboard #divEditStoryboardContent #divEditStoryboardControls #divInputs select {
+      width: 300px;
+      margin: 10px;
+      border: 1px solid #b3b3b3; }
+    #divEditStoryboard #divEditStoryboardContent #divEditStoryboardControls #divControls #buttonBackToStoryboards {
+      margin-left: 10px; }
+    #divEditStoryboard #divEditStoryboardContent #divEditStoryboardControls #divControls > div {
+      display: inline-block;
+      margin: 0 15px; }
+    #divEditStoryboard #divEditStoryboardContent #divEditStoryboardControls #divControls #buttonSave {
+      margin-left: 10px; }
+  #divEditStoryboard #divEditStoryboardContent #divAddScene {
+    margin: 30px auto 10px auto;
+    display: table; }
+    #divEditStoryboard #divEditStoryboardContent #divAddScene label {
+      display: table-cell;
+      vertical-align: middle;
+      padding-right: 10px; }
+    #divEditStoryboard #divEditStoryboardContent #divAddScene button {
+      margin: 0 5px;
+      width: 75px;
+      background-repeat: no-repeat;
+      background-size: 25px;
+      display: table-cell;
+      vertical-align: middle; }
+    #divEditStoryboard #divEditStoryboardContent #divAddScene #buttonAddSceneImageText {
+      background-image: url(../../res/svg/icon_image.svg), url(../../res/svg/icon_text.svg);
+      background-position: 10px, 40px; }
+    #divEditStoryboard #divEditStoryboardContent #divAddScene #buttonAddSceneTextImage {
+      background-image: url(../../res/svg/icon_text.svg), url(../../res/svg/icon_image.svg);
+      background-position: 10px, 40px; }
+    #divEditStoryboard #divEditStoryboardContent #divAddScene #buttonAddSceneText {
+      background-image: url(../../res/svg/icon_text.svg);
+      background-position: center; }
+    #divEditStoryboard #divEditStoryboardContent #divAddScene #buttonAddSceneImage {
+      background-image: url(../../res/svg/icon_image.svg);
+      background-position: center; }
+    #divEditStoryboard #divEditStoryboardContent #divAddScene #buttonAddSceneCanvasText {
+      background-image: url(../../res/svg/icon_canvas.svg), url(../../res/svg/icon_text.svg);
+      background-position: 10px, 40px; }
+    #divEditStoryboard #divEditStoryboardContent #divAddScene #buttonAddSceneTextCanvas {
+      background-image: url(../../res/svg/icon_text.svg), url(../../res/svg/icon_canvas.svg);
+      background-position: 10px, 40px; }
+    #divEditStoryboard #divEditStoryboardContent #divAddScene #buttonAddSceneCanvas {
+      background-image: url(../../res/svg/icon_canvas.svg);
+      background-position: center; }
+  #divEditStoryboard #divEditStoryboardContent #divScenes {
+    padding-bottom: 30px; }
+
+.sp-container {
+  background-color: #333333 !important; }
+  .sp-container .sp-cancel, .sp-container .sp-choose {
+    border-radius: 3px !important;
+    font-size: 1em !important;
+    font-family: open-sans, monospace !important;
+    text-shadow: none !important;
+    background-image: none  !important;
+    width: 80px !important; }
+  .sp-container .sp-choose {
+    color: #838383 !important;
+    background-color: #68ff68 !important;
+    border: 1px solid transparent !important; }
+  .sp-container .sp-cancel {
+    color: white !important;
+    padding: 5px 15px !important;
+    text-decoration: none !important;
+    background-color: transparent !important;
+    border: 1px solid #b3b3b3 !important; }
+    .sp-container .sp-cancel:hover {
+      text-decoration: none !important;
+      color: #ff4082 !important;
+      border: 1px solid #ff4082 !important; }
+
+#divAccount {
+  text-align: center; }
+  #divAccount * {
+    color: #b3b3b3; }
+  #divAccount #divAccountTabs a {
+    text-decoration: none; }
+    #divAccount #divAccountTabs a:visited {
+      color: #b3b3b3; }
+    #divAccount #divAccountTabs a:hover {
+      color: #ff4082; }
+  #divAccount #divAccountContent #divContentStoryboards #divControls {
+    margin: 15px 0; }
+    #divAccount #divAccountContent #divContentStoryboards #divControls button {
+      width: 250px;
+      margin-right: 20px; }
+    #divAccount #divAccountContent #divContentStoryboards #divControls input {
+      width: 400px;
+      border: 1px solid #b3b3b3; }
+  #divAccount #divAccountContent #divContentStoryboards #divStoryboardsContainer #divLoadingStoryboards {
+    position: relative;
+    height: 120px; }
+  #divAccount #divAccountContent #divContentStoryboards #divStoryboardsContainer #divNoStoryboards {
+    margin-top: 50px; }
+  #divAccount #divAccountContent #divContentGallery {
+    display: inline-block;
+    position: relative;
+    width: 850px;
+    margin-top: 10px; }
+    #divAccount #divAccountContent #divContentGallery #divButtons #buttonFromUrl, #divAccount #divAccountContent #divContentGallery #divButtons #buttonFromComputer {
+      margin: 0 15px; }
+    #divAccount #divAccountContent #divContentGallery #divGalleryImagesContainer #divPictures {
+      margin: 30px 0; }
+    #divAccount #divAccountContent #divContentGallery #divGalleryImagesContainer #divNoImages {
+      margin-top: 50px; }
+  #divAccount #divAccountContent #divContentSettings {
+    display: inline-block;
+    position: relative;
+    text-align: left;
+    width: 700px;
+    height: 300px;
+    margin-top: 20px; }
+    #divAccount #divAccountContent #divContentSettings #divSettingsInputs {
+      display: inline-block;
+      margin-right: 50px; }
+      #divAccount #divAccountContent #divContentSettings #divSettingsInputs input {
+        width: 300px;
+        border: 1px solid #b3b3b3; }
+      #divAccount #divAccountContent #divContentSettings #divSettingsInputs a {
+        color: blue;
+        margin-left: 10px; }
+        #divAccount #divAccountContent #divContentSettings #divSettingsInputs a:visited {
+          color: blue; }
+      #divAccount #divAccountContent #divContentSettings #divSettingsInputs td {
+        padding: 10px; }
+    #divAccount #divAccountContent #divContentSettings #divSettingsButtons {
+      position: absolute;
+      display: inline-block;
+      top: 50%;
+      -webkit-transform: translateY(-50%);
+      transform: translateY(-50%);
+      right: 0; }
+      #divAccount #divAccountContent #divContentSettings #divSettingsButtons button {
+        width: 200px;
+        display: block;
+        margin: 20px;
+        color: #333333;
+        border: 1px solid transparent;
+        font-size: 1em; }
+      #divAccount #divAccountContent #divContentSettings #divSettingsButtons #buttonSettingsDisable, #divAccount #divAccountContent #divContentSettings #divSettingsButtons #buttonSettingsEnable {
+        background-color: #ffc253; }
+
+#divAccountChangePassword {
+  overflow: auto;
+  text-align: center; }
+  #divAccountChangePassword * {
+    color: #b3b3b3; }
+  #divAccountChangePassword table {
+    display: inline-block;
+    margin-top: 30px;
+    text-align: left; }
+  #divAccountChangePassword input {
+    width: 300px;
+    border: 1px solid #b3b3b3; }
+  #divAccountChangePassword #buttonChangePassword {
+    float: right; }
+
+.divGalleryItem {
+  position: relative;
+  display: inline-block;
+  height: 110px;
+  width: 110px;
+  margin: 5px;
+  border: 1px solid transparent;
+  border-radius: 3px; }
+  .divGalleryItem .divItemButtons {
+    background-color: rgba(0, 0, 0, 0.5);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+    visibility: hidden; }
+    .divGalleryItem .divItemButtons .divGalleryIconEdit, .divGalleryItem .divItemButtons .divGalleryIconDelete {
+      margin: 5px;
+      width: 15px;
+      height: 15px;
+      background-repeat: no-repeat;
+      cursor: pointer; }
+    .divGalleryItem .divItemButtons .divGalleryIconEdit {
+      float: left;
+      background-image: url(../../res/svg/icon_edit.svg); }
+      .divGalleryItem .divItemButtons .divGalleryIconEdit:hover {
+        background-image: url(../../res/svg/icon_edit_hover.svg); }
+    .divGalleryItem .divItemButtons .divGalleryIconDelete {
+      float: right;
+      background-image: url(../../res/svg/icon_delete.svg); }
+      .divGalleryItem .divItemButtons .divGalleryIconDelete:hover {
+        background-image: url(../../res/svg/icon_delete_hover.svg); }
+  .divGalleryItem .divItemImage {
+    position: relative;
+    height: 100%;
+    width: 100%; }
+    .divGalleryItem .divItemImage .imgItem {
+      max-width: 100%;
+      max-height: 100%; }
+  .divGalleryItem:hover {
+    cursor: pointer;
+    border: 1px solid #ff4082; }
+    .divGalleryItem:hover .divItemButtons {
+      visibility: visible; }
+
+#divSearch {
+  overflow: auto;
+  text-align: center; }
+  #divSearch * {
+    color: #b3b3b3; }
+
+#divHelp {
+  overflow: auto;
+  text-align: center; }
+  #divHelp * {
+    color: #b3b3b3; }
+
+#divDialogOkCancel {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  background-color: #333333;
+  padding: 10px;
+  border: 1px solid black;
+  border-radius: 5px;
+  width: 450px; }
+  #divDialogOkCancel h2 {
+    text-align: center;
+    margin-bottom: 10px;
+    color: white; }
+  #divDialogOkCancel p {
+    text-align: center;
+    font-size: 0.9em;
+    color: white; }
+  #divDialogOkCancel #divButtons {
+    padding: 5px;
+    width: 100%;
+    margin-top: 5px; }
+    #divDialogOkCancel #divButtons button {
+      color: #333333;
+      border: 1px solid transparent; }
+    #divDialogOkCancel #divButtons #buttonDialogOk {
+      background-color: #68ff68; }
+    #divDialogOkCancel #divButtons #buttonDialogCancel {
+      background-color: #ff4f4f;
+      float: right; }
+
+#divDialogChoosePicture {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  background-color: #333333;
+  padding: 10px;
+  border: 1px solid black;
+  border-radius: 5px;
+  width: 270px;
+  text-align: center;
+  height: 240px; }
+  #divDialogChoosePicture h2 {
+    margin-bottom: 10px;
+    color: white; }
+  #divDialogChoosePicture button, #divDialogChoosePicture div {
+    margin: 10px; }
+  #divDialogChoosePicture #divProgress {
+    position: relative;
+    height: 220px; }
+    #divDialogChoosePicture #divProgress img {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      -webkit-transform: translate(-50%, -50%);
+      transform: translate(-50%, -50%); }
+
+#divDialogFromUrl {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  background-color: #333333;
+  padding: 10px;
+  border: 1px solid black;
+  border-radius: 5px;
+  width: 450px; }
+  #divDialogFromUrl h2 {
+    text-align: center;
+    margin-bottom: 10px;
+    color: white; }
+  #divDialogFromUrl p {
+    text-align: center;
+    font-size: 0.9em;
+    color: white; }
+  #divDialogFromUrl label {
+    color: white;
+    margin: 0 10px; }
+  #divDialogFromUrl input {
+    width: 360px;
+    margin: 10px 0; }
+  #divDialogFromUrl #divButtons {
+    padding: 5px;
+    width: 100%;
+    margin-top: 5px; }
+    #divDialogFromUrl #divButtons #buttonDialogCancel {
+      float: right; }
+
+#divDialogPictureGallery {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 10px;
+  border: 1px solid black;
+  border-radius: 5px;
+  width: 670px;
+  height: 80%;
+  text-align: center; }
+  #divDialogPictureGallery h2 {
+    margin-bottom: 10px;
+    color: #838383; }
+  #divDialogPictureGallery #divButtons {
+    overflow: auto; }
+    #divDialogPictureGallery #divButtons button {
+      margin-top: 5px; }
+  #divDialogPictureGallery #divTitle {
+    height: 40px; }
+  #divDialogPictureGallery #divPictures, #divDialogPictureGallery #divProgress, #divDialogPictureGallery #divNoImages {
+    height: calc(100% - 80px); }
+  #divDialogPictureGallery #divPictures {
+    text-align: left;
+    overflow-y: scroll; }
+    #divDialogPictureGallery #divPictures .divImage {
+      display: inline-block;
+      position: relative;
+      height: 110px;
+      width: 110px;
+      margin: 8px;
+      border: 1px solid transparent; }
+      #divDialogPictureGallery #divPictures .divImage:hover {
+        border: 1px solid #ff4082;
+        border-radius: 3px;
+        cursor: pointer; }
+      #divDialogPictureGallery #divPictures .divImage img {
+        max-height: 100%;
+        max-width: 100%; }
+  #divDialogPictureGallery #divNoImages {
+    position: relative; }
+    #divDialogPictureGallery #divNoImages #divNoImagesInner {
+      width: 500px; }
+      #divDialogPictureGallery #divNoImages #divNoImagesInner p {
+        color: #838383; }
+      #divDialogPictureGallery #divNoImages #divNoImagesInner button {
+        width: 250px;
+        margin-top: 20px; }
+  #divDialogPictureGallery #divButtons {
+    height: 40px; }
+
+#divDialogViewPicture {
+  height: 90%;
+  width: 90%; }
+  #divDialogViewPicture img {
+    max-height: 100%;
+    max-width: 100%; }
+
+#divDialogCreateStoryboard {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  background-color: #333333;
+  padding: 10px;
+  border: 1px solid black;
+  border-radius: 5px;
+  width: 450px; }
+  #divDialogCreateStoryboard h2 {
+    text-align: center;
+    margin-bottom: 10px; }
+  #divDialogCreateStoryboard h2, #divDialogCreateStoryboard label {
+    color: #d3d3d3; }
+  #divDialogCreateStoryboard input[type="text"], #divDialogCreateStoryboard select {
+    width: 250px; }
+  #divDialogCreateStoryboard table {
+    margin-left: auto;
+    margin-right: auto; }
+    #divDialogCreateStoryboard table td {
+      padding: 10px; }
+  #divDialogCreateStoryboard #divCheckboxes {
+    padding: 15px 0; }
+    #divDialogCreateStoryboard #divCheckboxes label {
+      margin-left: 15px; }
+  #divDialogCreateStoryboard #divButtons {
+    padding: 5px;
+    width: 100%;
+    margin-top: 5px; }
+    #divDialogCreateStoryboard #divButtons #buttonDialogCancel {
+      float: right; }
+
+#divDialogStoryboardFullScreen {
+  padding: 10px;
+  border: 1px solid black;
+  border-radius: 5px;
+  width: 800px;
+  max-height: 90%;
+  background-color: white;
+  text-align: center;
+  color: #b3b3b3; }
+  #divDialogStoryboardFullScreen #divTitle {
+    height: 40px; }
+  #divDialogStoryboardFullScreen #divContent {
+    text-align: left;
+    overflow-y: auto; }
+    #divDialogStoryboardFullScreen #divContent .divScene {
+      margin: 15px 0; }
+      #divDialogStoryboardFullScreen #divContent .divScene .divSceneImage {
+        text-align: center; }
+  #divDialogStoryboardFullScreen #divButtons {
+    padding: 5px;
+    width: 100%;
+    margin-top: 5px;
+    height: 60px;
+    position: relative; }
+
+#divDialogCanvasChoosePicture {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  background-color: #333333;
+  padding: 10px;
+  border: 1px solid black;
+  border-radius: 5px;
+  width: 290px;
+  text-align: center;
+  height: 330px; }
+  #divDialogCanvasChoosePicture h2 {
+    margin-bottom: 10px;
+    color: white; }
+  #divDialogCanvasChoosePicture div {
+    margin: 10px; }
+  #divDialogCanvasChoosePicture button {
+    margin: 10px;
+    width: 220px; }
+  #divDialogCanvasChoosePicture #divProgress {
+    position: relative;
+    height: 220px; }
+    #divDialogCanvasChoosePicture #divProgress img {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      -webkit-transform: translate(-50%, -50%);
+      transform: translate(-50%, -50%); }
+
+.divStoryboardSceneItemBasic {
+  display: inline-block;
+  margin-top: 10px;
+  width: 580px; }
+  .divStoryboardSceneItemBasic .divControls {
+    height: 21px;
+    text-align: left; }
+    .divStoryboardSceneItemBasic .divControls .labelSceneIndex {
+      margin-left: 5px; }
+    .divStoryboardSceneItemBasic .divControls > div {
+      float: right;
+      cursor: pointer;
+      width: 20px;
+      height: 20px;
+      background-repeat: no-repeat; }
+    .divStoryboardSceneItemBasic .divControls .divSettingsButton {
+      margin-top: -1px;
+      margin-right: 15px;
+      background-position: center;
+      background-image: url(../../res/svg/icon_settings.svg); }
+      .divStoryboardSceneItemBasic .divControls .divSettingsButton:hover {
+        background-image: url(../../res/svg/icon_settings_hover.svg); }
+    .divStoryboardSceneItemBasic .divControls .divAddImageButton {
+      margin-top: -1px;
+      margin-right: 15px;
+      background-image: url(../../res/svg/icon_image.svg); }
+      .divStoryboardSceneItemBasic .divControls .divAddImageButton:hover {
+        background-image: url(../../res/svg/icon_image_hover.svg); }
+    .divStoryboardSceneItemBasic .divControls .divMoveUpButton {
+      margin-right: 15px;
+      background-image: url(../../res/svg/icon_arrow_up.svg); }
+      .divStoryboardSceneItemBasic .divControls .divMoveUpButton:hover {
+        background-image: url(../../res/svg/icon_arrow_up_hover.svg); }
+    .divStoryboardSceneItemBasic .divControls .divMoveDownButton {
+      margin-right: 15px;
+      background-image: url(../../res/svg/icon_arrow_down.svg); }
+      .divStoryboardSceneItemBasic .divControls .divMoveDownButton:hover {
+        background-image: url(../../res/svg/icon_arrow_down_hover.svg); }
+    .divStoryboardSceneItemBasic .divControls .divDeleteSceneButton {
+      background-image: url(../../res/svg/icon_delete.svg); }
+      .divStoryboardSceneItemBasic .divControls .divDeleteSceneButton:hover {
+        background-image: url(../../res/svg/icon_delete_hover.svg); }
+  .divStoryboardSceneItemBasic .divInner {
+    height: 280px;
+    border-radius: 3px;
+    border: 1px solid #b3b3b3; }
+    .divStoryboardSceneItemBasic .divInner .divType_imagetext, .divStoryboardSceneItemBasic .divInner .divType_textimage, .divStoryboardSceneItemBasic .divInner .divType_text, .divStoryboardSceneItemBasic .divInner .divType_image, .divStoryboardSceneItemBasic .divInner .divType_canvastext, .divStoryboardSceneItemBasic .divInner .divType_textcanvas, .divStoryboardSceneItemBasic .divInner .divType_canvas {
+      height: 100%;
+      width: 100%; }
+      .divStoryboardSceneItemBasic .divInner .divType_imagetext .divPicture, .divStoryboardSceneItemBasic .divInner .divType_textimage .divPicture, .divStoryboardSceneItemBasic .divInner .divType_text .divPicture, .divStoryboardSceneItemBasic .divInner .divType_image .divPicture, .divStoryboardSceneItemBasic .divInner .divType_canvastext .divPicture, .divStoryboardSceneItemBasic .divInner .divType_textcanvas .divPicture, .divStoryboardSceneItemBasic .divInner .divType_canvas .divPicture {
+        float: left;
+        position: relative;
+        height: 100%;
+        width: 50%;
+        padding: 5px; }
+        .divStoryboardSceneItemBasic .divInner .divType_imagetext .divPicture .divPictureContainer, .divStoryboardSceneItemBasic .divInner .divType_textimage .divPicture .divPictureContainer, .divStoryboardSceneItemBasic .divInner .divType_text .divPicture .divPictureContainer, .divStoryboardSceneItemBasic .divInner .divType_image .divPicture .divPictureContainer, .divStoryboardSceneItemBasic .divInner .divType_canvastext .divPicture .divPictureContainer, .divStoryboardSceneItemBasic .divInner .divType_textcanvas .divPicture .divPictureContainer, .divStoryboardSceneItemBasic .divInner .divType_canvas .divPicture .divPictureContainer {
+          height: 100%; }
+          .divStoryboardSceneItemBasic .divInner .divType_imagetext .divPicture .divPictureContainer img, .divStoryboardSceneItemBasic .divInner .divType_textimage .divPicture .divPictureContainer img, .divStoryboardSceneItemBasic .divInner .divType_text .divPicture .divPictureContainer img, .divStoryboardSceneItemBasic .divInner .divType_image .divPicture .divPictureContainer img, .divStoryboardSceneItemBasic .divInner .divType_canvastext .divPicture .divPictureContainer img, .divStoryboardSceneItemBasic .divInner .divType_textcanvas .divPicture .divPictureContainer img, .divStoryboardSceneItemBasic .divInner .divType_canvas .divPicture .divPictureContainer img {
+            position: absolute;
+            max-width: calc(100% - 10px);
+            max-height: calc(100% - 10px);
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            margin: auto; }
+          .divStoryboardSceneItemBasic .divInner .divType_imagetext .divPicture .divPictureContainer:hover, .divStoryboardSceneItemBasic .divInner .divType_textimage .divPicture .divPictureContainer:hover, .divStoryboardSceneItemBasic .divInner .divType_text .divPicture .divPictureContainer:hover, .divStoryboardSceneItemBasic .divInner .divType_image .divPicture .divPictureContainer:hover, .divStoryboardSceneItemBasic .divInner .divType_canvastext .divPicture .divPictureContainer:hover, .divStoryboardSceneItemBasic .divInner .divType_textcanvas .divPicture .divPictureContainer:hover, .divStoryboardSceneItemBasic .divInner .divType_canvas .divPicture .divPictureContainer:hover {
+            outline: blue dashed 1px; }
+      .divStoryboardSceneItemBasic .divInner .divType_imagetext .divCanvas, .divStoryboardSceneItemBasic .divInner .divType_textimage .divCanvas, .divStoryboardSceneItemBasic .divInner .divType_text .divCanvas, .divStoryboardSceneItemBasic .divInner .divType_image .divCanvas, .divStoryboardSceneItemBasic .divInner .divType_canvastext .divCanvas, .divStoryboardSceneItemBasic .divInner .divType_textcanvas .divCanvas, .divStoryboardSceneItemBasic .divInner .divType_canvas .divCanvas {
+        float: left;
+        height: 100%;
+        width: 0;
+        padding: 5px; }
+        .divStoryboardSceneItemBasic .divInner .divType_imagetext .divCanvas .divCanvasContainer, .divStoryboardSceneItemBasic .divInner .divType_textimage .divCanvas .divCanvasContainer, .divStoryboardSceneItemBasic .divInner .divType_text .divCanvas .divCanvasContainer, .divStoryboardSceneItemBasic .divInner .divType_image .divCanvas .divCanvasContainer, .divStoryboardSceneItemBasic .divInner .divType_canvastext .divCanvas .divCanvasContainer, .divStoryboardSceneItemBasic .divInner .divType_textcanvas .divCanvas .divCanvasContainer, .divStoryboardSceneItemBasic .divInner .divType_canvas .divCanvas .divCanvasContainer {
+          height: 100%;
+          outline: none; }
+          .divStoryboardSceneItemBasic .divInner .divType_imagetext .divCanvas .divCanvasContainer *, .divStoryboardSceneItemBasic .divInner .divType_textimage .divCanvas .divCanvasContainer *, .divStoryboardSceneItemBasic .divInner .divType_text .divCanvas .divCanvasContainer *, .divStoryboardSceneItemBasic .divInner .divType_image .divCanvas .divCanvasContainer *, .divStoryboardSceneItemBasic .divInner .divType_canvastext .divCanvas .divCanvasContainer *, .divStoryboardSceneItemBasic .divInner .divType_textcanvas .divCanvas .divCanvasContainer *, .divStoryboardSceneItemBasic .divInner .divType_canvas .divCanvas .divCanvasContainer * {
+            outline: none; }
+          .divStoryboardSceneItemBasic .divInner .divType_imagetext .divCanvas .divCanvasContainer:hover, .divStoryboardSceneItemBasic .divInner .divType_textimage .divCanvas .divCanvasContainer:hover, .divStoryboardSceneItemBasic .divInner .divType_text .divCanvas .divCanvasContainer:hover, .divStoryboardSceneItemBasic .divInner .divType_image .divCanvas .divCanvasContainer:hover, .divStoryboardSceneItemBasic .divInner .divType_canvastext .divCanvas .divCanvasContainer:hover, .divStoryboardSceneItemBasic .divInner .divType_textcanvas .divCanvas .divCanvasContainer:hover, .divStoryboardSceneItemBasic .divInner .divType_canvas .divCanvas .divCanvasContainer:hover {
+            outline: purple dashed 1px; }
+      .divStoryboardSceneItemBasic .divInner .divType_imagetext .divText, .divStoryboardSceneItemBasic .divInner .divType_textimage .divText, .divStoryboardSceneItemBasic .divInner .divType_text .divText, .divStoryboardSceneItemBasic .divInner .divType_image .divText, .divStoryboardSceneItemBasic .divInner .divType_canvastext .divText, .divStoryboardSceneItemBasic .divInner .divType_textcanvas .divText, .divStoryboardSceneItemBasic .divInner .divType_canvas .divText {
+        position: relative;
+        float: right;
+        text-align: left;
+        overflow: hidden;
+        font-size: 0.9em;
+        padding: 5px;
+        height: 100%;
+        width: 50%;
+        display: table; }
+        .divStoryboardSceneItemBasic .divInner .divType_imagetext .divText .divTextContainer, .divStoryboardSceneItemBasic .divInner .divType_textimage .divText .divTextContainer, .divStoryboardSceneItemBasic .divInner .divType_text .divText .divTextContainer, .divStoryboardSceneItemBasic .divInner .divType_image .divText .divTextContainer, .divStoryboardSceneItemBasic .divInner .divType_canvastext .divText .divTextContainer, .divStoryboardSceneItemBasic .divInner .divType_textcanvas .divText .divTextContainer, .divStoryboardSceneItemBasic .divInner .divType_canvas .divText .divTextContainer {
+          display: table-cell;
+          vertical-align: middle; }
+          .divStoryboardSceneItemBasic .divInner .divType_imagetext .divText .divTextContainer *, .divStoryboardSceneItemBasic .divInner .divType_textimage .divText .divTextContainer *, .divStoryboardSceneItemBasic .divInner .divType_text .divText .divTextContainer *, .divStoryboardSceneItemBasic .divInner .divType_image .divText .divTextContainer *, .divStoryboardSceneItemBasic .divInner .divType_canvastext .divText .divTextContainer *, .divStoryboardSceneItemBasic .divInner .divType_textcanvas .divText .divTextContainer *, .divStoryboardSceneItemBasic .divInner .divType_canvas .divText .divTextContainer * {
+            color: #838383 !important; }
+          .divStoryboardSceneItemBasic .divInner .divType_imagetext .divText .divTextContainer:hover, .divStoryboardSceneItemBasic .divInner .divType_textimage .divText .divTextContainer:hover, .divStoryboardSceneItemBasic .divInner .divType_text .divText .divTextContainer:hover, .divStoryboardSceneItemBasic .divInner .divType_image .divText .divTextContainer:hover, .divStoryboardSceneItemBasic .divInner .divType_canvastext .divText .divTextContainer:hover, .divStoryboardSceneItemBasic .divInner .divType_textcanvas .divText .divTextContainer:hover, .divStoryboardSceneItemBasic .divInner .divType_canvas .divText .divTextContainer:hover {
+            outline: aqua dashed 1px;
+            cursor: pointer; }
+          .divStoryboardSceneItemBasic .divInner .divType_imagetext .divText .divTextContainer .divActualText, .divStoryboardSceneItemBasic .divInner .divType_textimage .divText .divTextContainer .divActualText, .divStoryboardSceneItemBasic .divInner .divType_text .divText .divTextContainer .divActualText, .divStoryboardSceneItemBasic .divInner .divType_image .divText .divTextContainer .divActualText, .divStoryboardSceneItemBasic .divInner .divType_canvastext .divText .divTextContainer .divActualText, .divStoryboardSceneItemBasic .divInner .divType_textcanvas .divText .divTextContainer .divActualText, .divStoryboardSceneItemBasic .divInner .divType_canvas .divText .divTextContainer .divActualText {
+            max-height: calc(280px - 20px);
+            overflow-y: auto;
+            overflow-x: hidden; }
+            .divStoryboardSceneItemBasic .divInner .divType_imagetext .divText .divTextContainer .divActualText:focus, .divStoryboardSceneItemBasic .divInner .divType_textimage .divText .divTextContainer .divActualText:focus, .divStoryboardSceneItemBasic .divInner .divType_text .divText .divTextContainer .divActualText:focus, .divStoryboardSceneItemBasic .divInner .divType_image .divText .divTextContainer .divActualText:focus, .divStoryboardSceneItemBasic .divInner .divType_canvastext .divText .divTextContainer .divActualText:focus, .divStoryboardSceneItemBasic .divInner .divType_textcanvas .divText .divTextContainer .divActualText:focus, .divStoryboardSceneItemBasic .divInner .divType_canvas .divText .divTextContainer .divActualText:focus {
+              outline: none; }
+            .divStoryboardSceneItemBasic .divInner .divType_imagetext .divText .divTextContainer .divActualText ul, .divStoryboardSceneItemBasic .divInner .divType_textimage .divText .divTextContainer .divActualText ul, .divStoryboardSceneItemBasic .divInner .divType_text .divText .divTextContainer .divActualText ul, .divStoryboardSceneItemBasic .divInner .divType_image .divText .divTextContainer .divActualText ul, .divStoryboardSceneItemBasic .divInner .divType_canvastext .divText .divTextContainer .divActualText ul, .divStoryboardSceneItemBasic .divInner .divType_textcanvas .divText .divTextContainer .divActualText ul, .divStoryboardSceneItemBasic .divInner .divType_canvas .divText .divTextContainer .divActualText ul, .divStoryboardSceneItemBasic .divInner .divType_imagetext .divText .divTextContainer .divActualText ol, .divStoryboardSceneItemBasic .divInner .divType_textimage .divText .divTextContainer .divActualText ol, .divStoryboardSceneItemBasic .divInner .divType_text .divText .divTextContainer .divActualText ol, .divStoryboardSceneItemBasic .divInner .divType_image .divText .divTextContainer .divActualText ol, .divStoryboardSceneItemBasic .divInner .divType_canvastext .divText .divTextContainer .divActualText ol, .divStoryboardSceneItemBasic .divInner .divType_textcanvas .divText .divTextContainer .divActualText ol, .divStoryboardSceneItemBasic .divInner .divType_canvas .divText .divTextContainer .divActualText ol {
+              margin-left: 20px; }
+    .divStoryboardSceneItemBasic .divInner .divType_textimage .divPicture {
+      float: right; }
+    .divStoryboardSceneItemBasic .divInner .divType_textimage .divText {
+      float: left; }
+    .divStoryboardSceneItemBasic .divInner .divType_text .divText {
+      float: none;
+      width: 100%; }
+    .divStoryboardSceneItemBasic .divInner .divType_image .divPicture {
+      float: none;
+      width: 100%; }
+    .divStoryboardSceneItemBasic .divInner .divType_canvastext .divCanvas {
+      width: 50%; }
+    .divStoryboardSceneItemBasic .divInner .divType_textcanvas .divCanvas {
+      width: 50%;
+      float: right; }
+    .divStoryboardSceneItemBasic .divInner .divType_textcanvas .divText {
+      float: left; }
+    .divStoryboardSceneItemBasic .divInner .divType_canvas .divCanvas {
+      float: none;
+      width: 100%; }
+  .divStoryboardSceneItemBasic .divEditorControls {
+    height: 40px; }
+    .divStoryboardSceneItemBasic .divEditorControls .divCanvasControls {
+      padding-top: 5px; }
+      .divStoryboardSceneItemBasic .divEditorControls .divCanvasControls > div[class^="divCanvasButton"] {
+        display: inline-block;
+        cursor: pointer;
+        width: 25px;
+        height: 25px;
+        background-repeat: no-repeat;
+        background-position: center;
+        border: 1px solid #b3b3b3;
+        border-radius: 2px; }
+        .divStoryboardSceneItemBasic .divEditorControls .divCanvasControls > div[class^="divCanvasButton"]:hover {
+          border: 1px solid #ff4082; }
+      .divStoryboardSceneItemBasic .divEditorControls .divCanvasControls .selectPathThickness {
+        width: 50px;
+        border: 1px solid #b3b3b3;
+        padding: 0;
+        height: 25px;
+        line-height: 25px;
+        vertical-align: top;
+        cursor: pointer; }
+        .divStoryboardSceneItemBasic .divEditorControls .divCanvasControls .selectPathThickness:hover {
+          border: 1px solid #ff4082; }
+      .divStoryboardSceneItemBasic .divEditorControls .divCanvasControls > div:first-of-type {
+        margin: 0;
+        padding: 0;
+        height: 25px;
+        width: 40px;
+        border-radius: 2px;
+        background-color: transparent;
+        vertical-align: top; }
+        .divStoryboardSceneItemBasic .divEditorControls .divCanvasControls > div:first-of-type .sp-preview {
+          height: 25px;
+          margin: 0;
+          padding: 0;
+          border: none; }
+        .divStoryboardSceneItemBasic .divEditorControls .divCanvasControls > div:first-of-type .sp-dd {
+          margin-left: 5px; }
+      .divStoryboardSceneItemBasic .divEditorControls .divCanvasControls .divCanvasButtonSelect {
+        background-image: url(../../res/svg/canvas/icon_select.svg); }
+        .divStoryboardSceneItemBasic .divEditorControls .divCanvasControls .divCanvasButtonSelect:hover {
+          background-image: url(../../res/svg/canvas/icon_select_hover.svg); }
+      .divStoryboardSceneItemBasic .divEditorControls .divCanvasControls .divCanvasButtonSketch {
+        background-image: url(../../res/svg/icon_edit.svg); }
+        .divStoryboardSceneItemBasic .divEditorControls .divCanvasControls .divCanvasButtonSketch:hover {
+          background-image: url(../../res/svg/icon_edit_hover.svg); }
+      .divStoryboardSceneItemBasic .divEditorControls .divCanvasControls .divCanvasButtonText {
+        background-image: url(../../res/svg/canvas/icon_text.svg); }
+        .divStoryboardSceneItemBasic .divEditorControls .divCanvasControls .divCanvasButtonText:hover {
+          background-image: url(../../res/svg/canvas/icon_text_hover.svg); }
+      .divStoryboardSceneItemBasic .divEditorControls .divCanvasControls .divCanvasButtonPicture {
+        background-image: url(../../res/svg/icon_image.svg); }
+        .divStoryboardSceneItemBasic .divEditorControls .divCanvasControls .divCanvasButtonPicture:hover {
+          background-image: url(../../res/svg/icon_image_hover.svg); }
+      .divStoryboardSceneItemBasic .divEditorControls .divCanvasControls .divCanvasButtonCircle {
+        background-image: url(../../res/svg/canvas/icon_circle.svg); }
+        .divStoryboardSceneItemBasic .divEditorControls .divCanvasControls .divCanvasButtonCircle:hover {
+          background-image: url(../../res/svg/canvas/icon_circle_hover.svg); }
+      .divStoryboardSceneItemBasic .divEditorControls .divCanvasControls .divCanvasButtonTriangle {
+        background-image: url(../../res/svg/canvas/icon_triangle.svg); }
+        .divStoryboardSceneItemBasic .divEditorControls .divCanvasControls .divCanvasButtonTriangle:hover {
+          background-image: url(../../res/svg/canvas/icon_triangle_hover.svg); }
+      .divStoryboardSceneItemBasic .divEditorControls .divCanvasControls .divCanvasButtonRectangle {
+        background-image: url(../../res/svg/canvas/icon_rect.svg); }
+        .divStoryboardSceneItemBasic .divEditorControls .divCanvasControls .divCanvasButtonRectangle:hover {
+          background-image: url(../../res/svg/canvas/icon_rect_hover.svg); }
+      .divStoryboardSceneItemBasic .divEditorControls .divCanvasControls .divCanvasButtonStar {
+        background-image: url(../../res/svg/icon_star.svg); }
+        .divStoryboardSceneItemBasic .divEditorControls .divCanvasControls .divCanvasButtonStar:hover {
+          background-image: url(../../res/svg/icon_star_hover.svg); }
+      .divStoryboardSceneItemBasic .divEditorControls .divCanvasControls .divCanvasButtonMoveBottom {
+        background-image: url(../../res/svg/canvas/icon_move_bottom.svg); }
+        .divStoryboardSceneItemBasic .divEditorControls .divCanvasControls .divCanvasButtonMoveBottom:hover {
+          background-image: url(../../res/svg/canvas/icon_move_bottom_hover.svg); }
+      .divStoryboardSceneItemBasic .divEditorControls .divCanvasControls .divCanvasButtonMoveDown {
+        background-image: url(../../res/svg/canvas/icon_move_down.svg); }
+        .divStoryboardSceneItemBasic .divEditorControls .divCanvasControls .divCanvasButtonMoveDown:hover {
+          background-image: url(../../res/svg/canvas/icon_move_down_hover.svg); }
+      .divStoryboardSceneItemBasic .divEditorControls .divCanvasControls .divCanvasButtonMoveUp {
+        background-image: url(../../res/svg/canvas/icon_move_up.svg); }
+        .divStoryboardSceneItemBasic .divEditorControls .divCanvasControls .divCanvasButtonMoveUp:hover {
+          background-image: url(../../res/svg/canvas/icon_move_up_hover.svg); }
+      .divStoryboardSceneItemBasic .divEditorControls .divCanvasControls .divCanvasButtonMoveTop {
+        background-image: url(../../res/svg/canvas/icon_move_top.svg); }
+        .divStoryboardSceneItemBasic .divEditorControls .divCanvasControls .divCanvasButtonMoveTop:hover {
+          background-image: url(../../res/svg/canvas/icon_move_top_hover.svg); }
+      .divStoryboardSceneItemBasic .divEditorControls .divCanvasControls .divCanvasButtonClear {
+        background-image: url(../../res/svg/icon_delete.svg); }
+        .divStoryboardSceneItemBasic .divEditorControls .divCanvasControls .divCanvasButtonClear:hover {
+          background-image: url(../../res/svg/icon_delete_hover.svg); }
+    .divStoryboardSceneItemBasic .divEditorControls .editorTop {
+      width: auto;
+      float: left; }
+      .divStoryboardSceneItemBasic .divEditorControls .editorTop > div {
+        border: 1px solid transparent !important; }
+
+.divStoryboardSceneItemFullContainer {
+  display: inline-block; }
+
+.divStoryboardSceneItemFull {
+  display: inline-block;
+  margin: 10px;
+  width: 580px; }
+  .divStoryboardSceneItemFull .divControls {
+    height: 20px;
+    padding-right: 20px; }
+    .divStoryboardSceneItemFull .divControls > div {
+      float: right;
+      cursor: pointer;
+      width: 15px;
+      height: 15px;
+      background-repeat: no-repeat;
+      background-position: center; }
+    .divStoryboardSceneItemFull .divControls .imgText {
+      margin-top: -2px; }
+    .divStoryboardSceneItemFull .divControls .divButtonComment {
+      margin-right: 15px;
+      margin-top: 1px;
+      background-image: url(../../res/svg/icon_comments.svg); }
+      .divStoryboardSceneItemFull .divControls .divButtonComment:hover {
+        background-image: url(../../res/svg/icon_comments_hover.svg); }
+    .divStoryboardSceneItemFull .divControls .divButtonStar {
+      margin-right: 15px;
+      background-image: url(../../res/svg/icon_star.svg); }
+      .divStoryboardSceneItemFull .divControls .divButtonStar:hover {
+        background-image: url(../../res/svg/icon_star_hover.svg); }
+    .divStoryboardSceneItemFull .divControls .divButtonShare {
+      margin-right: 15px;
+      background-image: url(../../res/svg/icon_share.svg); }
+      .divStoryboardSceneItemFull .divControls .divButtonShare:hover {
+        background-image: url(../../res/svg/icon_share_hover.svg); }
+    .divStoryboardSceneItemFull .divControls .divButtonExpand {
+      margin-right: 15px;
+      background-image: url(../../res/svg/icon_expand.svg); }
+      .divStoryboardSceneItemFull .divControls .divButtonExpand:hover {
+        background-image: url(../../res/svg/icon_expand_hover.svg); }
+    .divStoryboardSceneItemFull .divControls .divButtonEdit {
+      margin-right: 15px;
+      background-image: url(../../res/svg/icon_edit.svg); }
+      .divStoryboardSceneItemFull .divControls .divButtonEdit:hover {
+        background-image: url(../../res/svg/icon_edit_hover.svg); }
+    .divStoryboardSceneItemFull .divControls .divButtonDelete {
+      background-image: url(../../res/svg/icon_delete.svg); }
+      .divStoryboardSceneItemFull .divControls .divButtonDelete:hover {
+        background-image: url(../../res/svg/icon_delete_hover.svg); }
+  .divStoryboardSceneItemFull .divInner {
+    height: calc(280px + 30px);
+    border-radius: 3px;
+    border: 1px solid #b3b3b3; }
+    .divStoryboardSceneItemFull .divInner .divTitle {
+      height: 30px;
+      line-height: 30px; }
+    .divStoryboardSceneItemFull .divInner .divContentArea {
+      width: 100%;
+      height: calc(100% - 30px); }
+      .divStoryboardSceneItemFull .divInner .divContentArea .divPicture, .divStoryboardSceneItemFull .divInner .divContentArea divObject {
+        float: left;
+        width: 50%;
+        height: 100%;
+        position: relative; }
+        .divStoryboardSceneItemFull .divInner .divContentArea .divPicture .divPictureContainer, .divStoryboardSceneItemFull .divInner .divContentArea .divPicture divObject, .divStoryboardSceneItemFull .divInner .divContentArea divObject .divPictureContainer, .divStoryboardSceneItemFull .divInner .divContentArea divObject divObject {
+          height: 100%; }
+          .divStoryboardSceneItemFull .divInner .divContentArea .divPicture .divPictureContainer img, .divStoryboardSceneItemFull .divInner .divContentArea .divPicture .divPictureContainer object, .divStoryboardSceneItemFull .divInner .divContentArea .divPicture divObject img, .divStoryboardSceneItemFull .divInner .divContentArea .divPicture divObject object, .divStoryboardSceneItemFull .divInner .divContentArea divObject .divPictureContainer img, .divStoryboardSceneItemFull .divInner .divContentArea divObject .divPictureContainer object, .divStoryboardSceneItemFull .divInner .divContentArea divObject divObject img, .divStoryboardSceneItemFull .divInner .divContentArea divObject divObject object {
+            position: absolute;
+            max-width: calc(100% - 10px);
+            max-height: calc(100% - 10px);
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            margin: auto; }
+      .divStoryboardSceneItemFull .divInner .divContentArea .divText {
+        position: relative;
+        float: right;
+        text-align: left;
+        overflow: hidden;
+        font-size: 0.9em;
+        padding: 5px;
+        height: 100%;
+        width: 50%;
+        display: table; }
+        .divStoryboardSceneItemFull .divInner .divContentArea .divText .divTextContainer {
+          display: table-cell;
+          vertical-align: middle; }
+          .divStoryboardSceneItemFull .divInner .divContentArea .divText .divTextContainer * {
+            color: #838383 !important; }
+          .divStoryboardSceneItemFull .divInner .divContentArea .divText .divTextContainer .divActualText {
+            max-height: calc(280px - 20px);
+            overflow-y: auto;
+            overflow-x: hidden; }
+            .divStoryboardSceneItemFull .divInner .divContentArea .divText .divTextContainer .divActualText ul, .divStoryboardSceneItemFull .divInner .divContentArea .divText .divTextContainer .divActualText ol {
+              margin-left: 20px; }
+  .divStoryboardSceneItemFull .divImageMenu {
+    height: 30px; }
+    .divStoryboardSceneItemFull .divImageMenu .divImageMenuItems {
+      height: 100%;
+      float: left;
+      margin-left: 15px; }
+      .divStoryboardSceneItemFull .divImageMenu .divImageMenuItems .divSceneMenuItem {
+        float: left;
+        position: relative;
+        display: inline-block;
+        width: 30px;
+        margin: 2px;
+        text-align: center;
+        height: 100%;
+        cursor: pointer;
+        border-bottom: 1px solid transparent; }
+        .divStoryboardSceneItemFull .divImageMenu .divImageMenuItems .divSceneMenuItem img {
+          position: absolute;
+          max-width: 95%;
+          max-height: 95%;
+          top: 0;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          margin: auto; }
+        .divStoryboardSceneItemFull .divImageMenu .divImageMenuItems .divSceneMenuItem:hover {
+          border-bottom: 1px solid #ff4082; }
+      .divStoryboardSceneItemFull .divImageMenu .divImageMenuItems .selected {
+        border-top: 1px solid #ff4082; }
+    .divStoryboardSceneItemFull .divImageMenu .divNavigation {
+      line-height: normal;
+      height: 30px;
+      float: right; }
+      .divStoryboardSceneItemFull .divImageMenu .divNavigation div {
+        position: relative;
+        display: inline-block;
+        cursor: pointer;
+        width: 15px;
+        height: 15px;
+        background-repeat: no-repeat;
+        top: 50%;
+        -webkit-transform: translateY(-50%);
+        transform: translateY(-50%); }
+      .divStoryboardSceneItemFull .divImageMenu .divNavigation .divNavPrevious {
+        margin-right: 5px;
+        background-image: url(../../res/svg/icon_arrow_left.svg); }
+        .divStoryboardSceneItemFull .divImageMenu .divNavigation .divNavPrevious:hover {
+          background-image: url(../../res/svg/icon_arrow_left_hover.svg); }
+      .divStoryboardSceneItemFull .divImageMenu .divNavigation .divNavNext {
+        margin-right: 15px;
+        background-image: url(../../res/svg/icon_arrow_right.svg); }
+        .divStoryboardSceneItemFull .divImageMenu .divNavigation .divNavNext:hover {
+          background-image: url(../../res/svg/icon_arrow_right_hover.svg); }
+
+#divEditImage {
+  min-width: 870px;
+  overflow: auto;
+  text-align: center; }
+  #divEditImage * {
+    color: #b3b3b3; }
+  #divEditImage #divImageContainer {
+    display: inline-block;
+    margin-top: 15px; }
+    #divEditImage #divImageContainer .divImageBox {
+      display: inline-block; }
+      #divEditImage #divImageContainer .divImageBox > div {
+        width: 400px;
+        height: 400px;
+        overflow: hidden; }
+    #divEditImage #divImageContainer #divImage {
+      margin-right: 10px;
+      position: relative;
+      text-align: center; }
+      #divEditImage #divImageContainer #divImage #imgMain {
+        max-width: 100%;
+        max-height: 100%; }
+    #divEditImage #divImageContainer #divImagePreviewContainer {
+      margin-left: 10px;
+      display: inline-block; }
+      #divEditImage #divImageContainer #divImagePreviewContainer #divImagePreview {
+        position: relative;
+        overflow: hidden;
+        width: 400px;
+        height: 400px; }
+        #divEditImage #divImageContainer #divImagePreviewContainer #divImagePreview #imgMainPreview {
+          max-width: 100%;
+          max-height: 100%; }
+  #divEditImage #divButtonsAndFilters {
+    position: relative;
+    overflow: auto;
+    width: 100%;
+    margin: 15px 0; }
+    #divEditImage #divButtonsAndFilters > div {
+      display: inline-block; }
+    #divEditImage #divButtonsAndFilters #divActions {
+      vertical-align: top;
+      position: relative;
+      top: 0;
+      width: 580px; }
+      #divEditImage #divButtonsAndFilters #divActions #divFilters button {
+        margin: 3px 0;
+        width: 110px;
+        font-size: 0.9em; }
+      #divEditImage #divButtonsAndFilters #divActions #divAspectRatios {
+        margin-bottom: 5px; }
+        #divEditImage #divButtonsAndFilters #divActions #divAspectRatios button {
+          margin: 3px 0;
+          width: 110px;
+          font-size: 0.9em; }
+    #divEditImage #divButtonsAndFilters #divButtonsAndLoading {
+      vertical-align: top;
+      position: relative;
+      top: 0;
+      margin: 15px 0 0 20px; }
+      #divEditImage #divButtonsAndFilters #divButtonsAndLoading > div {
+        display: inline-block; }
+      #divEditImage #divButtonsAndFilters #divButtonsAndLoading #divButtons button {
+        display: block;
+        margin: 10px 0;
+        width: 140px; }
+      #divEditImage #divButtonsAndFilters #divButtonsAndLoading #divLoadingContainer {
+        height: 60px;
+        width: 70px; }
+        #divEditImage #divButtonsAndFilters #divButtonsAndLoading #divLoadingContainer #divLoading {
+          position: relative;
+          height: 60px;
+          width: 70px; }
+
+@font-face {
+  font-family: "open-sans";
+  src: url(/res/fonts/OpenSans-Regular.ttf), url(/res/fonts/OpenSans-Regular.eot); }
+
+@font-face {
+  font-family: "open-sans-light";
+  src: url(/res/fonts/OpenSans-Light.ttf), url(/res/fonts/OpenSans-Light.eot); }
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: open-sans, monospace; }
+
+html, body {
+  width: 100%;
+  overflow-x: hidden; }
+
+#divContentApp {
+  height: 100%;
+  width: 100%;
+  overflow-y: auto; }
+  #divContentApp #divNavBar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 10;
+    height: 50px;
+    line-height: 50px;
+    background-color: #333333;
+    text-align: center; }
+    #divContentApp #divNavBar #divNavBarContainer {
+      margin: auto;
+      text-align: left;
+      max-width: 1260px; }
+      #divContentApp #divNavBar #divNavBarContainer #divNavBarHeading {
+        float: left;
+        margin-left: 20px; }
+        #divContentApp #divNavBar #divNavBarContainer #divNavBarHeading > a > img {
+          vertical-align: middle;
+          margin-top: -5px; }
+      #divContentApp #divNavBar #divNavBarContainer #divNavBarLinks {
+        float: right;
+        margin-right: 20px; }
+        #divContentApp #divNavBar #divNavBarContainer #divNavBarLinks a {
+          margin-left: 20px;
+          text-decoration: none;
+          color: #ff4082; }
+          #divContentApp #divNavBar #divNavBarContainer #divNavBarLinks a:hover {
+            text-decoration: underline; }
+      #divContentApp #divNavBar #divNavBarContainer #divNavBarLinksMenu {
+        display: none;
+        float: right;
+        margin-right: 20px; }
+        #divContentApp #divNavBar #divNavBarContainer #divNavBarLinksMenu #divMenuButton {
+          background-image: url(../../res/svg/icon_menu.svg);
+          cursor: pointer;
+          width: 25px;
+          height: 25px;
+          background-repeat: no-repeat;
+          margin-top: 13px; }
+  #divContentApp #divContentMain {
+    margin-top: 50px;
+    width: 100%;
+    text-align: center; }
+    #divContentApp #divContentMain > div {
+      max-width: 1260px;
+      color: #333333;
+      margin: auto;
+      padding: 0 20px; }
+
+#divDialogContainer {
+  position: fixed;
+  display: none;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 10000;
+  background-color: rgba(0, 0, 0, 0.4);
+  pointer-events: all; }
+
+@media (max-width: 600px) {
+  #divNavBar #divNavBarLinks {
+    display: none !important; }
+  #divNavBar #divNavBarLinksMenu {
+    display: inline-block !important; } }
