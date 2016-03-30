@@ -903,7 +903,8 @@ label.css-label {
         border: 1px solid transparent !important; }
 
 .divStoryboardSceneItemFullContainer {
-  display: inline-block; }
+  display: inline-block;
+  vertical-align: top; }
 
 .divStoryboardSceneItemFull {
   display: inline-block;
