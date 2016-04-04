@@ -614,13 +614,11 @@ label.css-label {
           max-width: 100%; }
     #divDialogPictureGallery #divGalleryImagesContainer #divNoImages {
       position: relative; }
-      #divDialogPictureGallery #divGalleryImagesContainer #divNoImages #divNoImagesInner {
-        width: 500px; }
-        #divDialogPictureGallery #divGalleryImagesContainer #divNoImages #divNoImagesInner p {
-          color: #838383; }
-        #divDialogPictureGallery #divGalleryImagesContainer #divNoImages #divNoImagesInner button {
-          width: 250px;
-          margin-top: 20px; }
+      #divDialogPictureGallery #divGalleryImagesContainer #divNoImages p {
+        color: #838383; }
+      #divDialogPictureGallery #divGalleryImagesContainer #divNoImages button {
+        width: 250px;
+        margin-top: 20px; }
   #divDialogPictureGallery #divButtons {
     height: 50px;
     padding-top: 10px; }
