@@ -245,7 +245,7 @@ app.base.view.GalleryBase = Backbone.View.extend({
         $("#divGalleryImagesContainer").unbind();
 
         var noImagesTemplate =
-            "<div id='divNoImages' style='display: none'>" +
+            "<div id='divNoImages'>" +
                 "<p>You have no images !</p>" +
                 "<p>Click <b><i>Add From Url</i></b> or <b><i>Add From Computer</i></b> to add some</p>" +
             "</div>";
