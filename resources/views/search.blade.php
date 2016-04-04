@@ -7,10 +7,10 @@
 
     <div id="divSearchControls">
 
-        <!-- Search Bar placeholder="Search Everything..." -->
+        <!-- Search Bar -->
         <div id="divSearchBar">
             <div id="divIconSearch"></div>
-            <input id="inputSearchTerm" class="inputCustom1" value="Test2" />
+            <input id="inputSearchTerm" class="inputCustom1" placeholder="Search Everything..." />
             <button id="buttonSearchGo" class="buttonCustom1">Search</button>
         </div>
 
