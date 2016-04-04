@@ -184,7 +184,7 @@ class ImageController extends Controller
     }
 
 
-    // get image from azure - require for html canvas
+    // get image from azure (private images version) - required for html canvas
     public function imageProxy($imageName)
     {
         $url = "http://shoterate.blob.core.windows.net/user" . Auth::user()->user_id . "/" . $imageName;
@@ -192,4 +192,5 @@ class ImageController extends Controller
         $res = $client->get($url);
         return $res->getBody();
     }
+
 }

@@ -79,6 +79,13 @@ app.util.sortArray = function (array, property) {
     });
 }
 
+// sort integer array
+app.util.sortIntegerArray = function (array, property) {
+    return array.sort(function(a, b) {
+        return a[property] - b[property];
+    });
+}
+
 
 // Show a popup message
 app.util.showToast = function (heading, text) {

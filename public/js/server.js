@@ -97,6 +97,10 @@ app.server.deleteStoryboard = function (storyboardId, callback) {
 
 
 
+
+
+
+
 // ------------------------------------- Account -------------------------------------
 
 
@@ -118,6 +122,23 @@ app.server.updateAccount = function (url, data, callback) {
 
 
 
+
+
+// ------------------------------------- Search -------------------------------------
+
+
+// Search storyboards
+app.server.search = function (data, callback) {
+    app.server.ajaxRequest("POST", "/search", {
+        data: data
+    }, "Error searching", callback);
+}
+
+
+
+
+
+
 // ------------------------------------- Ajax -------------------------------------
 
 // Generic ajax request
@@ -126,7 +147,7 @@ app.server.ajaxRequest = function (type, url, data, errorMessage, callback) {
         type: type,
         url: url,
         data: data,
-        success: function (result) {            
+        success: function (result) {
             if (result.success === true) {
                 callback(true, result.data);
             } else {

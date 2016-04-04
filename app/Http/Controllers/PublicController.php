@@ -8,6 +8,7 @@ use Auth;
 use Log;
 use DB;
 use Validator;
+use GuzzleHttp;
 use App\Other\Util;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -123,26 +124,12 @@ class PublicController extends Controller
     {
         if (Auth::check())
         {
-            return redirect("public/latest");
+            return redirect("search");
         }
         else
         {
             return view("home");
         }
-    }
-
-
-    // Public Latest page
-    public function getPublicLatestPage()
-    {
-        return view("publicLatest");
-    }
-
-
-    // Public Trending page
-    public function getPublicTrendingPage()
-    {
-        return view("publicTrending");
     }
 
 
@@ -164,5 +151,20 @@ class PublicController extends Controller
     public function getUserPage()
     {
         return view("user");
+    }
+
+
+
+
+    // ----------------------------  Public Image Proxy  ----------------------------
+
+
+    // get image from azure (public images version) - required for html canvas
+    public function imageProxyPublic($userId, $imageName)
+    {
+        $url = "http://shoterate.blob.core.windows.net/user" . $userId . "/" . $imageName;
+        $client = new GuzzleHttp\Client();
+        $res = $client->get($url);
+        return $res->getBody();
     }
 }

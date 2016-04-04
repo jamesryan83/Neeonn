@@ -14,8 +14,7 @@ class Scene extends Model
     protected $fillable = [
         "user_id",
         "storyboard_id",
-        "storyboard_index",
-        "image_url",
+        "storyboard_index",        
         "text",
         "canvas_data_json",
         "canvas_data_svg",

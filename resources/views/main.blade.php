@@ -6,11 +6,10 @@
 <div id="divNavBar">
     <div id="divNavBarContainer">
         <div id="divNavBarHeading">
-            <a href="{{ url('/public/latest') }}"><img src="{{ asset('res/images/title.png') }}" height="25" /></a>
+            <a href="{{ url('/search') }}"><img src="{{ asset('res/images/title.png') }}" height="25" /></a>
         </div>
 
         <div id="divNavBarLinks">
-            <a href="{{ url('/public/latest') }}">Public</a>
             <a href="{{ url('/search') }}">Search</a>
 
             @if (Auth::guest())
@@ -35,6 +34,11 @@
 <!-- Main Content -->
 <div id="divContentMain">
     @yield('contentMain')
+</div>
+
+
+<!-- Button to go to top of page -->
+<div id="divGoToTop" title="Go to top of page" style="display: none">
 </div>
 
 @endsection

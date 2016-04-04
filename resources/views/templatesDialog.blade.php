@@ -18,24 +18,6 @@
 </script>
 
 
-<!-- Choose Picture dialog -->
-<script type="text/template" id="templateDialogChoosePicture">
-<div id="divDialogChoosePicture">
-    <h2>Choose Picture</h2>
-
-    <div id="divButtons">
-        <button id="buttonDialogFromGallery" class="buttonCustom1">From Gallery</button>
-        <button id="buttonDialogRemovePicture" class="buttonCustom1">Remove Picture</button>
-        <button id="buttonDialogCancel" class="buttonCustom1">Cancel</button>
-    </div>
-
-    <div id="divProgress" style="display: none">
-        <img src="../res/loading_hourglass.svg" height=50 width=50 />
-    </div>
-</div>
-</script>
-
-
 
 <!-- From Url dialog -->
 <script type="text/template" id="templateDialogFromUrl">
@@ -44,7 +26,7 @@
 
     <p>Paste a Url in the textbox below and click OK</p>
     <label>Url</label>
-    <input id="inputFromUrl" value="https://i.imgur.com/Lw7EHEm.jpg" />
+    <input id="inputFromUrl" />
 
     <div id="divButtons">
         <button id="buttonDialogOk" class="buttonCustom1">Ok</button>
@@ -73,12 +55,9 @@
             <td><label>First Scene</label></td>
             <td>
                 <select id="selectFirstScene">
-                    <option value="imagetext">Image Left, Text Right</option>
-                    <option value="textimage">Text Left, Image Right</option>
-                    <option value="text">Text Only</option>
-                    <option value="image">Image Only</option>
                     <option value="canvastext">Canvas Left, Text Right</option>
                     <option value="textcanvas">Text Left, Canvas Right</option>
+                    <option value="text">Text Only</option>
                     <option value="canvas">Canvas Only</option>
                 </select>
             </td>
@@ -86,14 +65,13 @@
     </table>
 
     <div id="divCheckboxes">
-        <input type="checkbox" id="checkboxShowTitle" class="css-checkbox" checked="checked"/>
-        <label for="checkboxShowTitle" class="css-label">Show Title</label>
+        <div>
+            <input type="checkbox" id="checkboxPrivate" class="css-checkbox"/>
+            <label for="checkboxPrivate" class="css-label">Private</label>
 
-        <input type="checkbox" id="checkboxPrivate" class="css-checkbox"/>
-        <label for="checkboxPrivate" class="css-label">Private</label>
-
-        <input type="checkbox" id="checkboxAllowComments" class="css-checkbox" checked="checked"/>
-        <label for="checkboxAllowComments" class="css-label">Allow Comments</label>
+            <input type="checkbox" id="checkboxAllowComments" class="css-checkbox" checked="checked"/>
+            <label for="checkboxAllowComments" class="css-label">Allow Comments</label>
+        </div>
     </div>
 
     <div id="divButtons">
@@ -112,23 +90,16 @@
         <h2>Gallery</h2>
     </div>
 
-    <div id="divPictures">
+    <div id="divGalleryImagesContainer">
 
-    </div>
-
-    <div id="divProgress">
-        <img src="../res/loading_hourglass2.svg" height=50 width=50 class="center" />
-    </div>
-
-    <div id="divNoImages">
-        <div id="divNoImagesInner" class="center">
-            <p>You have no images !</p>
-            <p>Go to the Gallery in your Account to add some</p>
-            <button id="buttonDialogGoToGallery" class="buttonCustom1">Take me to my Gallery</button>
-        </div>
     </div>
 
     <div id="divButtons">
+        <button id="buttonFromUrl" class="buttonCustom1">Add From Url</button>
+        <div id="buttonFromComputer" class="upload">
+            <label>Add From Computer</label>
+            <input class="fileupload" type="file" name="files[]" data-url="/upload-image">
+        </div>
         <button id="buttonDialogCancel" class="buttonCustom1">Cancel</button>
     </div>
 </div>
@@ -151,16 +122,12 @@
 
     <div id="divTitle">
         <h2 id="divTitle"><%- title %></h2>
+        <div id="divCloseButton"></div>
         <hr>
     </div>
 
     <div id="divContent">
 
-    </div>
-
-    <div id="divButtons">
-        <hr>
-        <button id="buttonDialogClose" class="buttonCustom1 center">Close</button>
     </div>
 </div>
 </script>
@@ -182,6 +149,25 @@
 
     <div id="divProgress" style="display: none">
         <img src="../res/loading_hourglass.svg" height=50 width=50 />
+    </div>
+</div>
+</script>
+
+
+
+<!-- Scene pattern dialog -->
+<script type="text/template" id="templateDialogScenePattern">
+<div id="divDialogScenePattern">
+    <div id="divTitle">
+        <h2>Select a Pattern</h2>
+    </div>
+
+    <div id="divPatterns">
+    </div>
+
+    <div id="divButtons">
+        <button id="buttonDialogRemovePattern" class="buttonCustom1">Remove Pattern</button>
+        <button id="buttonDialogCancel" class="buttonCustom1">Cancel</button>
     </div>
 </div>
 </script>

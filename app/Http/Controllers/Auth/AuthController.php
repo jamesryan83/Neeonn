@@ -27,7 +27,7 @@ class AuthController extends Controller
 
     use AuthenticatesAndRegistersUsers, ThrottlesLogins;
 
-    protected $redirectTo = "/public/latest";
+    protected $redirectTo = "/search";
 
     public function __construct()
     {

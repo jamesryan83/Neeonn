@@ -8,18 +8,10 @@
         <div class="divDeleteSceneButton" title="Delete this Scene"></div>
         <div class="divMoveDownButton" title="Swap with Scene below"></div>
         <div class="divMoveUpButton" title="Swap with Scene above"></div>
-        <div class="divAddImageButton" title="Add Image"></div>
-        <!-- <div class="divSettingsButton" title="Settings"></div> -->
     </div>
 
     <div class="divInner">
         <div>
-            <div class="divPicture">
-                <div class="divPictureContainer">
-                    <img />
-                </div>
-            </div>
-
             <div class="divCanvas">
                 <div class="divCanvasContainer" tabindex="1">
                     <canvas id="canvas<%- sceneIndex %>" class="canvasMain"  tabindex="1"></canvas>
@@ -71,36 +63,53 @@
 <script type="text/template" id="templateStoryboardSceneItemFull">
 <div class="divStoryboardSceneItemFull" data-storyboardid="<%- storyboardId %>">
 
-    <div class="divControls">
-        <div class="divButtonDelete" title="Delete this Storyboard"></div>
-        <div class="divButtonEdit" title="Edit this Storyboard"></div>
-        <div class="divButtonExpand" title="View in Full Screen"></div>
-        <div class="divButtonShare" title="Share"></div>
-        <div class="divButtonStar" title="Star"></div>
-        <div class="divStarNumber imgText">0</div>
-        <div class="divButtonComment" title="Comment"></div>
-        <div class="divCommentNumber imgText">0</div>
+    <div class="divAboveStoryboard">
+        <div class="divCategory">
+            <label class="labelCategory"><%- category %></label>
+        </div>
+        <label class="labelTitle"><%- title %></label>
+        <label class="labelUsername"><%- username %></label>
         <div class="clearfix"></div>
     </div>
 
     <div class="divInner">
-        <div class="divTitle">
-            <h3 class="h3Title"><%- storyboardTitle %></h3>
-        </div>
-
         <div class="divContentArea">
+            <div class="divPicture">
+            </div>
+
+            <div class="divText">
+                <div class="divActualText"></div>
+            </div>
+
+            <div class="clearfix"></div>
         </div>
     </div>
 
-    <div class="divImageMenu">
-        <div class="divImageMenuItems">
-        </div>
 
+    <div class="divBelowStoryboard">
         <div class="divNavigation">
+            <label class="labelCurrentScene"></label>
             <div class="divNavPrevious noselect" title="Previous Scene" />
             <div class="divNavNext noselect" title="Next Scene" />
         </div>
+
+        <div class="divControls">
+            <div class="divIconPrivate" title="This Storyboard is Private"></div>
+            <label class="divCommentNumber imgText">0</label>
+            <div class="divButtonComment" title="Comment"></div>
+            <label class="divStarNumber imgText">0</label>
+            <div class="divButtonStar" title="Star"></div>
+            <div class="divButtonShare" title="Share"></div>
+            <div class="divButtonExpand" title="View in Full Screen"></div>
+            <div class="divButtonEdit" title="Edit this Storyboard"></div>
+            <div class="divButtonDelete" title="Delete this Storyboard"></div>
+        </div>
+
+        <div class="clearfix"></div>
     </div>
 
 </div>
 </script>
+
+
+

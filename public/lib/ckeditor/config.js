@@ -23,6 +23,9 @@ CKEDITOR.editorConfig = function( config ) {
 		{ name: "about", groups: [ "about" ] }
 	];
 
+    // Remove automatic insertion of &nbsp; instead of space in text
+    config.fillEmptyBlocks = false;
+
     // Custom format names
     config.format_Normal = { element: "p", name: "Normal" };
     config.format_Big_Heading = { element: "h1", name: "Big Heading" };

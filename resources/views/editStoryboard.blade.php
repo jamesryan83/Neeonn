@@ -24,12 +24,6 @@
             <div id="divControls">
 
                 <div>
-                    <input type="checkbox" id="checkboxShowTitle"
-                        class="css-checkbox" checked="checked"/>
-                    <label for="checkboxShowTitle" class="css-label">Show Title</label>
-                </div>
-
-                <div>
                     <input type="checkbox" id="checkboxPrivate"
                         class="css-checkbox" checked="checked"/>
                     <label for="checkboxPrivate" class="css-label">Private</label>
@@ -49,22 +43,32 @@
         <hr>
 
         <!-- Add Scene Buttons -->
-        <div id="divAddScene">
-            <label>Add a Scene</label>
-            <button id="buttonAddSceneImageText" class="buttonCustom1" title="Image Left, Text Right"></button>
-            <button id="buttonAddSceneTextImage" class="buttonCustom1" title="Text Left, Image Right"></button>
-            <button id="buttonAddSceneText" class="buttonCustom1" title="Text Only"></button>
-            <button id="buttonAddSceneImage" class="buttonCustom1" title="Image Only"></button>
-            <button id="buttonAddSceneCanvasText" class="buttonCustom1" title="Canvas Left, Text Right"></button>
-            <button id="buttonAddSceneTextCanvas" class="buttonCustom1" title="Text Left, Canvas Right"></button>
-            <button id="buttonAddSceneCanvas" class="buttonCustom1" title="Canvas Only"></button>
+        <div id="divSceneSettingControls">
+            <div id="divAddScene">
+                <label>Add a Scene</label>
+                <button id="buttonAddSceneCanvasText" class="buttonCustom1" title="Canvas Left, Text Right"></button>
+                <button id="buttonAddSceneTextCanvas" class="buttonCustom1" title="Text Left, Canvas Right"></button>
+                <button id="buttonAddSceneText" class="buttonCustom1" title="Text Only"></button>
+                <button id="buttonAddSceneCanvas" class="buttonCustom1" title="Canvas Only"></button>
+            </div>
+
+            <div id="divSceneColors">
+                <label>Scene Color</label>
+                <input type="text" id="inputColorPickerSceneBackground" />
+                <label>Text Color</label>
+                <input type="text" id="inputColorPickerSceneText" />
+
+                <button id="buttonAddScenePattern" class="buttonCustom1" title="Add Pattern"></button>
+            </div>
+
+
         </div>
 
         <!-- Scenes -->
         <div id="divScenes">
 
         </div>
-        
+
     </div>
 
 </div>

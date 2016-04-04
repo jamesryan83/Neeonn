@@ -20,8 +20,10 @@ class Storyboard extends Model
         "likes",
         "views",
         "is_private",
-        "allow_comments",
-        "show_title"
+        "allow_comments",        
+        "scene_color",
+        "text_color",
+        "scene_pattern"
     ];
 
     public function user()

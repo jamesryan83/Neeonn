@@ -47,7 +47,7 @@ hr {
 .clearfix {
   clear: both; }
 
-.center, #divDialogPictureGallery #divPictures .divImage img {
+.center, #divDialogPictureGallery #divGalleryImagesContainer #divPictures .divImage img {
   position: absolute;
   left: 50%;
   top: 50%;
@@ -89,6 +89,78 @@ hr {
 
 .tabSelected hr {
   background-color: #ff4082; }
+
+.aSceneHashtag, .aSceneUrl {
+  color: blue !important;
+  cursor: pointer; }
+  .aSceneHashtag:hover, .aSceneUrl:hover {
+    color: #ff4082 !important; }
+
+.divGalleryItem {
+  position: relative;
+  display: inline-block;
+  height: 110px;
+  width: 110px;
+  margin: 5px;
+  border: 1px solid transparent;
+  border-radius: 3px; }
+  .divGalleryItem .divItemButtons {
+    background-color: rgba(0, 0, 0, 0.7);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+    visibility: hidden;
+    cursor: default; }
+    .divGalleryItem .divItemButtons .divGalleryIconEdit, .divGalleryItem .divItemButtons .divGalleryIconDelete {
+      margin: 5px;
+      width: 15px;
+      height: 15px;
+      background-repeat: no-repeat;
+      cursor: pointer; }
+    .divGalleryItem .divItemButtons .divGalleryIconEdit {
+      float: left;
+      background-image: url(../../res/svg/icon_edit.svg); }
+      .divGalleryItem .divItemButtons .divGalleryIconEdit:hover {
+        background-image: url(../../res/svg/icon_edit_hover.svg); }
+    .divGalleryItem .divItemButtons .divGalleryIconDelete {
+      float: right;
+      background-image: url(../../res/svg/icon_delete.svg); }
+      .divGalleryItem .divItemButtons .divGalleryIconDelete:hover {
+        background-image: url(../../res/svg/icon_delete_hover.svg); }
+  .divGalleryItem .divItemImage {
+    position: relative;
+    height: 100%;
+    width: 100%; }
+    .divGalleryItem .divItemImage .imgItem {
+      max-width: 100%;
+      max-height: 100%; }
+  .divGalleryItem .divItemButtonsBottom {
+    background-color: rgba(0, 0, 0, 0.7);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+    visibility: hidden;
+    cursor: default; }
+    .divGalleryItem .divItemButtonsBottom label {
+      color: #b3b3b3;
+      font-weight: bold;
+      font-size: 0.9em; }
+    .divGalleryItem .divItemButtonsBottom:hover {
+      cursor: pointer; }
+      .divGalleryItem .divItemButtonsBottom:hover * {
+        cursor: pointer;
+        color: #ff4082 !important; }
+  .divGalleryItem:hover {
+    cursor: pointer;
+    border: 1px solid #ff4082; }
+    .divGalleryItem:hover .divItemButtons {
+      visibility: visible; }
+    .divGalleryItem:hover .divItemButtonsBottom {
+      visibility: visible; }
 
 div.upload {
   position: relative !important;
@@ -185,45 +257,24 @@ label.css-label {
       #divHome #divLoginRegister #divErrors p {
         color: red; }
 
-#divPublic {
-  overflow: auto;
-  text-align: center; }
-  #divPublic * {
-    color: #b3b3b3; }
-  #divPublic #divPublicTabs a {
-    text-decoration: none; }
-    #divPublic #divPublicTabs a:visited {
-      color: #b3b3b3; }
-    #divPublic #divPublicTabs a:hover {
-      color: #ff4082; }
-  #divPublic #divPublicContent #divContentLatest {
-    display: inline-block;
-    position: relative;
-    text-align: left;
-    width: 700px;
-    height: 300px;
-    margin-top: 20px; }
-  #divPublic #divPublicContent #divContentTrending {
-    display: inline-block;
-    position: relative;
-    text-align: left;
-    width: 700px;
-    height: 300px;
-    margin-top: 20px; }
-
 #divEditStoryboard {
   overflow: auto;
   text-align: center; }
+  #divEditStoryboard h1 {
+    margin-top: 15px; }
   #divEditStoryboard * {
     color: #b3b3b3; }
   #divEditStoryboard #divEditStoryboardContent #divEditStoryboardControls {
-    margin: 20px 0; }
+    margin: 15px 0; }
     #divEditStoryboard #divEditStoryboardContent #divEditStoryboardControls > div {
       margin: 10px 0; }
     #divEditStoryboard #divEditStoryboardContent #divEditStoryboardControls #divInputs input, #divEditStoryboard #divEditStoryboardContent #divEditStoryboardControls #divInputs select {
-      width: 300px;
       margin: 10px;
       border: 1px solid #b3b3b3; }
+    #divEditStoryboard #divEditStoryboardContent #divEditStoryboardControls #divInputs input {
+      width: 400px; }
+    #divEditStoryboard #divEditStoryboardContent #divEditStoryboardControls #divInputs select {
+      width: 200px; }
     #divEditStoryboard #divEditStoryboardContent #divEditStoryboardControls #divControls #buttonBackToStoryboards {
       margin-left: 10px; }
     #divEditStoryboard #divEditStoryboardContent #divEditStoryboardControls #divControls > div {
@@ -231,41 +282,63 @@ label.css-label {
       margin: 0 15px; }
     #divEditStoryboard #divEditStoryboardContent #divEditStoryboardControls #divControls #buttonSave {
       margin-left: 10px; }
-  #divEditStoryboard #divEditStoryboardContent #divAddScene {
-    margin: 30px auto 10px auto;
-    display: table; }
-    #divEditStoryboard #divEditStoryboardContent #divAddScene label {
-      display: table-cell;
+  #divEditStoryboard #divEditStoryboardContent #divSceneSettingControls {
+    margin-bottom: 10px; }
+    #divEditStoryboard #divEditStoryboardContent #divSceneSettingControls > div {
+      display: inline-block; }
+    #divEditStoryboard #divEditStoryboardContent #divSceneSettingControls #divAddScene {
+      margin: 30px auto 10px auto; }
+      #divEditStoryboard #divEditStoryboardContent #divSceneSettingControls #divAddScene label {
+        vertical-align: middle;
+        padding-right: 10px; }
+      #divEditStoryboard #divEditStoryboardContent #divSceneSettingControls #divAddScene button {
+        margin: 0 5px;
+        width: 75px;
+        background-repeat: no-repeat;
+        background-size: 25px;
+        vertical-align: middle; }
+      #divEditStoryboard #divEditStoryboardContent #divSceneSettingControls #divAddScene #buttonAddSceneCanvasText {
+        background-image: url(../../res/svg/icon_canvas.svg), url(../../res/svg/icon_text.svg);
+        background-position: 10px, 40px; }
+      #divEditStoryboard #divEditStoryboardContent #divSceneSettingControls #divAddScene #buttonAddSceneTextCanvas {
+        background-image: url(../../res/svg/icon_text.svg), url(../../res/svg/icon_canvas.svg);
+        background-position: 10px, 40px; }
+      #divEditStoryboard #divEditStoryboardContent #divSceneSettingControls #divAddScene #buttonAddSceneText {
+        background-image: url(../../res/svg/icon_text.svg);
+        background-position: center; }
+      #divEditStoryboard #divEditStoryboardContent #divSceneSettingControls #divAddScene #buttonAddSceneCanvas {
+        background-image: url(../../res/svg/icon_canvas.svg);
+        background-position: center; }
+    #divEditStoryboard #divEditStoryboardContent #divSceneSettingControls #divSceneColors > label {
       vertical-align: middle;
-      padding-right: 10px; }
-    #divEditStoryboard #divEditStoryboardContent #divAddScene button {
-      margin: 0 5px;
+      margin-left: 10px; }
+    #divEditStoryboard #divEditStoryboardContent #divSceneSettingControls #divSceneColors > div {
+      margin: 0 0 0 5px;
+      padding: 0;
+      height: 34px;
+      width: 50px;
+      border-radius: 2px;
+      background-color: transparent;
+      vertical-align: middle;
+      border: 1px solid #b3b3b3; }
+      #divEditStoryboard #divEditStoryboardContent #divSceneSettingControls #divSceneColors > div .sp-preview {
+        height: 34px;
+        margin: 0;
+        padding: 0;
+        border: none; }
+      #divEditStoryboard #divEditStoryboardContent #divSceneSettingControls #divSceneColors > div .sp-dd {
+        margin-left: 9px;
+        height: 30px;
+        line-height: 30px;
+        vertical-align: middle; }
+    #divEditStoryboard #divEditStoryboardContent #divSceneSettingControls #divSceneColors #buttonAddScenePattern {
+      background-image: url(../../res/svg/icon_pattern.svg);
+      margin-left: 15px;
       width: 75px;
       background-repeat: no-repeat;
+      background-position: center;
       background-size: 25px;
-      display: table-cell;
       vertical-align: middle; }
-    #divEditStoryboard #divEditStoryboardContent #divAddScene #buttonAddSceneImageText {
-      background-image: url(../../res/svg/icon_image.svg), url(../../res/svg/icon_text.svg);
-      background-position: 10px, 40px; }
-    #divEditStoryboard #divEditStoryboardContent #divAddScene #buttonAddSceneTextImage {
-      background-image: url(../../res/svg/icon_text.svg), url(../../res/svg/icon_image.svg);
-      background-position: 10px, 40px; }
-    #divEditStoryboard #divEditStoryboardContent #divAddScene #buttonAddSceneText {
-      background-image: url(../../res/svg/icon_text.svg);
-      background-position: center; }
-    #divEditStoryboard #divEditStoryboardContent #divAddScene #buttonAddSceneImage {
-      background-image: url(../../res/svg/icon_image.svg);
-      background-position: center; }
-    #divEditStoryboard #divEditStoryboardContent #divAddScene #buttonAddSceneCanvasText {
-      background-image: url(../../res/svg/icon_canvas.svg), url(../../res/svg/icon_text.svg);
-      background-position: 10px, 40px; }
-    #divEditStoryboard #divEditStoryboardContent #divAddScene #buttonAddSceneTextCanvas {
-      background-image: url(../../res/svg/icon_text.svg), url(../../res/svg/icon_canvas.svg);
-      background-position: 10px, 40px; }
-    #divEditStoryboard #divEditStoryboardContent #divAddScene #buttonAddSceneCanvas {
-      background-image: url(../../res/svg/icon_canvas.svg);
-      background-position: center; }
   #divEditStoryboard #divEditStoryboardContent #divScenes {
     padding-bottom: 30px; }
 
@@ -327,6 +400,13 @@ label.css-label {
       margin: 30px 0; }
     #divAccount #divAccountContent #divContentGallery #divGalleryImagesContainer #divNoImages {
       margin-top: 50px; }
+  #divAccount #divAccountContent #divContentSocial {
+    display: inline-block;
+    position: relative;
+    margin: 20px 0; }
+    #divAccount #divAccountContent #divContentSocial #divContentSocialContainer {
+      width: 900px;
+      text-align: left; }
   #divAccount #divAccountContent #divContentSettings {
     display: inline-block;
     position: relative;
@@ -379,56 +459,53 @@ label.css-label {
   #divAccountChangePassword #buttonChangePassword {
     float: right; }
 
-.divGalleryItem {
-  position: relative;
-  display: inline-block;
-  height: 110px;
-  width: 110px;
-  margin: 5px;
-  border: 1px solid transparent;
-  border-radius: 3px; }
-  .divGalleryItem .divItemButtons {
-    background-color: rgba(0, 0, 0, 0.5);
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 100;
-    visibility: hidden; }
-    .divGalleryItem .divItemButtons .divGalleryIconEdit, .divGalleryItem .divItemButtons .divGalleryIconDelete {
-      margin: 5px;
-      width: 15px;
-      height: 15px;
-      background-repeat: no-repeat;
-      cursor: pointer; }
-    .divGalleryItem .divItemButtons .divGalleryIconEdit {
-      float: left;
-      background-image: url(../../res/svg/icon_edit.svg); }
-      .divGalleryItem .divItemButtons .divGalleryIconEdit:hover {
-        background-image: url(../../res/svg/icon_edit_hover.svg); }
-    .divGalleryItem .divItemButtons .divGalleryIconDelete {
-      float: right;
-      background-image: url(../../res/svg/icon_delete.svg); }
-      .divGalleryItem .divItemButtons .divGalleryIconDelete:hover {
-        background-image: url(../../res/svg/icon_delete_hover.svg); }
-  .divGalleryItem .divItemImage {
-    position: relative;
-    height: 100%;
-    width: 100%; }
-    .divGalleryItem .divItemImage .imgItem {
-      max-width: 100%;
-      max-height: 100%; }
-  .divGalleryItem:hover {
-    cursor: pointer;
-    border: 1px solid #ff4082; }
-    .divGalleryItem:hover .divItemButtons {
-      visibility: visible; }
-
 #divSearch {
   overflow: auto;
   text-align: center; }
   #divSearch * {
     color: #b3b3b3; }
+  #divSearch #divSearchControls {
+    margin: 20px 0; }
+    #divSearch #divSearchControls #divSearchBar {
+      /* FF 4-18 */
+      /* FF 19+ */
+      /* IE 10+ */ }
+      #divSearch #divSearchControls #divSearchBar > div {
+        display: inline-block; }
+      #divSearch #divSearchControls #divSearchBar #divIconSearch {
+        height: 20px;
+        width: 20px;
+        background-image: url("../../res/svg/icon_search.svg");
+        background-repeat: no-repeat;
+        margin-bottom: -3px; }
+      #divSearch #divSearchControls #divSearchBar #inputSearchTerm {
+        width: 400px;
+        border: 1px solid #b3b3b3;
+        margin: 0 15px 0 5px; }
+      #divSearch #divSearchControls #divSearchBar #inputSearchTerm:focus::-webkit-input-placeholder {
+        color: transparent; }
+      #divSearch #divSearchControls #divSearchBar #inputSearchTerm:focus:-moz-placeholder {
+        color: transparent; }
+      #divSearch #divSearchControls #divSearchBar #inputSearchTerm:focus::-moz-placeholder {
+        color: transparent; }
+      #divSearch #divSearchControls #divSearchBar #inputSearchTerm:focus:-ms-input-placeholder {
+        color: transparent; }
+      #divSearch #divSearchControls #divSearchBar #buttonSearchGo {
+        width: 100px; }
+    #divSearch #divSearchControls #divSearchProperties > div {
+      margin-top: 20px;
+      display: inline-block; }
+    #divSearch #divSearchControls #divSearchProperties label {
+      margin-left: 15px; }
+    #divSearch #divSearchControls #divSearchProperties label:first-of-type {
+      margin-left: 0; }
+    #divSearch #divSearchControls #divSearchProperties select {
+      width: 200px;
+      border: 1px solid #b3b3b3; }
+    #divSearch #divSearchControls #divSearchProperties #divSearchCheckBoxes {
+      margin-left: 15px; }
+  #divSearch #divNoResults {
+    margin-top: 30px; }
 
 #divHelp {
   overflow: auto;
@@ -450,7 +527,7 @@ label.css-label {
   #divDialogOkCancel h2 {
     text-align: center;
     margin-bottom: 10px;
-    color: white; }
+    color: #ff4082; }
   #divDialogOkCancel p {
     text-align: center;
     font-size: 0.9em;
@@ -468,34 +545,6 @@ label.css-label {
       background-color: #ff4f4f;
       float: right; }
 
-#divDialogChoosePicture {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  -webkit-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
-  background-color: #333333;
-  padding: 10px;
-  border: 1px solid black;
-  border-radius: 5px;
-  width: 270px;
-  text-align: center;
-  height: 240px; }
-  #divDialogChoosePicture h2 {
-    margin-bottom: 10px;
-    color: white; }
-  #divDialogChoosePicture button, #divDialogChoosePicture div {
-    margin: 10px; }
-  #divDialogChoosePicture #divProgress {
-    position: relative;
-    height: 220px; }
-    #divDialogChoosePicture #divProgress img {
-      position: absolute;
-      left: 50%;
-      top: 50%;
-      -webkit-transform: translate(-50%, -50%);
-      transform: translate(-50%, -50%); }
-
 #divDialogFromUrl {
   position: absolute;
   left: 50%;
@@ -510,7 +559,7 @@ label.css-label {
   #divDialogFromUrl h2 {
     text-align: center;
     margin-bottom: 10px;
-    color: white; }
+    color: #ff4082; }
   #divDialogFromUrl p {
     text-align: center;
     font-size: 0.9em;
@@ -534,52 +583,49 @@ label.css-label {
   top: 50%;
   -webkit-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
-  background-color: white;
+  background-color: #333333;
   padding: 10px;
-  border: 1px solid black;
-  border-radius: 5px;
   width: 670px;
   height: 80%;
   text-align: center; }
   #divDialogPictureGallery h2 {
     margin-bottom: 10px;
-    color: #838383; }
-  #divDialogPictureGallery #divButtons {
-    overflow: auto; }
-    #divDialogPictureGallery #divButtons button {
-      margin-top: 5px; }
+    color: #ff4082; }
   #divDialogPictureGallery #divTitle {
     height: 40px; }
-  #divDialogPictureGallery #divPictures, #divDialogPictureGallery #divProgress, #divDialogPictureGallery #divNoImages {
-    height: calc(100% - 80px); }
-  #divDialogPictureGallery #divPictures {
-    text-align: left;
-    overflow-y: scroll; }
-    #divDialogPictureGallery #divPictures .divImage {
-      display: inline-block;
-      position: relative;
-      height: 110px;
-      width: 110px;
-      margin: 8px;
-      border: 1px solid transparent; }
-      #divDialogPictureGallery #divPictures .divImage:hover {
-        border: 1px solid #ff4082;
-        border-radius: 3px;
-        cursor: pointer; }
-      #divDialogPictureGallery #divPictures .divImage img {
-        max-height: 100%;
-        max-width: 100%; }
-  #divDialogPictureGallery #divNoImages {
-    position: relative; }
-    #divDialogPictureGallery #divNoImages #divNoImagesInner {
-      width: 500px; }
-      #divDialogPictureGallery #divNoImages #divNoImagesInner p {
-        color: #838383; }
-      #divDialogPictureGallery #divNoImages #divNoImagesInner button {
-        width: 250px;
-        margin-top: 20px; }
+  #divDialogPictureGallery #divGalleryImagesContainer {
+    height: calc(100% - 90px); }
+    #divDialogPictureGallery #divGalleryImagesContainer #divPictures {
+      overflow-y: auto;
+      overflow-x: hidden; }
+      #divDialogPictureGallery #divGalleryImagesContainer #divPictures .divImage {
+        display: inline-block;
+        position: relative;
+        height: 110px;
+        width: 110px;
+        margin: 8px;
+        border: 1px solid transparent; }
+        #divDialogPictureGallery #divGalleryImagesContainer #divPictures .divImage:hover {
+          border: 1px solid #ff4082;
+          border-radius: 3px;
+          cursor: pointer; }
+        #divDialogPictureGallery #divGalleryImagesContainer #divPictures .divImage img {
+          max-height: 100%;
+          max-width: 100%; }
+    #divDialogPictureGallery #divGalleryImagesContainer #divNoImages {
+      position: relative; }
+      #divDialogPictureGallery #divGalleryImagesContainer #divNoImages #divNoImagesInner {
+        width: 500px; }
+        #divDialogPictureGallery #divGalleryImagesContainer #divNoImages #divNoImagesInner p {
+          color: #838383; }
+        #divDialogPictureGallery #divGalleryImagesContainer #divNoImages #divNoImagesInner button {
+          width: 250px;
+          margin-top: 20px; }
   #divDialogPictureGallery #divButtons {
-    height: 40px; }
+    height: 50px;
+    padding-top: 10px; }
+    #divDialogPictureGallery #divButtons > div {
+      margin: 0 10px; }
 
 #divDialogViewPicture {
   height: 90%;
@@ -598,11 +644,12 @@ label.css-label {
   padding: 10px;
   border: 1px solid black;
   border-radius: 5px;
-  width: 450px; }
+  width: 400px; }
   #divDialogCreateStoryboard h2 {
     text-align: center;
-    margin-bottom: 10px; }
-  #divDialogCreateStoryboard h2, #divDialogCreateStoryboard label {
+    margin-bottom: 10px;
+    color: #ff4082; }
+  #divDialogCreateStoryboard label {
     color: #d3d3d3; }
   #divDialogCreateStoryboard input[type="text"], #divDialogCreateStoryboard select {
     width: 250px; }
@@ -612,7 +659,8 @@ label.css-label {
     #divDialogCreateStoryboard table td {
       padding: 10px; }
   #divDialogCreateStoryboard #divCheckboxes {
-    padding: 15px 0; }
+    margin: 10px 0;
+    text-align: center; }
     #divDialogCreateStoryboard #divCheckboxes label {
       margin-left: 15px; }
   #divDialogCreateStoryboard #divButtons {
@@ -623,29 +671,72 @@ label.css-label {
       float: right; }
 
 #divDialogStoryboardFullScreen {
-  padding: 10px;
-  border: 1px solid black;
-  border-radius: 5px;
-  width: 800px;
-  max-height: 90%;
+  border: 1px solid #333333;
+  width: 900px;
+  height: 90%;
   background-color: white;
-  text-align: center;
   color: #b3b3b3; }
   #divDialogStoryboardFullScreen #divTitle {
-    height: 40px; }
+    height: 40px;
+    background-color: #333333; }
+    #divDialogStoryboardFullScreen #divTitle h2 {
+      display: inline-block;
+      margin-left: 20px;
+      color: #ff4082;
+      line-height: 40px; }
+    #divDialogStoryboardFullScreen #divTitle hr {
+      border-color: #b3b3b3; }
+    #divDialogStoryboardFullScreen #divTitle #divCloseButton {
+      float: right;
+      margin-right: 10px;
+      height: 40px;
+      width: 40px;
+      background-image: url(../../res/svg/icon_delete.svg);
+      background-repeat: no-repeat;
+      background-position: center; }
+      #divDialogStoryboardFullScreen #divTitle #divCloseButton:hover {
+        cursor: pointer;
+        background-image: url(../../res/svg/icon_delete_hover.svg); }
   #divDialogStoryboardFullScreen #divContent {
     text-align: left;
-    overflow-y: auto; }
-    #divDialogStoryboardFullScreen #divContent .divScene {
-      margin: 15px 0; }
-      #divDialogStoryboardFullScreen #divContent .divScene .divSceneImage {
-        text-align: center; }
-  #divDialogStoryboardFullScreen #divButtons {
-    padding: 5px;
-    width: 100%;
-    margin-top: 5px;
-    height: 60px;
-    position: relative; }
+    overflow-y: scroll;
+    height: calc(100% - 42px);
+    margin-top: 2px;
+    padding: 10px; }
+    #divDialogStoryboardFullScreen #divContent .divSceneItem {
+      position: relative;
+      min-height: 290px;
+      padding: 0 10px; }
+      #divDialogStoryboardFullScreen #divContent .divSceneItem h1, #divDialogStoryboardFullScreen #divContent .divSceneItem h2, #divDialogStoryboardFullScreen #divContent .divSceneItem p {
+        margin: 0 !important;
+        padding: 0 !important;
+        word-wrap: break-word; }
+      #divDialogStoryboardFullScreen #divContent .divSceneItem ul, #divDialogStoryboardFullScreen #divContent .divSceneItem ol {
+        margin-left: 20px; }
+    #divDialogStoryboardFullScreen #divContent .divImageLeft {
+      float: left;
+      margin-right: 10px; }
+    #divDialogStoryboardFullScreen #divContent .divImageRight {
+      float: right;
+      margin-left: 10px; }
+    #divDialogStoryboardFullScreen #divContent .divImageCenter {
+      text-align: center; }
+    #divDialogStoryboardFullScreen #divContent .divSceneGap {
+      height: 40px;
+      padding: 19px; }
+      #divDialogStoryboardFullScreen #divContent .divSceneGap hr {
+        background-color: #eaeaea; }
+    #divDialogStoryboardFullScreen #divContent .divSceneGap:first-of-type, #divDialogStoryboardFullScreen #divContent .divSceneGap:last-of-type {
+      height: 5px;
+      padding: 0; }
+      #divDialogStoryboardFullScreen #divContent .divSceneGap:first-of-type hr, #divDialogStoryboardFullScreen #divContent .divSceneGap:last-of-type hr {
+        display: none; }
+    #divDialogStoryboardFullScreen #divContent .divCenterSceneVertical {
+      display: table;
+      height: 290px; }
+      #divDialogStoryboardFullScreen #divContent .divCenterSceneVertical .divCenterSceneVerticalInner {
+        display: table-cell;
+        vertical-align: middle; }
 
 #divDialogCanvasChoosePicture {
   position: absolute;
@@ -662,7 +753,7 @@ label.css-label {
   height: 330px; }
   #divDialogCanvasChoosePicture h2 {
     margin-bottom: 10px;
-    color: white; }
+    color: #ff4082; }
   #divDialogCanvasChoosePicture div {
     margin: 10px; }
   #divDialogCanvasChoosePicture button {
@@ -678,13 +769,53 @@ label.css-label {
       -webkit-transform: translate(-50%, -50%);
       transform: translate(-50%, -50%); }
 
+#divDialogScenePattern {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 10px;
+  border: 1px solid black;
+  border-radius: 5px;
+  width: 670px;
+  height: 80%;
+  text-align: center; }
+  #divDialogScenePattern h2 {
+    margin-bottom: 10px;
+    color: #ff4082; }
+  #divDialogScenePattern #divTitle {
+    height: 40px; }
+  #divDialogScenePattern #divPatterns {
+    text-align: left;
+    overflow-y: scroll;
+    height: calc(100% - 90px); }
+    #divDialogScenePattern #divPatterns .divImage {
+      display: inline-block;
+      position: relative;
+      height: 110px;
+      width: 110px;
+      margin: 8px;
+      border: 1px solid transparent; }
+      #divDialogScenePattern #divPatterns .divImage:hover {
+        border: 1px solid #ff4082;
+        border-radius: 3px;
+        cursor: pointer; }
+  #divDialogScenePattern #divButtons {
+    height: 50px;
+    overflow: auto; }
+    #divDialogScenePattern #divButtons button {
+      margin: 5px; }
+
 .divStoryboardSceneItemBasic {
   display: inline-block;
   margin-top: 10px;
   width: 580px; }
   .divStoryboardSceneItemBasic .divControls {
     height: 21px;
-    text-align: left; }
+    text-align: left;
+    margin-bottom: 2px; }
     .divStoryboardSceneItemBasic .divControls .labelSceneIndex {
       margin-left: 5px; }
     .divStoryboardSceneItemBasic .divControls > div {
@@ -692,110 +823,72 @@ label.css-label {
       cursor: pointer;
       width: 20px;
       height: 20px;
-      background-repeat: no-repeat; }
-    .divStoryboardSceneItemBasic .divControls .divSettingsButton {
-      margin-top: -1px;
-      margin-right: 15px;
-      background-position: center;
-      background-image: url(../../res/svg/icon_settings.svg); }
-      .divStoryboardSceneItemBasic .divControls .divSettingsButton:hover {
-        background-image: url(../../res/svg/icon_settings_hover.svg); }
-    .divStoryboardSceneItemBasic .divControls .divAddImageButton {
-      margin-top: -1px;
-      margin-right: 15px;
-      background-image: url(../../res/svg/icon_image.svg); }
-      .divStoryboardSceneItemBasic .divControls .divAddImageButton:hover {
-        background-image: url(../../res/svg/icon_image_hover.svg); }
+      margin-right: 10px;
+      background-repeat: no-repeat;
+      background-position: center; }
     .divStoryboardSceneItemBasic .divControls .divMoveUpButton {
-      margin-right: 15px;
       background-image: url(../../res/svg/icon_arrow_up.svg); }
       .divStoryboardSceneItemBasic .divControls .divMoveUpButton:hover {
         background-image: url(../../res/svg/icon_arrow_up_hover.svg); }
     .divStoryboardSceneItemBasic .divControls .divMoveDownButton {
-      margin-right: 15px;
       background-image: url(../../res/svg/icon_arrow_down.svg); }
       .divStoryboardSceneItemBasic .divControls .divMoveDownButton:hover {
         background-image: url(../../res/svg/icon_arrow_down_hover.svg); }
     .divStoryboardSceneItemBasic .divControls .divDeleteSceneButton {
+      margin-right: 5px;
       background-image: url(../../res/svg/icon_delete.svg); }
       .divStoryboardSceneItemBasic .divControls .divDeleteSceneButton:hover {
         background-image: url(../../res/svg/icon_delete_hover.svg); }
   .divStoryboardSceneItemBasic .divInner {
-    height: 280px;
-    border-radius: 3px;
-    border: 1px solid #b3b3b3; }
-    .divStoryboardSceneItemBasic .divInner .divType_imagetext, .divStoryboardSceneItemBasic .divInner .divType_textimage, .divStoryboardSceneItemBasic .divInner .divType_text, .divStoryboardSceneItemBasic .divInner .divType_image, .divStoryboardSceneItemBasic .divInner .divType_canvastext, .divStoryboardSceneItemBasic .divInner .divType_textcanvas, .divStoryboardSceneItemBasic .divInner .divType_canvas {
+    height: 290px;
+    box-shadow: 2px 2px 5px 2px #b3b3b3; }
+    .divStoryboardSceneItemBasic .divInner .divType_canvastext, .divStoryboardSceneItemBasic .divInner .divType_text, .divStoryboardSceneItemBasic .divInner .divType_textcanvas, .divStoryboardSceneItemBasic .divInner .divType_canvas {
       height: 100%;
       width: 100%; }
-      .divStoryboardSceneItemBasic .divInner .divType_imagetext .divPicture, .divStoryboardSceneItemBasic .divInner .divType_textimage .divPicture, .divStoryboardSceneItemBasic .divInner .divType_text .divPicture, .divStoryboardSceneItemBasic .divInner .divType_image .divPicture, .divStoryboardSceneItemBasic .divInner .divType_canvastext .divPicture, .divStoryboardSceneItemBasic .divInner .divType_textcanvas .divPicture, .divStoryboardSceneItemBasic .divInner .divType_canvas .divPicture {
-        float: left;
-        position: relative;
-        height: 100%;
-        width: 50%;
-        padding: 5px; }
-        .divStoryboardSceneItemBasic .divInner .divType_imagetext .divPicture .divPictureContainer, .divStoryboardSceneItemBasic .divInner .divType_textimage .divPicture .divPictureContainer, .divStoryboardSceneItemBasic .divInner .divType_text .divPicture .divPictureContainer, .divStoryboardSceneItemBasic .divInner .divType_image .divPicture .divPictureContainer, .divStoryboardSceneItemBasic .divInner .divType_canvastext .divPicture .divPictureContainer, .divStoryboardSceneItemBasic .divInner .divType_textcanvas .divPicture .divPictureContainer, .divStoryboardSceneItemBasic .divInner .divType_canvas .divPicture .divPictureContainer {
-          height: 100%; }
-          .divStoryboardSceneItemBasic .divInner .divType_imagetext .divPicture .divPictureContainer img, .divStoryboardSceneItemBasic .divInner .divType_textimage .divPicture .divPictureContainer img, .divStoryboardSceneItemBasic .divInner .divType_text .divPicture .divPictureContainer img, .divStoryboardSceneItemBasic .divInner .divType_image .divPicture .divPictureContainer img, .divStoryboardSceneItemBasic .divInner .divType_canvastext .divPicture .divPictureContainer img, .divStoryboardSceneItemBasic .divInner .divType_textcanvas .divPicture .divPictureContainer img, .divStoryboardSceneItemBasic .divInner .divType_canvas .divPicture .divPictureContainer img {
-            position: absolute;
-            max-width: calc(100% - 10px);
-            max-height: calc(100% - 10px);
-            top: 0;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            margin: auto; }
-          .divStoryboardSceneItemBasic .divInner .divType_imagetext .divPicture .divPictureContainer:hover, .divStoryboardSceneItemBasic .divInner .divType_textimage .divPicture .divPictureContainer:hover, .divStoryboardSceneItemBasic .divInner .divType_text .divPicture .divPictureContainer:hover, .divStoryboardSceneItemBasic .divInner .divType_image .divPicture .divPictureContainer:hover, .divStoryboardSceneItemBasic .divInner .divType_canvastext .divPicture .divPictureContainer:hover, .divStoryboardSceneItemBasic .divInner .divType_textcanvas .divPicture .divPictureContainer:hover, .divStoryboardSceneItemBasic .divInner .divType_canvas .divPicture .divPictureContainer:hover {
-            outline: blue dashed 1px; }
-      .divStoryboardSceneItemBasic .divInner .divType_imagetext .divCanvas, .divStoryboardSceneItemBasic .divInner .divType_textimage .divCanvas, .divStoryboardSceneItemBasic .divInner .divType_text .divCanvas, .divStoryboardSceneItemBasic .divInner .divType_image .divCanvas, .divStoryboardSceneItemBasic .divInner .divType_canvastext .divCanvas, .divStoryboardSceneItemBasic .divInner .divType_textcanvas .divCanvas, .divStoryboardSceneItemBasic .divInner .divType_canvas .divCanvas {
+      .divStoryboardSceneItemBasic .divInner .divType_canvastext .divCanvas, .divStoryboardSceneItemBasic .divInner .divType_text .divCanvas, .divStoryboardSceneItemBasic .divInner .divType_textcanvas .divCanvas, .divStoryboardSceneItemBasic .divInner .divType_canvas .divCanvas {
         float: left;
         height: 100%;
-        width: 0;
-        padding: 5px; }
-        .divStoryboardSceneItemBasic .divInner .divType_imagetext .divCanvas .divCanvasContainer, .divStoryboardSceneItemBasic .divInner .divType_textimage .divCanvas .divCanvasContainer, .divStoryboardSceneItemBasic .divInner .divType_text .divCanvas .divCanvasContainer, .divStoryboardSceneItemBasic .divInner .divType_image .divCanvas .divCanvasContainer, .divStoryboardSceneItemBasic .divInner .divType_canvastext .divCanvas .divCanvasContainer, .divStoryboardSceneItemBasic .divInner .divType_textcanvas .divCanvas .divCanvasContainer, .divStoryboardSceneItemBasic .divInner .divType_canvas .divCanvas .divCanvasContainer {
+        width: 50%; }
+        .divStoryboardSceneItemBasic .divInner .divType_canvastext .divCanvas .divCanvasContainer, .divStoryboardSceneItemBasic .divInner .divType_text .divCanvas .divCanvasContainer, .divStoryboardSceneItemBasic .divInner .divType_textcanvas .divCanvas .divCanvasContainer, .divStoryboardSceneItemBasic .divInner .divType_canvas .divCanvas .divCanvasContainer {
           height: 100%;
           outline: none; }
-          .divStoryboardSceneItemBasic .divInner .divType_imagetext .divCanvas .divCanvasContainer *, .divStoryboardSceneItemBasic .divInner .divType_textimage .divCanvas .divCanvasContainer *, .divStoryboardSceneItemBasic .divInner .divType_text .divCanvas .divCanvasContainer *, .divStoryboardSceneItemBasic .divInner .divType_image .divCanvas .divCanvasContainer *, .divStoryboardSceneItemBasic .divInner .divType_canvastext .divCanvas .divCanvasContainer *, .divStoryboardSceneItemBasic .divInner .divType_textcanvas .divCanvas .divCanvasContainer *, .divStoryboardSceneItemBasic .divInner .divType_canvas .divCanvas .divCanvasContainer * {
+          .divStoryboardSceneItemBasic .divInner .divType_canvastext .divCanvas .divCanvasContainer *, .divStoryboardSceneItemBasic .divInner .divType_text .divCanvas .divCanvasContainer *, .divStoryboardSceneItemBasic .divInner .divType_textcanvas .divCanvas .divCanvasContainer *, .divStoryboardSceneItemBasic .divInner .divType_canvas .divCanvas .divCanvasContainer * {
             outline: none; }
-          .divStoryboardSceneItemBasic .divInner .divType_imagetext .divCanvas .divCanvasContainer:hover, .divStoryboardSceneItemBasic .divInner .divType_textimage .divCanvas .divCanvasContainer:hover, .divStoryboardSceneItemBasic .divInner .divType_text .divCanvas .divCanvasContainer:hover, .divStoryboardSceneItemBasic .divInner .divType_image .divCanvas .divCanvasContainer:hover, .divStoryboardSceneItemBasic .divInner .divType_canvastext .divCanvas .divCanvasContainer:hover, .divStoryboardSceneItemBasic .divInner .divType_textcanvas .divCanvas .divCanvasContainer:hover, .divStoryboardSceneItemBasic .divInner .divType_canvas .divCanvas .divCanvasContainer:hover {
-            outline: purple dashed 1px; }
-      .divStoryboardSceneItemBasic .divInner .divType_imagetext .divText, .divStoryboardSceneItemBasic .divInner .divType_textimage .divText, .divStoryboardSceneItemBasic .divInner .divType_text .divText, .divStoryboardSceneItemBasic .divInner .divType_image .divText, .divStoryboardSceneItemBasic .divInner .divType_canvastext .divText, .divStoryboardSceneItemBasic .divInner .divType_textcanvas .divText, .divStoryboardSceneItemBasic .divInner .divType_canvas .divText {
+          .divStoryboardSceneItemBasic .divInner .divType_canvastext .divCanvas .divCanvasContainer:hover, .divStoryboardSceneItemBasic .divInner .divType_text .divCanvas .divCanvasContainer:hover, .divStoryboardSceneItemBasic .divInner .divType_textcanvas .divCanvas .divCanvasContainer:hover, .divStoryboardSceneItemBasic .divInner .divType_canvas .divCanvas .divCanvasContainer:hover {
+            outline: #ad00ad dashed 1px; }
+      .divStoryboardSceneItemBasic .divInner .divType_canvastext .divText, .divStoryboardSceneItemBasic .divInner .divType_text .divText, .divStoryboardSceneItemBasic .divInner .divType_textcanvas .divText, .divStoryboardSceneItemBasic .divInner .divType_canvas .divText {
         position: relative;
         float: right;
         text-align: left;
         overflow: hidden;
-        font-size: 0.9em;
-        padding: 5px;
-        height: 100%;
+        font-size: 0.85em;
+        height: 290px;
         width: 50%;
         display: table; }
-        .divStoryboardSceneItemBasic .divInner .divType_imagetext .divText .divTextContainer, .divStoryboardSceneItemBasic .divInner .divType_textimage .divText .divTextContainer, .divStoryboardSceneItemBasic .divInner .divType_text .divText .divTextContainer, .divStoryboardSceneItemBasic .divInner .divType_image .divText .divTextContainer, .divStoryboardSceneItemBasic .divInner .divType_canvastext .divText .divTextContainer, .divStoryboardSceneItemBasic .divInner .divType_textcanvas .divText .divTextContainer, .divStoryboardSceneItemBasic .divInner .divType_canvas .divText .divTextContainer {
+        .divStoryboardSceneItemBasic .divInner .divType_canvastext .divText .divTextContainer, .divStoryboardSceneItemBasic .divInner .divType_text .divText .divTextContainer, .divStoryboardSceneItemBasic .divInner .divType_textcanvas .divText .divTextContainer, .divStoryboardSceneItemBasic .divInner .divType_canvas .divText .divTextContainer {
           display: table-cell;
           vertical-align: middle; }
-          .divStoryboardSceneItemBasic .divInner .divType_imagetext .divText .divTextContainer *, .divStoryboardSceneItemBasic .divInner .divType_textimage .divText .divTextContainer *, .divStoryboardSceneItemBasic .divInner .divType_text .divText .divTextContainer *, .divStoryboardSceneItemBasic .divInner .divType_image .divText .divTextContainer *, .divStoryboardSceneItemBasic .divInner .divType_canvastext .divText .divTextContainer *, .divStoryboardSceneItemBasic .divInner .divType_textcanvas .divText .divTextContainer *, .divStoryboardSceneItemBasic .divInner .divType_canvas .divText .divTextContainer * {
-            color: #838383 !important; }
-          .divStoryboardSceneItemBasic .divInner .divType_imagetext .divText .divTextContainer:hover, .divStoryboardSceneItemBasic .divInner .divType_textimage .divText .divTextContainer:hover, .divStoryboardSceneItemBasic .divInner .divType_text .divText .divTextContainer:hover, .divStoryboardSceneItemBasic .divInner .divType_image .divText .divTextContainer:hover, .divStoryboardSceneItemBasic .divInner .divType_canvastext .divText .divTextContainer:hover, .divStoryboardSceneItemBasic .divInner .divType_textcanvas .divText .divTextContainer:hover, .divStoryboardSceneItemBasic .divInner .divType_canvas .divText .divTextContainer:hover {
-            outline: aqua dashed 1px;
+          .divStoryboardSceneItemBasic .divInner .divType_canvastext .divText .divTextContainer *, .divStoryboardSceneItemBasic .divInner .divType_text .divText .divTextContainer *, .divStoryboardSceneItemBasic .divInner .divType_textcanvas .divText .divTextContainer *, .divStoryboardSceneItemBasic .divInner .divType_canvas .divText .divTextContainer * {
+            color: #838383; }
+          .divStoryboardSceneItemBasic .divInner .divType_canvastext .divText .divTextContainer:hover, .divStoryboardSceneItemBasic .divInner .divType_text .divText .divTextContainer:hover, .divStoryboardSceneItemBasic .divInner .divType_textcanvas .divText .divTextContainer:hover, .divStoryboardSceneItemBasic .divInner .divType_canvas .divText .divTextContainer:hover {
+            outline: #009898 dashed 1px;
             cursor: pointer; }
-          .divStoryboardSceneItemBasic .divInner .divType_imagetext .divText .divTextContainer .divActualText, .divStoryboardSceneItemBasic .divInner .divType_textimage .divText .divTextContainer .divActualText, .divStoryboardSceneItemBasic .divInner .divType_text .divText .divTextContainer .divActualText, .divStoryboardSceneItemBasic .divInner .divType_image .divText .divTextContainer .divActualText, .divStoryboardSceneItemBasic .divInner .divType_canvastext .divText .divTextContainer .divActualText, .divStoryboardSceneItemBasic .divInner .divType_textcanvas .divText .divTextContainer .divActualText, .divStoryboardSceneItemBasic .divInner .divType_canvas .divText .divTextContainer .divActualText {
-            max-height: calc(280px - 20px);
+          .divStoryboardSceneItemBasic .divInner .divType_canvastext .divText .divTextContainer .divActualText, .divStoryboardSceneItemBasic .divInner .divType_text .divText .divTextContainer .divActualText, .divStoryboardSceneItemBasic .divInner .divType_textcanvas .divText .divTextContainer .divActualText, .divStoryboardSceneItemBasic .divInner .divType_canvas .divText .divTextContainer .divActualText {
+            padding: 10px;
+            max-height: 290px;
             overflow-y: auto;
             overflow-x: hidden; }
-            .divStoryboardSceneItemBasic .divInner .divType_imagetext .divText .divTextContainer .divActualText:focus, .divStoryboardSceneItemBasic .divInner .divType_textimage .divText .divTextContainer .divActualText:focus, .divStoryboardSceneItemBasic .divInner .divType_text .divText .divTextContainer .divActualText:focus, .divStoryboardSceneItemBasic .divInner .divType_image .divText .divTextContainer .divActualText:focus, .divStoryboardSceneItemBasic .divInner .divType_canvastext .divText .divTextContainer .divActualText:focus, .divStoryboardSceneItemBasic .divInner .divType_textcanvas .divText .divTextContainer .divActualText:focus, .divStoryboardSceneItemBasic .divInner .divType_canvas .divText .divTextContainer .divActualText:focus {
+            .divStoryboardSceneItemBasic .divInner .divType_canvastext .divText .divTextContainer .divActualText:focus, .divStoryboardSceneItemBasic .divInner .divType_text .divText .divTextContainer .divActualText:focus, .divStoryboardSceneItemBasic .divInner .divType_textcanvas .divText .divTextContainer .divActualText:focus, .divStoryboardSceneItemBasic .divInner .divType_canvas .divText .divTextContainer .divActualText:focus {
               outline: none; }
-            .divStoryboardSceneItemBasic .divInner .divType_imagetext .divText .divTextContainer .divActualText ul, .divStoryboardSceneItemBasic .divInner .divType_textimage .divText .divTextContainer .divActualText ul, .divStoryboardSceneItemBasic .divInner .divType_text .divText .divTextContainer .divActualText ul, .divStoryboardSceneItemBasic .divInner .divType_image .divText .divTextContainer .divActualText ul, .divStoryboardSceneItemBasic .divInner .divType_canvastext .divText .divTextContainer .divActualText ul, .divStoryboardSceneItemBasic .divInner .divType_textcanvas .divText .divTextContainer .divActualText ul, .divStoryboardSceneItemBasic .divInner .divType_canvas .divText .divTextContainer .divActualText ul, .divStoryboardSceneItemBasic .divInner .divType_imagetext .divText .divTextContainer .divActualText ol, .divStoryboardSceneItemBasic .divInner .divType_textimage .divText .divTextContainer .divActualText ol, .divStoryboardSceneItemBasic .divInner .divType_text .divText .divTextContainer .divActualText ol, .divStoryboardSceneItemBasic .divInner .divType_image .divText .divTextContainer .divActualText ol, .divStoryboardSceneItemBasic .divInner .divType_canvastext .divText .divTextContainer .divActualText ol, .divStoryboardSceneItemBasic .divInner .divType_textcanvas .divText .divTextContainer .divActualText ol, .divStoryboardSceneItemBasic .divInner .divType_canvas .divText .divTextContainer .divActualText ol {
+            .divStoryboardSceneItemBasic .divInner .divType_canvastext .divText .divTextContainer .divActualText h1, .divStoryboardSceneItemBasic .divInner .divType_text .divText .divTextContainer .divActualText h1, .divStoryboardSceneItemBasic .divInner .divType_textcanvas .divText .divTextContainer .divActualText h1, .divStoryboardSceneItemBasic .divInner .divType_canvas .divText .divTextContainer .divActualText h1, .divStoryboardSceneItemBasic .divInner .divType_canvastext .divText .divTextContainer .divActualText h2, .divStoryboardSceneItemBasic .divInner .divType_text .divText .divTextContainer .divActualText h2, .divStoryboardSceneItemBasic .divInner .divType_textcanvas .divText .divTextContainer .divActualText h2, .divStoryboardSceneItemBasic .divInner .divType_canvas .divText .divTextContainer .divActualText h2, .divStoryboardSceneItemBasic .divInner .divType_canvastext .divText .divTextContainer .divActualText p, .divStoryboardSceneItemBasic .divInner .divType_text .divText .divTextContainer .divActualText p, .divStoryboardSceneItemBasic .divInner .divType_textcanvas .divText .divTextContainer .divActualText p, .divStoryboardSceneItemBasic .divInner .divType_canvas .divText .divTextContainer .divActualText p {
+              margin: 0 !important;
+              padding: 0 !important;
+              word-wrap: break-word; }
+            .divStoryboardSceneItemBasic .divInner .divType_canvastext .divText .divTextContainer .divActualText ul, .divStoryboardSceneItemBasic .divInner .divType_text .divText .divTextContainer .divActualText ul, .divStoryboardSceneItemBasic .divInner .divType_textcanvas .divText .divTextContainer .divActualText ul, .divStoryboardSceneItemBasic .divInner .divType_canvas .divText .divTextContainer .divActualText ul, .divStoryboardSceneItemBasic .divInner .divType_canvastext .divText .divTextContainer .divActualText ol, .divStoryboardSceneItemBasic .divInner .divType_text .divText .divTextContainer .divActualText ol, .divStoryboardSceneItemBasic .divInner .divType_textcanvas .divText .divTextContainer .divActualText ol, .divStoryboardSceneItemBasic .divInner .divType_canvas .divText .divTextContainer .divActualText ol {
               margin-left: 20px; }
-    .divStoryboardSceneItemBasic .divInner .divType_textimage .divPicture {
-      float: right; }
-    .divStoryboardSceneItemBasic .divInner .divType_textimage .divText {
-      float: left; }
     .divStoryboardSceneItemBasic .divInner .divType_text .divText {
       float: none;
       width: 100%; }
-    .divStoryboardSceneItemBasic .divInner .divType_image .divPicture {
-      float: none;
-      width: 100%; }
-    .divStoryboardSceneItemBasic .divInner .divType_canvastext .divCanvas {
-      width: 50%; }
     .divStoryboardSceneItemBasic .divInner .divType_textcanvas .divCanvas {
       width: 50%;
       float: right; }
@@ -805,7 +898,7 @@ label.css-label {
       float: none;
       width: 100%; }
   .divStoryboardSceneItemBasic .divEditorControls {
-    height: 40px; }
+    height: 45px; }
     .divStoryboardSceneItemBasic .divEditorControls .divCanvasControls {
       padding-top: 5px; }
       .divStoryboardSceneItemBasic .divEditorControls .divCanvasControls > div[class^="divCanvasButton"] {
@@ -898,7 +991,8 @@ label.css-label {
           background-image: url(../../res/svg/icon_delete_hover.svg); }
     .divStoryboardSceneItemBasic .divEditorControls .editorTop {
       width: auto;
-      float: left; }
+      float: left;
+      padding-top: 3px; }
       .divStoryboardSceneItemBasic .divEditorControls .editorTop > div {
         border: 1px solid transparent !important; }
 
@@ -907,151 +1001,118 @@ label.css-label {
   vertical-align: top; }
 
 .divStoryboardSceneItemFull {
-  display: inline-block;
-  margin: 10px;
+  margin: 15px;
   width: 580px; }
-  .divStoryboardSceneItemFull .divControls {
-    height: 20px;
-    padding-right: 20px; }
-    .divStoryboardSceneItemFull .divControls > div {
+  .divStoryboardSceneItemFull .divAboveStoryboard, .divStoryboardSceneItemFull .divBelowStoryboard {
+    padding: 0 10px; }
+  .divStoryboardSceneItemFull .divAboveStoryboard {
+    padding-bottom: 2px; }
+    .divStoryboardSceneItemFull .divAboveStoryboard .divCategory {
+      text-align: left;
+      font-size: 0.85em;
+      height: 20px; }
+    .divStoryboardSceneItemFull .divAboveStoryboard .labelTitle {
+      float: left;
+      font-weight: bold;
+      font-size: 1em;
+      color: #333333 !important; }
+    .divStoryboardSceneItemFull .divAboveStoryboard .labelUsername {
       float: right;
-      cursor: pointer;
-      width: 15px;
-      height: 15px;
-      background-repeat: no-repeat;
-      background-position: center; }
-    .divStoryboardSceneItemFull .divControls .imgText {
-      margin-top: -2px; }
-    .divStoryboardSceneItemFull .divControls .divButtonComment {
-      margin-right: 15px;
-      margin-top: 1px;
-      background-image: url(../../res/svg/icon_comments.svg); }
-      .divStoryboardSceneItemFull .divControls .divButtonComment:hover {
-        background-image: url(../../res/svg/icon_comments_hover.svg); }
-    .divStoryboardSceneItemFull .divControls .divButtonStar {
-      margin-right: 15px;
-      background-image: url(../../res/svg/icon_star.svg); }
-      .divStoryboardSceneItemFull .divControls .divButtonStar:hover {
-        background-image: url(../../res/svg/icon_star_hover.svg); }
-    .divStoryboardSceneItemFull .divControls .divButtonShare {
-      margin-right: 15px;
-      background-image: url(../../res/svg/icon_share.svg); }
-      .divStoryboardSceneItemFull .divControls .divButtonShare:hover {
-        background-image: url(../../res/svg/icon_share_hover.svg); }
-    .divStoryboardSceneItemFull .divControls .divButtonExpand {
-      margin-right: 15px;
-      background-image: url(../../res/svg/icon_expand.svg); }
-      .divStoryboardSceneItemFull .divControls .divButtonExpand:hover {
-        background-image: url(../../res/svg/icon_expand_hover.svg); }
-    .divStoryboardSceneItemFull .divControls .divButtonEdit {
-      margin-right: 15px;
-      background-image: url(../../res/svg/icon_edit.svg); }
-      .divStoryboardSceneItemFull .divControls .divButtonEdit:hover {
-        background-image: url(../../res/svg/icon_edit_hover.svg); }
-    .divStoryboardSceneItemFull .divControls .divButtonDelete {
-      background-image: url(../../res/svg/icon_delete.svg); }
-      .divStoryboardSceneItemFull .divControls .divButtonDelete:hover {
-        background-image: url(../../res/svg/icon_delete_hover.svg); }
+      font-size: 0.9em;
+      color: #ff4082 !important; }
   .divStoryboardSceneItemFull .divInner {
-    height: calc(280px + 30px);
-    border-radius: 3px;
-    border: 1px solid #b3b3b3; }
-    .divStoryboardSceneItemFull .divInner .divTitle {
-      height: 30px;
-      line-height: 30px; }
+    height: 290px;
+    box-shadow: 2px 2px 5px 2px #b3b3b3; }
     .divStoryboardSceneItemFull .divInner .divContentArea {
       width: 100%;
-      height: calc(100% - 30px); }
-      .divStoryboardSceneItemFull .divInner .divContentArea .divPicture, .divStoryboardSceneItemFull .divInner .divContentArea divObject {
-        float: left;
-        width: 50%;
-        height: 100%;
-        position: relative; }
-        .divStoryboardSceneItemFull .divInner .divContentArea .divPicture .divPictureContainer, .divStoryboardSceneItemFull .divInner .divContentArea .divPicture divObject, .divStoryboardSceneItemFull .divInner .divContentArea divObject .divPictureContainer, .divStoryboardSceneItemFull .divInner .divContentArea divObject divObject {
-          height: 100%; }
-          .divStoryboardSceneItemFull .divInner .divContentArea .divPicture .divPictureContainer img, .divStoryboardSceneItemFull .divInner .divContentArea .divPicture .divPictureContainer object, .divStoryboardSceneItemFull .divInner .divContentArea .divPicture divObject img, .divStoryboardSceneItemFull .divInner .divContentArea .divPicture divObject object, .divStoryboardSceneItemFull .divInner .divContentArea divObject .divPictureContainer img, .divStoryboardSceneItemFull .divInner .divContentArea divObject .divPictureContainer object, .divStoryboardSceneItemFull .divInner .divContentArea divObject divObject img, .divStoryboardSceneItemFull .divInner .divContentArea divObject divObject object {
-            position: absolute;
-            max-width: calc(100% - 10px);
-            max-height: calc(100% - 10px);
-            top: 0;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            margin: auto; }
+      height: 290px; }
       .divStoryboardSceneItemFull .divInner .divContentArea .divText {
-        position: relative;
-        float: right;
         text-align: left;
         overflow: hidden;
-        font-size: 0.9em;
-        padding: 5px;
-        height: 100%;
-        width: 50%;
-        display: table; }
-        .divStoryboardSceneItemFull .divInner .divContentArea .divText .divTextContainer {
-          display: table-cell;
-          vertical-align: middle; }
-          .divStoryboardSceneItemFull .divInner .divContentArea .divText .divTextContainer * {
-            color: #838383 !important; }
-          .divStoryboardSceneItemFull .divInner .divContentArea .divText .divTextContainer .divActualText {
-            max-height: calc(280px - 20px);
-            overflow-y: auto;
-            overflow-x: hidden; }
-            .divStoryboardSceneItemFull .divInner .divContentArea .divText .divTextContainer .divActualText ul, .divStoryboardSceneItemFull .divInner .divContentArea .divText .divTextContainer .divActualText ol {
-              margin-left: 20px; }
-  .divStoryboardSceneItemFull .divImageMenu {
-    height: 30px; }
-    .divStoryboardSceneItemFull .divImageMenu .divImageMenuItems {
-      height: 100%;
+        font-size: 0.85em; }
+        .divStoryboardSceneItemFull .divInner .divContentArea .divText .divActualText {
+          position: relative;
+          top: 50%;
+          -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+          max-height: 290px;
+          overflow-y: auto;
+          overflow-x: hidden;
+          max-width: 100%;
+          padding: 10px; }
+          .divStoryboardSceneItemFull .divInner .divContentArea .divText .divActualText h1, .divStoryboardSceneItemFull .divInner .divContentArea .divText .divActualText h2, .divStoryboardSceneItemFull .divInner .divContentArea .divText .divActualText p {
+            margin: 0 !important;
+            padding: 0 !important;
+            word-wrap: break-word; }
+          .divStoryboardSceneItemFull .divInner .divContentArea .divText .divActualText ul, .divStoryboardSceneItemFull .divInner .divContentArea .divText .divActualText ol {
+            margin-left: 20px; }
+  .divStoryboardSceneItemFull .divBelowStoryboard {
+    padding-top: 5px; }
+    .divStoryboardSceneItemFull .divBelowStoryboard .divNavigation, .divStoryboardSceneItemFull .divBelowStoryboard .divControls {
+      height: 25px; }
+    .divStoryboardSceneItemFull .divBelowStoryboard .divNavigation {
       float: left;
-      margin-left: 15px; }
-      .divStoryboardSceneItemFull .divImageMenu .divImageMenuItems .divSceneMenuItem {
-        float: left;
-        position: relative;
-        display: inline-block;
-        width: 30px;
-        margin: 2px;
-        text-align: center;
-        height: 100%;
-        cursor: pointer;
-        border-bottom: 1px solid transparent; }
-        .divStoryboardSceneItemFull .divImageMenu .divImageMenuItems .divSceneMenuItem img {
-          position: absolute;
-          max-width: 95%;
-          max-height: 95%;
-          top: 0;
-          bottom: 0;
-          left: 0;
-          right: 0;
-          margin: auto; }
-        .divStoryboardSceneItemFull .divImageMenu .divImageMenuItems .divSceneMenuItem:hover {
-          border-bottom: 1px solid #ff4082; }
-      .divStoryboardSceneItemFull .divImageMenu .divImageMenuItems .selected {
-        border-top: 1px solid #ff4082; }
-    .divStoryboardSceneItemFull .divImageMenu .divNavigation {
-      line-height: normal;
-      height: 30px;
-      float: right; }
-      .divStoryboardSceneItemFull .divImageMenu .divNavigation div {
-        position: relative;
+      line-height: normal; }
+      .divStoryboardSceneItemFull .divBelowStoryboard .divNavigation div {
         display: inline-block;
         cursor: pointer;
         width: 15px;
         height: 15px;
         background-repeat: no-repeat;
-        top: 50%;
-        -webkit-transform: translateY(-50%);
-        transform: translateY(-50%); }
-      .divStoryboardSceneItemFull .divImageMenu .divNavigation .divNavPrevious {
+        margin-bottom: -2px; }
+      .divStoryboardSceneItemFull .divBelowStoryboard .divNavigation .divNavPrevious {
         margin-right: 5px;
         background-image: url(../../res/svg/icon_arrow_left.svg); }
-        .divStoryboardSceneItemFull .divImageMenu .divNavigation .divNavPrevious:hover {
+        .divStoryboardSceneItemFull .divBelowStoryboard .divNavigation .divNavPrevious:hover {
           background-image: url(../../res/svg/icon_arrow_left_hover.svg); }
-      .divStoryboardSceneItemFull .divImageMenu .divNavigation .divNavNext {
-        margin-right: 15px;
+      .divStoryboardSceneItemFull .divBelowStoryboard .divNavigation .divNavNext {
         background-image: url(../../res/svg/icon_arrow_right.svg); }
-        .divStoryboardSceneItemFull .divImageMenu .divNavigation .divNavNext:hover {
+        .divStoryboardSceneItemFull .divBelowStoryboard .divNavigation .divNavNext:hover {
           background-image: url(../../res/svg/icon_arrow_right_hover.svg); }
+    .divStoryboardSceneItemFull .divBelowStoryboard .divControls {
+      float: right; }
+      .divStoryboardSceneItemFull .divBelowStoryboard .divControls > div {
+        display: inline-block;
+        cursor: pointer;
+        width: 15px;
+        height: 15px;
+        background-repeat: no-repeat;
+        background-position: center; }
+      .divStoryboardSceneItemFull .divBelowStoryboard .divControls .divIconPrivate {
+        display: none;
+        margin-right: 10px;
+        background-image: url(../../res/svg/icon_lock.svg);
+        cursor: default; }
+      .divStoryboardSceneItemFull .divBelowStoryboard .divControls .divButtonComment {
+        margin-right: 15px;
+        margin-bottom: -2px;
+        background-image: url(../../res/svg/icon_comments.svg); }
+        .divStoryboardSceneItemFull .divBelowStoryboard .divControls .divButtonComment:hover {
+          background-image: url(../../res/svg/icon_comments_hover.svg); }
+      .divStoryboardSceneItemFull .divBelowStoryboard .divControls .divButtonStar {
+        margin-right: 15px;
+        background-image: url(../../res/svg/icon_star.svg); }
+        .divStoryboardSceneItemFull .divBelowStoryboard .divControls .divButtonStar:hover {
+          background-image: url(../../res/svg/icon_star_hover.svg); }
+      .divStoryboardSceneItemFull .divBelowStoryboard .divControls .divButtonShare {
+        margin-right: 15px;
+        background-image: url(../../res/svg/icon_share.svg); }
+        .divStoryboardSceneItemFull .divBelowStoryboard .divControls .divButtonShare:hover {
+          background-image: url(../../res/svg/icon_share_hover.svg); }
+      .divStoryboardSceneItemFull .divBelowStoryboard .divControls .divButtonExpand {
+        margin-right: 15px;
+        background-image: url(../../res/svg/icon_expand.svg); }
+        .divStoryboardSceneItemFull .divBelowStoryboard .divControls .divButtonExpand:hover {
+          background-image: url(../../res/svg/icon_expand_hover.svg); }
+      .divStoryboardSceneItemFull .divBelowStoryboard .divControls .divButtonEdit {
+        margin-right: 15px;
+        background-image: url(../../res/svg/icon_edit.svg); }
+        .divStoryboardSceneItemFull .divBelowStoryboard .divControls .divButtonEdit:hover {
+          background-image: url(../../res/svg/icon_edit_hover.svg); }
+      .divStoryboardSceneItemFull .divBelowStoryboard .divControls .divButtonDelete {
+        background-image: url(../../res/svg/icon_delete.svg); }
+        .divStoryboardSceneItemFull .divBelowStoryboard .divControls .divButtonDelete:hover {
+          background-image: url(../../res/svg/icon_delete_hover.svg); }
 
 #divEditImage {
   min-width: 870px;
@@ -1162,7 +1223,7 @@ html, body {
     #divContentApp #divNavBar #divNavBarContainer {
       margin: auto;
       text-align: left;
-      max-width: 1260px; }
+      max-width: 100%; }
       #divContentApp #divNavBar #divNavBarContainer #divNavBarHeading {
         float: left;
         margin-left: 20px; }
@@ -1194,12 +1255,47 @@ html, body {
     width: 100%;
     text-align: center; }
     #divContentApp #divContentMain > div {
-      max-width: 1260px;
+      max-width: 100%;
       color: #333333;
       margin: auto;
       padding: 0 20px; }
+  #divContentApp #divGoToTop {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #333333;
+    height: 40px;
+    width: 40px;
+    border-radius: 20px;
+    border: 1px solid transparent; }
+    #divContentApp #divGoToTop:before {
+      position: absolute;
+      content: "";
+      height: 5px;
+      width: 11px;
+      top: 15px;
+      left: 8px;
+      -webkit-transform: skewY(-45deg);
+      transform: skewY(-45deg);
+      background: #ff4082; }
+    #divContentApp #divGoToTop:after {
+      position: absolute;
+      content: "";
+      height: 5px;
+      width: 11px;
+      top: 15px;
+      left: 19px;
+      -webkit-transform: skewY(45deg);
+      transform: skewY(45deg);
+      background: #ff4082; }
+    #divContentApp #divGoToTop:hover {
+      cursor: pointer;
+      border: 1px solid #ff4082; }
+    #divContentApp #divGoToTop:active {
+      -webkit-transform: scale(0.9, 0.9);
+      transform: scale(0.9, 0.9); }
 
-#divDialogContainer {
+#divDialogContainer, #divGalleryContainer {
   position: fixed;
   display: none;
   height: 100%;
@@ -1209,6 +1305,9 @@ html, body {
   z-index: 10000;
   background-color: rgba(0, 0, 0, 0.4);
   pointer-events: all; }
+
+#divGalleryContainer {
+  z-index: 5000 !important; }
 
 @media (max-width: 600px) {
   #divNavBar #divNavBarLinks {

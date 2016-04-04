@@ -32,6 +32,7 @@ class StoryboardController extends Controller
         {
             if ($storyboard["storyboard_id"] == $request->storyboardId)
             {
+                $storyboard["username"] = $user->username;
                 return array("success" => true, "data" => $storyboard);
             }
         }
@@ -45,6 +46,11 @@ class StoryboardController extends Controller
     {
         $user = Auth::user();
         $result = $user->load("storyboards.scenes")["storyboards"];
+
+        foreach ($result as $storyboard)
+        {
+            $storyboard["username"] = $user->username;
+        }
 
         // TODO : error check
         return array("success" => true, "data" => $result);
@@ -62,9 +68,8 @@ class StoryboardController extends Controller
             "user_id" => $userId,
             "title" => $request["title"],
             "category" => $request["category"],
-            "show_title" => $request["showTitle"],
             "is_private" => $request["isPrivate"],
-            "allow_comments" => $request["allowComments"]
+            "allow_comments" => $request["allowComments"],
         ]);
 
         // scene
@@ -97,9 +102,12 @@ class StoryboardController extends Controller
 
             $storyboard->allow_comments = $data["allowComments"];
             $storyboard->category = $data["category"];
-            $storyboard->is_private = $data["isPrivate"];
-            $storyboard->show_title = $data["showTitle"];
+            $storyboard->is_private = $data["isPrivate"];            
             $storyboard->title = $data["title"];
+            $storyboard->scene_color = $data["sceneColor"];
+            $storyboard->text_color = $data["textColor"];
+            $storyboard->scene_pattern = $data["scenePattern"];
+
 
             $storyboard->save();
 
@@ -126,7 +134,6 @@ class StoryboardController extends Controller
                         "type" => $data["scenes"][$i]["type"],
                         "canvas_data_json" => $data["scenes"][$i]["canvasDataJson"],
                         "canvas_data_svg" => $svgData,
-                        "image_url" => $data["scenes"][$i]["image"],
                         "text" => $data["scenes"][$i]["text"] ]));
                 }
 

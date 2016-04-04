@@ -156,8 +156,7 @@ app.editImage.view.EditImage = Backbone.View.extend({
 
         app.server.saveUpdatedImage(cropData, imageName, imageData, function (success, result) {
             if (success === true) {
-                self.exitedNormally = true;
-                location.href = "../account/gallery";
+                self.returnToPreviousPage();
             } else {
                 $("#divLoading").hide();
             }
@@ -171,9 +170,21 @@ app.editImage.view.EditImage = Backbone.View.extend({
         $("#divLoading").show();
         var fileName = app.util.getFilenameFromImageUrl($("#imgMain").attr("src"));
         app.server.deleteTempImage(fileName, function (success, result) {
-            self.exitedNormally = true;
-            location.href = "../account/gallery";
+            self.returnToPreviousPage();
         }, true);
+    },
+
+
+    // Return to the previous page
+    returnToPreviousPage: function () {
+        this.exitedNormally = true;
+
+        var previousPage = Cookies.get("previousPage");
+        if (previousPage !== "accountGallery") {
+            location.href = previousPage;
+        } else  {
+            location.href = "../account/gallery";
+        }
     }
 });
 

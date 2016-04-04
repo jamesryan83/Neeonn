@@ -5,6 +5,7 @@ Route::get("/api/v1/user-logged-in", "PublicController@userLoggedIn");
 Route::post("/api/v1/login", "PublicController@loginUser");
 Route::post("/api/v1/register", "PublicController@registerUser");
 Route::get("/api/v1/test", "PublicController@test");
+Route::get("/image-proxy-public/{userid}/{name}", "PublicController@imageProxyPublic");
 
 
 // website routes
@@ -13,8 +14,6 @@ Route::group(["middleware" => "web"], function () {
 
     // Pages
     Route::get("/", "PublicController@getHomePage");
-    Route::get("/public/latest", "PublicController@getPublicLatestPage");
-    Route::get("/public/trending", "PublicController@getPublicTrendingPage");
     Route::get("/search", "PublicController@getSearchPage");
     Route::get("/account/storyboards", "PrivateController@getAccountStoryboardsPage");
     Route::get("/account/gallery", "PrivateController@getAccountGalleryPage");
@@ -40,7 +39,7 @@ Route::group(["middleware" => "web"], function () {
     Route::post("/upload-image-url", "ImageController@uploadImageFromUrl");
     Route::post("/update-image", "ImageController@updateImage");
     Route::post("/delete-image", "ImageController@deleteImage");
-    Route::post("/delete-temp-image", "ImageController@deleteTempImage");    
+    Route::post("/delete-temp-image", "ImageController@deleteTempImage");
 
     // Storyboards
     Route::get("/get-storyboard", "StoryboardController@getStoryboard");
@@ -49,6 +48,8 @@ Route::group(["middleware" => "web"], function () {
     Route::post("/save-storyboard", "StoryboardController@saveStoryboard");
     Route::post("/delete-storyboard", "StoryboardController@deleteStoryboard");
 
+    // Search
+    Route::post("/search", "SearchController@search");
 
 });
 

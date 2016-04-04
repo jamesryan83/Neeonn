@@ -13,8 +13,6 @@ use App\Other\Azure;
 
 class PrivateController extends Controller
 {
-    private $dotenv;
-
     public function __construct()
     {
         $this->middleware('auth');

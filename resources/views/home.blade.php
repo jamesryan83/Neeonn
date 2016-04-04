@@ -13,7 +13,7 @@
 
     <!-- Title -->
     <div id="divTitle">
-        <a href="{{ url('/public/latest') }}"><img src="res/images/title_big.png" height="60" /></a>
+        <a href="{{ url('/search') }}"><img src="res/images/title_big.png" height="60" /></a>
 
         <h1>Blah Blah Blah</h1>
         <h2>Something Something Blah</h2>
