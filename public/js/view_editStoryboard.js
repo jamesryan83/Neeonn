@@ -105,7 +105,8 @@ app.editStoryboard.view.Main = Backbone.View.extend({
 
 
                 // set scene pattern
-                if (self.scene_pattern !== null) {
+                if (self.scene_pattern !== undefined && self.scene_pattern !== null &&
+                        self.scene_pattern.length !== 0) {
                     self.$el.find(".divInner").css({
                         "background-image": "url(../res/patterns/" + self.scene_pattern + ")"
                     });
