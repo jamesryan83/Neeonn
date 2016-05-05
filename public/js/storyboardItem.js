@@ -37,7 +37,7 @@ app.items.view.StoryboardItem = Backbone.View.extend({
         // hide Uncategorized category on public pages, looks ugly
         if (this.page !== "account" && this.data.category === "Uncategorized") {
             this.data.category = " ";
-        }        
+        }
 
         this.$el.html(this.template({
             storyboard_id: this.data.storyboard_id,
@@ -51,7 +51,8 @@ app.items.view.StoryboardItem = Backbone.View.extend({
         // set colors/patterns
         this.$el.find(".divInner").css({ "background-color": this.data.scene_color });
 
-        if (this.data.scene_pattern !== null) {
+        if (self.scene_pattern !== undefined && self.scene_pattern !== null &&
+                        self.scene_pattern.length !== 0) {
             this.$el.find(".divInner").css({
                 "background-image": "url(../res/patterns/" + this.data.scene_pattern + ")"
             });
