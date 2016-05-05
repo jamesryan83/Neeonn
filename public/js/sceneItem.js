@@ -627,7 +627,7 @@ app.items.view.SceneItem = Backbone.View.extend({
                 app.server.updateSceneText({
                     scene_id: self.scene_id,
                     text: text
-                }, function (success) { console.log(success) });
+                }, function (success) { console.log("text saved") });
             }
 
             self.lastText = text;
@@ -637,7 +637,6 @@ app.items.view.SceneItem = Backbone.View.extend({
 
     // End save text timer
     endSaveText: function () {
-        console.log(this.$el.find(".divActualText").html())
         if (this.debugSaveOff === true) return;
         clearInterval(this.saveTextTimer);
         var text = this.$el.find(".divActualText").html();

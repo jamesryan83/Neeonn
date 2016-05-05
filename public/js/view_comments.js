@@ -36,8 +36,7 @@ app.comments.view.Main = Backbone.View.extend({
             if (success === true) {
                 var i = 0;
                 var commentList = self.$el.find("#divCommentsList");
-
-                console.log(data)
+                
                 // add comments to commentList
                 for (i = 0; i < data.comments.length; i++) {
                     var comment = new app.comments.view.CommentItem(data.comments[i]);
