@@ -36,7 +36,10 @@ CKEDITOR.editorConfig = function (config) {
 	config.removeButtons = "Cut,Copy,Paste,Undo,Redo,Anchor,About,Outdent,Indent,Strike,Subscript,Superscript,Link,Unlink";
     config.removePlugins = "resize";
 
-    config.allowedContent = true;
+//    config.allowedContent = 'span[*]{*};h1[*]{*};h2[*]{*};b[*]{*};p[*]{*};i[*]{*};u;[*]{*};ul[*]{*}(*);ol[*]{*}(*);li[*]{*}(*);div[*]{*}(*);br[*]{*}(*);';
+
+    config.allowedContent = 'span h1 h2 b p i u ul ol li div br[*]{*}(*);';
+
     config.extraAllowedContent = 'span[*]{*};';
     //config.pasteFilter.allow("span[*]{*};");
 };

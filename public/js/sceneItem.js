@@ -59,7 +59,6 @@ app.items.view.SceneItem = Backbone.View.extend({
                 self.canvas.freeDrawingBrush.width = 5;
                 self.canvas.freeDrawingBrush.color = app.data.colorNeonPink;
 
-                console.log(data)
                 self.image_name = app.data.image_name;
                 if (self.image_name === undefined) {
                     self.image_name = null;
@@ -638,6 +637,7 @@ app.items.view.SceneItem = Backbone.View.extend({
 
     // End save text timer
     endSaveText: function () {
+        console.log(this.$el.find(".divActualText").html())
         if (this.debugSaveOff === true) return;
         clearInterval(this.saveTextTimer);
         var text = this.$el.find(".divActualText").html();
