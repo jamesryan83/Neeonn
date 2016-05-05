@@ -351,6 +351,7 @@ app.items.view.SceneItem = Backbone.View.extend({
                 } else if (result === "addBackgroundColor") {
                     self.canvas.backgroundColor = self.canvasSelectedColor;
                     self.canvas.renderAll();
+                    self.saveCanvasData();
 
                 // remove background
                 }   else if (result === "removeBackground") {
@@ -359,6 +360,7 @@ app.items.view.SceneItem = Backbone.View.extend({
                     self.canvas.renderAll();
 
                     self.image_name = null;
+                    self.saveCanvasData();
                 }
             }
         })
