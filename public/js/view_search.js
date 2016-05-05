@@ -89,10 +89,10 @@ app.search.view.Main = Backbone.View.extend({
                         }
                     }
 
-                    // prepend storyboards to search
+                    // append storyboards to search
                     for (i = 0; i < result.storyboards.length; i++) {
                         self.$el.find("#divSearchResults")
-                            .prepend(new app.items.view.StoryboardItem("search", result.storyboards[i]).el);
+                            .append(new app.items.view.StoryboardItem("search", result.storyboards[i]).el);
                     }
 
                     self.$el.find("#divNoResults").hide();
