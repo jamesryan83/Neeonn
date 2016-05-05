@@ -152,7 +152,7 @@ app.editStoryboard.view.Main = Backbone.View.extend({
         var self = this;
 
         var data = {
-            storyboard_id: scene.data.storyboard_id,
+            storyboard_id: this.$el.data("storyboard_id"),
             storyboard_index: scene.data.storyboard_index
         }
 
