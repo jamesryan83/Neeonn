@@ -24,7 +24,7 @@
 
         <div id="divNoStoryboards">
             <p>You have no Storyboards !</p>
-            <p>Click <b><i>Create New Storyboard</i></b> to add one</p>
+            <p>Click <b>Create New Storyboard</b> to add one</p>
         </div>
     </div>
 
