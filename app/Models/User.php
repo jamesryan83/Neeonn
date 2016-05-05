@@ -19,6 +19,7 @@ class User extends Authenticatable
         "website",
         "location",
         "summary",
+        "gallery_order",
         "is_active",
         "views",
         "last_login",
@@ -41,6 +42,11 @@ class User extends Authenticatable
     public function storyboards()
     {
         return $this->hasMany("App\Models\Storyboard");
+    }
+
+    public function comments()
+    {
+        return $this->hasMany("App\Models\Comment");
     }
 
 }

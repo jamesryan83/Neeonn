@@ -5,22 +5,13 @@ app.base = app.base || {};
 app.base.view = app.base.view || {};
 
 
-// Requires following elements
-// #divDialogContainer
-// #divPictures
-// .fileupload
-// #divNoImages
-// plus the ones in events
-
-
 // Gallery Base
 app.base.view.GalleryBase = Backbone.View.extend({
 
     events: {
         "click #buttonFromUrl": "showFromUrlDialog",
         "click .divItemImage": "imageClicked",
-        "click .divGalleryIconEdit": "editImage",
-        "click .divGalleryIconDelete": "deleteImage"
+        "click .divGalleryIconDelete": "checkDeleteImage"
     },
 
     initialize: function () {
@@ -34,15 +25,34 @@ app.base.view.GalleryBase = Backbone.View.extend({
             self.removeGalleryLoadingItem();
 
             if (success === true) {
-                if (data.length === 0) {
+                if (data.images.length === 0) {
                     self.hideGallery();
                 } else {
                     self.showGallery();
 
-                    // append images to gallery
-                    var sorted = app.util.sortArray(data, "lastModified");
-                    for (var i = 0; i < sorted.length; i++) {
-                        self.appendGalleryItem(sorted[i]);
+                    // add items to gallery
+                    for (var i = 0; i < data.images.length; i++) {
+                        self.appendGalleryItem(data.images[i]);
+                    }
+
+                    // setup sortable grid
+                    var el = document.getElementById("divPictures");
+                    var sortable = new Sortable(el, {
+                        animation: 150,
+                        onSort: function (evt) {
+                            var data = sortable.toArray().join("|");
+
+                            // update galery order
+                            app.server.updateGalleryOrder(data, function (success) {});
+                        }
+                    });
+
+                    // restore gallery order
+                    if (data.order !== null && data.order.length > 0) {
+                        var order = data.order.split("|");
+                        if (order.length > 1) {
+                            sortable.sort(order);
+                        }
                     }
                 }
             }
@@ -90,7 +100,7 @@ app.base.view.GalleryBase = Backbone.View.extend({
             dataType: 'json',
             maxNumberOfFiles: 1,
             acceptFileTypes: /^image\/(gif|jpe?g|png)$/i,
-            maxFileSize: 250000,
+            maxFileSize: 1000000,
 
             add: function (e, data) {
 
@@ -150,19 +160,41 @@ app.base.view.GalleryBase = Backbone.View.extend({
     },
 
 
-    // Go to edit image page
-    editImage: function (e) {
+    // Check before deleting image if it's referenced in any storyboards
+    checkDeleteImage: function (e) {
+        var self = this;
+        var imageName = $(e.target).data("imgname");
 
+        app.server.getStoryboardsForImage(imageName, function (success, data) {
+            if (success === true) {
+                if (data.linked === false) {
+                    self.deleteImage(e);
+                } else {
+                    if (data.titles.length > 0) {
+                        $("#divDialogContainer").show();
+                        new app.dialog.view.ImageStoryboardLink(data.titles, function (success) {
+                            app.util.hideDialog();
+
+                            if (success === true) {
+                                self.deleteImage(e);
+                            }
+                        });
+                    } else {
+                        self.deleteImage(e);
+                    }
+                }
+            }
+        });
     },
 
 
     // Delete an image
     deleteImage: function (e) {
         var self = this;
-
         var galleryItem = $(e.target).closest(".divGalleryItem");
-        app.server.deleteImage($(e.target).data("imgname"), function (success, data) {
+        var imageName = $(e.target).data("imgname");
 
+        app.server.deleteImage(imageName, function (success, data) {
             // remove from page
             if (success === true) {
                 $(galleryItem).remove();
@@ -179,21 +211,15 @@ app.base.view.GalleryBase = Backbone.View.extend({
 
 
 
-
-
-
-
     // ------------------------------------- Gallery Actions -------------------------------------
 
     // Appends a new gallery item
     appendGalleryItem: function (data) {
-
         var fileName = data.filename.replace("thumb_", "");
 
         var galleryItemTemplate =
-            "<div class='divGalleryItem noselect'>" +
+            "<div class='divGalleryItem' data-id='" + data.filename + "'>" +
                 "<div class='divItemButtons'>" +
-                    "<div class='divGalleryIconEdit' data-imgname='" + fileName + "' title='Edit'></div>" +
                     "<div class='divGalleryIconDelete' data-imgname='" + fileName+ "' title='Delete'></div>" +
                     "<div class='clearfix'></div>" +
                 "</div>" +

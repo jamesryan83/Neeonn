@@ -2,6 +2,8 @@
 
 namespace App\Other;
 
+use DB;
+
 class Util
 {
     // Create a GUID (api_token)
@@ -17,11 +19,11 @@ class Util
             mt_srand((double) microtime() * 10000);
             $charid = strtoupper(md5(uniqid(rand(), true)));
             $hyphen = chr(45);
-            $uuid = substr($charid, 0, 8).$hyphen
-                .substr($charid, 8, 4).$hyphen
-                .substr($charid,12, 4).$hyphen
-                .substr($charid,16, 4).$hyphen
-                .substr($charid,20,12);
+            $uuid = substr($charid, 0, 8) . $hyphen
+                . substr($charid, 8, 4) . $hyphen
+                . substr($charid,12, 4) . $hyphen
+                . substr($charid,16, 4) . $hyphen
+                . substr($charid,20,12);
 
             return $uuid;
         }
@@ -36,44 +38,42 @@ class Util
 
 
     // Returns an Azure blob url
-    public static function getBlobUrl($userId, $imageName)
+    public static function getBlobUrl($user_id, $imageName)
     {
-        return "https://shoterate.blob.core.windows.net/user" . $userId . "/" . $imageName;
+        return Util::getBlobHostUrl() . "user" . $user_id . "/" . $imageName;
     }
 
 
-
-
-    // Create a temporary file for editing in the tempImages folder
-    public static function createTemporaryImageForEditing($userId, $imageName)
+    // Returns either production or debug host url for blob storage
+    public static function getBlobHostUrl()
     {
-        $blobUrl = Util::getBlobUrl($userId, $imageName);
-        $image = file_get_contents($blobUrl);
-        file_put_contents("tempImages/" . $imageName, $image);
-        return "tempImages/" . $imageName;
+        // DEBUGmode
+        //return "http://127.0.0.1:10000/devstoreaccount1/";
+        return "http://shoterate.blob.core.windows.net/";
     }
 
 
-
-    // Delete a temporary file from the tempImages folder
-    public static function deleteTemporaryFile($fileName)
+    // Get the current users id from an api_token
+    public static function getUserIdFromApiToken($api_token)
     {
-        $success = unlink("tempImages/" . $fileName);
-        return array("success" => $success);
+        $users = DB::table("users")->where("api_token", $api_token)->select("user_id")->get();
+        if (count($users) > 0)
+        {
+            return $user_id = $users[0]->user_id;
+        }
+        else
+        {
+            return null;
+        }
     }
 
 
-
-    // Base64 string to image
-    public static function base64ToImage($base64_string, $output_file) {
-        $ifp = fopen($output_file, "wb");
-
-        $data = explode(',', $base64_string);
-
-        fwrite($ifp, base64_decode($data[1]));
-        fclose($ifp);
-
-        return $output_file;
+    // Return response for api key
+    public static function getInvalidApiTokenResponse()
+    {
+        return array("success" => false, "message" => "Invalid api_token");
     }
+
+
 
 }

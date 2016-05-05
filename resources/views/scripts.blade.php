@@ -29,9 +29,12 @@
     <script src="{{ asset('js/view_editStoryboard.js') }}"></script>
     <script src="{{ asset('js/sceneItem.js') }}"></script>
 
-@elseif(Request::is("edit-image/*"))
-    <script src="{{ asset('js/view_editImage.js') }}"></script>
-
 @elseif(Request::path() === "help")
+    <script src="{{ asset('js/view_help.js') }}"></script>
+
+@elseif(Request::is("comments/*"))
+    <script src="{{ asset('js/view_comments.js') }}"></script>
+    <script src="{{ asset('js/storyboardItem.js') }}"></script>
+    <script src="{{ asset('js/sceneItem.js') }}"></script>
 
 @endif

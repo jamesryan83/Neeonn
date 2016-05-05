@@ -20,7 +20,8 @@ app.items.view.StoryboardItem = Backbone.View.extend({
         "click .divButtonEdit": "edit",
         "click .divButtonDelete": "delete",
         "click .divNavNext": "nextScene",
-        "click .divNavPrevious": "previousScene"
+        "click .divNavPrevious": "previousScene",
+        "click .divContentArea": "fullScreen"
     },
 
     // page = search, account, user
@@ -36,13 +37,14 @@ app.items.view.StoryboardItem = Backbone.View.extend({
         // hide Uncategorized category on public pages, looks ugly
         if (this.page !== "account" && this.data.category === "Uncategorized") {
             this.data.category = " ";
-        }
+        }        
 
         this.$el.html(this.template({
-            storyboardId: this.data.storyboard_id,
+            storyboard_id: this.data.storyboard_id,
             title: this.data.title,
             category: this.data.category,
-            username: this.data.username
+            username: this.data.username,
+            num_comments: this.data.num_comments
         }));
 
 
@@ -55,8 +57,6 @@ app.items.view.StoryboardItem = Backbone.View.extend({
             });
         }
 
-        this.$el.find(".divActualText *").css({ "color": this.data.text_color });
-
 
         // stop window scrolling when scrolling over text
         app.util.preventWindowScroll(this.$el.find(".divActualText"));
@@ -64,12 +64,22 @@ app.items.view.StoryboardItem = Backbone.View.extend({
 
         // set the first scene up
         if (this.data.scenes !== undefined && this.data.scenes.length > 0) {
+
+            // sort scenes
+            this.data.scenes = app.util.sortIntegerArray(this.data.scenes, "storyboard_index");
+
             this.setSelectedScene();
+
+            // hide navgation arrows when only 1 scene
+            if (this.data.scenes.length === 1) {
+                this.$el.find(".divNavPrevious").hide();
+                this.$el.find(".divNavNext").hide();
+            }
         }
 
 
         // Hide delete and edit icons if on public page
-        if (this.page === "search" || this.page === "user") {
+        if (this.page === "search" || this.page === "user" || this.page === "comments") {
             this.$el.find(".divIconPrivate").hide();
             this.$el.find(".divButtonEdit").hide();
             this.$el.find(".divButtonDelete").hide();
@@ -80,6 +90,12 @@ app.items.view.StoryboardItem = Backbone.View.extend({
             if (this.data.is_private === "1") {
                 this.$el.find(".divIconPrivate").css({ "display": "inline-block" });
             }
+        }
+
+        // Hide comments on comments page
+        if (this.page === "comments") {
+            this.$el.find(".divCommentNumber").hide();
+            this.$el.find(".divButtonComment").hide();
         }
 
 
@@ -124,8 +140,9 @@ app.items.view.StoryboardItem = Backbone.View.extend({
         if (canvasImage !== null && canvasImage.length > 0) {
 
             // change images to public access
-            if (this.page === "search" || this.page === "user") {
-                canvasImage = canvasImage.replace("image-proxy", "image-proxy-public/" + this.data.user_id);
+            if (this.page === "search" || this.page === "user" || this.page === "comments") {
+                canvasImage = canvasImage.replace(/image-proxy/g,
+                                                  "image-proxy-public/" + this.data.user_id);
             }
 
             this.$el.find(".divPicture").append($(canvasImage));
@@ -220,7 +237,8 @@ app.items.view.StoryboardItem = Backbone.View.extend({
 
     // comment
     comment: function () {
-
+        var storyboard_id = this.$el.find(".divStoryboardSceneItemFull").data("storyboard_id");
+        location.href = "/comments/" + storyboard_id;
     },
 
 
@@ -248,8 +266,8 @@ app.items.view.StoryboardItem = Backbone.View.extend({
     // Go to the edit storyboard page
     edit: function () {
         if (this.page === "account") {
-            var storyboardId = this.$el.find(".divStoryboardSceneItemFull").data("storyboardid");
-            location.href = "/edit-storyboard/" + storyboardId;
+            var storyboard_id = this.$el.find(".divStoryboardSceneItemFull").data("storyboard_id");
+            location.href = "/edit-storyboard/" + storyboard_id;
         }
     },
 
@@ -258,7 +276,7 @@ app.items.view.StoryboardItem = Backbone.View.extend({
     delete: function () {
         if (this.page === "account") {
             var self = this;
-            var storyboardId = this.$el.find(".divStoryboardSceneItemFull").data("storyboardid");
+            var storyboard_id = this.$el.find(".divStoryboardSceneItemFull").data("storyboard_id");
 
             var dialogData = {
                 heading: "Delete Storyboard",
@@ -274,7 +292,7 @@ app.items.view.StoryboardItem = Backbone.View.extend({
                 if (result === true) {
 
                     // delete storyboard
-                    app.server.deleteStoryboard(storyboardId, function (success, result) {
+                    app.server.deleteStoryboard(storyboard_id, function (success, result) {
                         if (success === true) {
                             app.account.view.storyboards.deleteStoryboard(self);
                         }

@@ -4,11 +4,24 @@ namespace App\Http\Controllers;
 
 use DB;
 use Log;
+use App\Other\Util;
 use App\Http\Requests;
 use Illuminate\Http\Request;
 
 class SearchController extends Controller
 {
+
+    // Checks user token before calling search function
+    public function searchFromApi(Request $request)
+    {
+        $user_id = Util::getUserIdFromApiToken($request->data["api_token"]);
+        if ($user_id === null) {
+            return Util::getInvalidApiTokenResponse();
+        } else {
+            return $this->search($request);
+        }
+    }
+
 
     // TODO - clean this up
     public function search(Request $request)
@@ -63,8 +76,8 @@ class SearchController extends Controller
                 "storyboards.title",
                 "storyboards.category",
                 "storyboards.allow_comments",
+                "storyboards.num_comments",
                 "storyboards.scene_color",
-                "storyboards.text_color",
                 "storyboards.scene_pattern",
                 "storyboards.updated_at",
                 "users.username"
@@ -131,8 +144,8 @@ class SearchController extends Controller
                 "storyboards.title",
                 "storyboards.category",
                 "storyboards.allow_comments",
+                "storyboards.num_comments",
                 "storyboards.scene_color",
-                "storyboards.text_color",
                 "storyboards.scene_pattern",
                 "storyboards.updated_at",
                 "users.username"
@@ -143,10 +156,12 @@ class SearchController extends Controller
             ->when($category != "All Categories", function ($query) use ($category) {
                 return $query->where("storyboards.category", $category);
             })
-            ->when($searchTitles == "true", function ($query) use ($searchTerm) {
+            ->when($searchTitles == "true" && strlen($searchTerm) > 0,
+                   function ($query) use ($searchTerm) {
                 return $query->where("storyboards.title", "like", "$searchTerm%");
             })
-            ->when($searchUsernames == "true", function ($query) use ($searchTerm) {
+            ->when($searchUsernames == "true" && strlen($searchTerm) > 0,
+                   function ($query) use ($searchTerm) {
                 return $query->where("users.username", "like", "$searchTerm%");
             })
 
@@ -161,7 +176,6 @@ class SearchController extends Controller
             ->skip(0)
             ->take(10)
             ->get();
-
 
             // if no results
             if (empty($result) == true)
@@ -193,7 +207,6 @@ class SearchController extends Controller
 
             $finalResult["storyboards"] = $result;
             $finalResult["scenes"] = $result2;
-
 
             //Log::info(DB::getQueryLog());
 

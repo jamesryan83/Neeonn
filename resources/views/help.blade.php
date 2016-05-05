@@ -5,13 +5,9 @@
 <!-- Help Page -->
 <div id="divHelp">
 
-    <h1 class="h1PageHeading">Help</h1>
-    <hr>
-
     <div id="divHelpContent">
-
+        nothing yet        
     </div>
-
 </div>
 
 

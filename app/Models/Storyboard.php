@@ -20,9 +20,9 @@ class Storyboard extends Model
         "likes",
         "views",
         "is_private",
-        "allow_comments",        
+        "allow_comments",
+        "num_comments",
         "scene_color",
-        "text_color",
         "scene_pattern"
     ];
 
@@ -34,5 +34,10 @@ class Storyboard extends Model
     public function scenes()
     {
         return $this->hasMany("App\Models\Scene");
+    }
+
+    public function comments()
+    {
+        return $this->hasMany("App\Models\Comment");
     }
 }

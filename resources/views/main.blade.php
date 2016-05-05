@@ -22,10 +22,6 @@
             <a href="{{ url('/help') }}">Help</a>
         </div>
 
-        <div id="divNavBarLinksMenu">
-            <div id="divMenuButton"></div>
-        </div>
-
         <div class="clearfix"></div>
     </div>
 </div>

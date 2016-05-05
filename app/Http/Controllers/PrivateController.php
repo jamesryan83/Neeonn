@@ -2,14 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use DB;
 use Log;
 use Auth;
 use App\Http\Requests;
 use Illuminate\Http\Request;
-use WindowsAzure\Common\ServicesBuilder;
-use App\Other\Util;
-use App\Other\Azure;
 
 class PrivateController extends Controller
 {
@@ -43,15 +39,9 @@ class PrivateController extends Controller
         return view("auth/passwordChange");
     }
 
-    public function getEditStoryboardPage($storyboardId)
+    public function getEditStoryboardPage($storyboard_id)
     {
-        return view("editStoryboard", ["storyboardId" => $storyboardId]);
-    }
-
-    public function getEditImagePage($imageName)
-    {
-        $imageUrl = Util::createTemporaryImageForEditing(Auth::user()->user_id, $imageName);
-        return view("editImage", ["url" => $imageUrl]);
+        return view("editStoryboard", ["storyboard_id" => $storyboard_id]);
     }
 
 }

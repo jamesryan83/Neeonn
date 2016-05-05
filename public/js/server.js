@@ -9,7 +9,8 @@ app.server = {};
 
 // get images for gallery
 app.server.getGalleryImages = function (callback) {
-    app.server.ajaxRequest("GET", "/get-gallery-images", null, "Error getting gallery images", callback);
+    app.server.ajaxRequest("GET", "/get-gallery-images",
+                           null, "Error getting gallery images", callback);
 }
 
 
@@ -21,33 +22,29 @@ app.server.getImageFromUrl = function (providedUrl, callback) {
 }
 
 
-// Save updated image
-app.server.saveUpdatedImage = function (cropData, imageName, imageString, callback) {
-    app.server.ajaxRequest("POST", "/update-image", {
-        cropData: cropData,
-        imageName: imageName,
-        imageString: imageString
-    }, "Error saving image", callback);
-}
-
-
-// Delete a temporary image (for edit-image page)
-app.server.deleteTempImage = function (imageName, callback) {
-    app.server.deleteImage(imageName, callback, true);
+// Get storyboards for image
+app.server.getStoryboardsForImage = function (imageName, callback) {
+    app.server.ajaxRequest("POST", "/get-storyboards-for-image", {
+        imageName: imageName
+    }, "Error getting storyboards for image", callback);
 }
 
 
 // Delete an image
-app.server.deleteImage = function (imageName, callback, isTempImage) {
-    var url = "/delete-image";
-    if (isTempImage === true) {
-        url = "/delete-temp-image";
-    }
-
-    app.server.ajaxRequest("POST", url, {
+app.server.deleteImage = function (imageName, callback) {
+    app.server.ajaxRequest("POST", "/delete-image", {
         imageName: imageName
     }, "Error deleting image", callback);
 }
+
+
+// Update gallery order
+app.server.updateGalleryOrder = function (data, callback) {
+    app.server.ajaxRequest("POST", "/update-gallery-order", {
+        data: data
+    }, "Error updating gallery order", callback);
+}
+
 
 
 
@@ -57,18 +54,18 @@ app.server.deleteImage = function (imageName, callback, isTempImage) {
 
 // ------------------------------------- Storyboards -------------------------------------
 
-
 // Get storyboard
-app.server.getStoryboard = function (storyboardId, callback) {
+app.server.getStoryboard = function (storyboard_id, callback) {
     app.server.ajaxRequest("GET", "/get-storyboard", {
-        storyboardId: storyboardId
+        storyboard_id: storyboard_id
     }, "Error getting Storyboard", callback);
 }
 
 
 // Get all storyboards
 app.server.getAllStoryboards = function (callback) {
-    app.server.ajaxRequest("GET", "/get-all-storyboards", null, "Error getting Storyboards", callback);
+    app.server.ajaxRequest("GET", "/get-all-storyboards",
+                           null, "Error getting Storyboards", callback);
 }
 
 
@@ -80,18 +77,18 @@ app.server.createStoryboard = function (data, callback) {
 }
 
 
-// Save storyboard
-app.server.saveStoryboard = function (storyboardData, callback) {
-    app.server.ajaxRequest("POST", "/save-storyboard", {
-        storyboardData: storyboardData
-    }, "Error saving Storyboard", callback);
+// Update storyboard details
+app.server.updateStoryboardDetails = function (data, callback) {
+    app.server.ajaxRequest("POST", "/update-storyboard-details", {
+        data: data
+    }, "Error saving Storyboard details", callback);
 }
 
 
 // Delete storyboard
-app.server.deleteStoryboard = function (storyboardId, callback) {
+app.server.deleteStoryboard = function (storyboard_id, callback) {
     app.server.ajaxRequest("POST", "/delete-storyboard", {
-        storyboardId: storyboardId
+        storyboard_id: storyboard_id
     }, "Error deleting Storyboard", callback);
 }
 
@@ -101,8 +98,97 @@ app.server.deleteStoryboard = function (storyboardId, callback) {
 
 
 
-// ------------------------------------- Account -------------------------------------
 
+// ------------------------------------- Scenes -------------------------------------
+
+// Create scene
+app.server.createScene = function (data, callback) {
+    app.server.ajaxRequest("POST", "/create-scene", {
+        data: data
+    }, "Error creating Scene", callback);
+}
+
+
+// Update scene canvas
+app.server.updateSceneCanvas = function (data, callback) {
+    app.server.ajaxRequest("POST", "/update-scene-canvas", {
+        data: data
+    }, "Error updating Scene canvas", callback);
+}
+
+
+// Update scene text
+app.server.updateSceneText = function (data, callback) {
+    app.server.ajaxRequest("POST", "/update-scene-text", {
+        data: data
+    }, "Error updating Scene text", callback);
+}
+
+
+// Update scene indicies
+app.server.updateSceneIndicies = function (data, callback) {
+    app.server.ajaxRequest("POST", "/update-scene-indicies", {
+        data: data
+    }, "Error updating Scene order", callback);
+}
+
+
+// Delete scene
+app.server.deleteScene = function (data, callback) {
+    app.server.ajaxRequest("POST", "/delete-scene", {
+        data: data
+    }, "Error deleting Scene", callback);
+}
+
+
+
+
+
+
+
+
+// ------------------------------------- Comments -------------------------------------
+
+// Get comments
+app.server.getComments = function (storyboard_id, callback) {
+    app.server.ajaxRequest("GET", "/get-comments", {
+        storyboard_id: storyboard_id
+    }, "Error getting Comments", callback);
+}
+
+
+// Make comment
+app.server.makeComment = function (data, callback) {
+    app.server.ajaxRequest("POST", "/make-comment", {
+        data: data
+    }, "Error making Comment", callback);
+}
+
+
+// Update comment
+app.server.updateComment = function (data, callback) {
+    app.server.ajaxRequest("POST", "/update-comment", {
+        data: data
+    }, "Error updating Comment", callback);
+}
+
+
+// Vote on comment
+app.server.voteOnComment = function (data, callback) {
+    app.server.ajaxRequest("POST", "/vote-on-comment", {
+        data: data
+    }, "Error voting on comment", callback);
+}
+
+
+
+
+
+
+
+
+
+// ------------------------------------- Account -------------------------------------
 
 // Change password
 app.server.changePassword = function (data, callback) {
@@ -124,8 +210,11 @@ app.server.updateAccount = function (url, data, callback) {
 
 
 
-// ------------------------------------- Search -------------------------------------
 
+
+
+
+// ------------------------------------- Search -------------------------------------
 
 // Search storyboards
 app.server.search = function (data, callback) {

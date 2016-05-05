@@ -45,7 +45,7 @@
 
     <!-- No results message -->
     <div id="divNoResults">
-        No Results
+        <label>No Results</label>
     </div>
 
 

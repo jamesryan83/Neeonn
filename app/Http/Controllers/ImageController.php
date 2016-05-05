@@ -5,10 +5,11 @@ namespace App\Http\Controllers;
 use DB;
 use Log;
 use Auth;
-use Imagick;
 use GuzzleHttp;
 use App\Other\Util;
 use App\Other\Azure;
+use App\Other\Accounts;
+use App\Other\Storyboards;
 use App\Http\Requests;
 use Illuminate\Http\Request;
 
@@ -26,11 +27,18 @@ class ImageController extends Controller
     // Get images for gallery
     public function getGalleryImages()
     {
-        $result = Azure::getImageThumbnailFiles(Auth::user()->user_id);
+        $user_id = Auth::user()->user_id;
 
-        // TODO : error check
-        return array("success" => true, "data" => $result);
+        $images = Azure::getImageThumbnailFiles($user_id);
+        $imageOrder = DB::table("users")
+            ->select("gallery_order")
+            ->where("user_id", $user_id)
+            ->first();
 
+        return array("success" => true, "data" => array(
+            "images" => $images,
+            "order" => $imageOrder->gallery_order
+        ));
     }
 
 
@@ -44,29 +52,22 @@ class ImageController extends Controller
         $time = str_replace(".", "", microtime(true) . "");
         $imageFileName = $time . "." . $image->getClientOriginalExtension();
 
-        if ($request->hasFile("files"))
-        {
-            if ($request->file("files")[0]->isValid())
-            {
+        if ($request->hasFile("files")) {
+            if ($request->file("files")[0]->isValid()) {
+
                 $image = $request->file("files")[0];
                 $result = Azure::uploadImage(Auth::user()->user_id, $imageFileName, $image);
 
-                if ($result == true)
-                {
+                if ($result == true) {
                     return array("success" => true, "data" => $result);
-                }
-                else
-                {
+                } else {
                     return array("success" => false, "message" => "Error uploading image");
                 }
-            }
-            else
-            {
+
+            } else {
                 return array("success" => false, "message" => "file invalid");
             }
-        }
-        else
-        {
+        } else         {
             return array("success" => false, "message" => "file missing");
         }
     }
@@ -79,118 +80,87 @@ class ImageController extends Controller
         // validate file extension
         $path_parts = pathinfo($request->url);
         $ext = $path_parts["extension"];
-        if ($ext == "jpg" || $ext == "jpeg" || $ext == "gif" || $ext == "png")
-        {
+        if ($ext == "jpg" || $ext == "jpeg" || $ext == "gif" || $ext == "png") {
+
             // create file name
             $time = str_replace(".", "", microtime(true) . "");
             $imageFileName = $time . "." . $ext;
 
-            try
-            {
+            try {
                 // check file isn't too big
                 $head = array_change_key_case(get_headers($request->url, TRUE));
-                $filesize = $head['content-length'];
+                if (array_key_exists("content-length", $head) == false) {
+                    return array("success" => false, "message" =>
+                                 "Not allowed to download file from this url");
+                }
 
-                if ($filesize <= 500000)
-                {
+                if ($head["content-length"] <= 1000000) {
                     // upload file to azure
                     $result = Azure::uploadImage(Auth::user()->user_id, $imageFileName, $request->url);
 
-                    if ($result == true)
-                    {
+                    if ($result == true) {
                         return array("success" => true, "data" => $result);
-                    }
-                    else
-                    {
+                    } else {
                         return array("success" => false, "message" => "Error uploading image");
                     }
+
+                } else {
+                    return array("success" => false, "message" => "File is too big.  1MB limit");
                 }
-                else
-                {
-                    return array("success" => false, "message" => "File is too big.  500kB limit");
-                }
-            }
-            catch (Exception $e)
-            {
+            } catch (Exception $e) {
                 return array("success" => false, "message" => "Could not download file from this url");
             }
-        }
-        else
-        {
+        } else {
             return array("success" => false, "message" => "Invalid file extension");
         }
     }
 
 
-
-    // Update an existing image
-    public function updateImage(Request $request)
+    // Get storyboards titles for image
+    public function getStoryboardsForImage(Request $request)
     {
-        // Crop and save image
-        $path = base_path() . "/public/tempImages/" . $request->imageName;
-        Util::base64ToImage($request->imageString, $path);
-
-        $image = new Imagick($path);
-        $image->cropImage($request->cropData["width"], $request->cropData["height"],
-                          $request->cropData["x"], $request->cropData["y"]);
-        $image->writeImage($path);
-
-        // upload to azure
-        $result = Azure::uploadImage(Auth::user()->user_id, $request->imageName, $path);
-
-        // delete temp file
-        Util::deleteTemporaryFile($request->imageName);
-
-        if ($result == true)
-        {
-            return array("success" => true, "data" => $result);
-        }
-        else
-        {
-            return array("success" => false, "message" => "Error updating image");
-        }
+        return Storyboards::getStoryboardsForImage(Auth::user()->user_id, $request->imageName);
     }
-
-
-
-    // Delete an image from the temporary folder
-    public function deleteTempImage(Request $request)
-    {
-        $result = Util::deleteTemporaryFile($request->imageName);
-        if ($result == true)
-        {
-            return array("success" => true, "data" => $result);
-        }
-        else
-        {
-            return array("success" => false, "message" => "Error deleting temp image");
-        }
-    }
-
 
 
     // Delete image from azure
     public function deleteImage(Request $request)
     {
         $result = Azure::deleteImage(Auth::user()->user_id, $request->imageName);
-        if ($result == true)
-        {
+        if ($result == true) {
             return array("success" => true, "data" => $result);
-        }
-        else
-        {
+        } else {
             return array("success" => false, "message" => "Error deleting image");
         }
     }
 
 
+    // Update gallery order
+    public function updateGalleryOrder(Request $request)
+    {
+        return Accounts::updateGalleryOrder(Auth::user()->user_id, $request->data);
+    }
+
+
+
+
+
+
+
     // get image from azure (private images version) - required for html canvas
     public function imageProxy($imageName)
     {
-        $url = "http://shoterate.blob.core.windows.net/user" . Auth::user()->user_id . "/" . $imageName;
-        $client = new GuzzleHttp\Client();
-        $res = $client->get($url);
-        return $res->getBody();
+        try {
+            $url = Util::getBlobHostUrl() . "user" . Auth::user()->user_id . "/" . $imageName;
+            $client = new GuzzleHttp\Client();
+            $res = $client->get($url);
+            return $res->getBody();
+
+        } catch (ConnectException $e) {
+            Log::info("image-proxy error");
+            Log::info($e->getMessage());
+            return $e->getRequest();
+        }
     }
 
 }

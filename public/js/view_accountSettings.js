@@ -53,7 +53,11 @@ app.account.view.Settings = Backbone.View.extend({
 
         app.server.updateAccount(url, data, function (success, result) {
             if (success === true) {
-                location.reload();
+                app.util.showToast("Success", "Settings Saved");
+
+                setTimeout(function () {
+                    location.reload();
+                }, 1000);
             }
         });
     },

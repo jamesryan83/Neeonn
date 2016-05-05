@@ -3,7 +3,7 @@
 @section('contentMain')
 
 <!-- Edit Storyboard -->
-<div id="divEditStoryboard" data-storyboardId="{{ $storyboardId }}">
+<div id="divEditStoryboard" data-storyboard_id="{{ $storyboard_id }}">
 
     <h1 class="h1PageHeading">Edit Storyboard</h1>
     <hr>
@@ -13,6 +13,7 @@
 
         <!-- Controls -->
         <div id="divEditStoryboardControls">
+
             <div id="divInputs">
                 <label>Title</label>
                 <input id="inputEditStoryboardTitle" />
@@ -23,20 +24,34 @@
 
             <div id="divControls">
 
-                <div>
-                    <input type="checkbox" id="checkboxPrivate"
-                        class="css-checkbox" checked="checked"/>
-                    <label for="checkboxPrivate" class="css-label">Private</label>
+                <div id="divSceneColors">
+                    <div class="divInputContainer">
+                        <input type="text" id="inputColorPickerSceneBackground" />
+                    </div>
+                    <label>Scene Color</label>
+
+                    <button id="buttonAddScenePattern" class="buttonCustom1" title="Add Pattern"></button>
                 </div>
 
-                <div>
-                    <input type="checkbox" id="checkboxAllowComments"
-                        class="css-checkbox" checked="checked"/>
-                    <label for="checkboxAllowComments" class="css-label">Allow Comments</label>
+
+                <div id="divCheckboxes">
+                    <div>
+                        <input type="checkbox" id="checkboxPrivate"
+                            class="css-checkbox" checked="checked"/>
+                        <label for="checkboxPrivate" class="css-label">Private</label>
+                    </div>
+
+                    <div>
+                        <input type="checkbox" id="checkboxAllowComments"
+                            class="css-checkbox" checked="checked"/>
+                        <label for="checkboxAllowComments" class="css-label">Allow Comments</label>
+                    </div>
+
+                    <button id="buttonBackToStoryboards"
+                            class="buttonCustom1">Back to Storyboards</button>
                 </div>
 
-                <button id="buttonSave" class="buttonCustom2">Save</button>
-                <button id="buttonBackToStoryboards" class="buttonCustom1">Back to Storyboards</button>
+
             </div>
         </div>
 
@@ -51,17 +66,6 @@
                 <button id="buttonAddSceneText" class="buttonCustom1" title="Text Only"></button>
                 <button id="buttonAddSceneCanvas" class="buttonCustom1" title="Canvas Only"></button>
             </div>
-
-            <div id="divSceneColors">
-                <label>Scene Color</label>
-                <input type="text" id="inputColorPickerSceneBackground" />
-                <label>Text Color</label>
-                <input type="text" id="inputColorPickerSceneText" />
-
-                <button id="buttonAddScenePattern" class="buttonCustom1" title="Add Pattern"></button>
-            </div>
-
-
         </div>
 
         <!-- Scenes -->

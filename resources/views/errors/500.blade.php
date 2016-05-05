@@ -2,7 +2,7 @@
 <html>
 
     <head>
-        <title>Shoterate - Error</title>
+        <title>Neeonn - Error</title>
 
         <link href="{{ elixir('css/app.css') }}" rel="stylesheet">
     </head>

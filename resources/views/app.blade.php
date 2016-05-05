@@ -6,11 +6,12 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Shoterate</title>
+        <title>Neeonn</title>
         <link rel="shortcut icon" href="{{ asset('favicon.ico') }}">
 
         <link rel="stylesheet" href="{{ asset('lib/normalize.css') }}" />
         <link rel="stylesheet" href="{{ asset('lib/jquery-toast/jquery.toast.min.css') }}" />
+        <link rel="stylesheet" href="{{ asset('lib/rangeslider/rangeslider.css') }}" />
 
         <link href="{{ elixir('css/app.css') }}" rel="stylesheet">
 
@@ -24,12 +25,14 @@
         <script src="{{ asset('lib/jquery-file-upload/jquery.fileupload-process.js') }}"></script>
         <script src="{{ asset('lib/jquery-file-upload/jquery.fileupload-validate.js') }}"></script>
         <script src="{{ asset('lib/jquery-toast/jquery.toast.min.js') }}"></script>
-        <script src="{{ asset('lib/js.cookie.js') }}"></script>
+        <script src="{{ asset('lib/imagesloaded.min.js') }}"></script>
+        <script src="{{ asset('lib/timeago.js') }}"></script>
+        <script src="{{ asset('lib/rangeslider/rangeslider.js') }}"></script>
+        <script src="{{ asset('lib/Sortable.min.js') }}"></script>
 
         <script src="{{ asset('js/data.js') }}"></script>
         <script src="{{ asset('js/util.js') }}"></script>
         <script src="{{ asset('js/server.js') }}"></script>
-        <script src="{{ asset('js/test.js') }}"></script>
 
         @include('scriptsHead')
     </head>

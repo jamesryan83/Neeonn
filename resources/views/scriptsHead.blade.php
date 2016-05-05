@@ -22,11 +22,7 @@
     <script src="{{ asset('lib/ckeditor/ckeditor.js') }}"></script>
     <script src="{{ asset('lib/spectrum/spectrum.js') }}"></script>
 
-@elseif(Request::is("edit-image/*"))
-    <link rel="stylesheet" href="{{ asset('lib/cropper/cropper.min.css') }}" />
-    <script src="{{ asset('lib/caman.full.min.js') }}"></script>
-    <script src="{{ asset('lib/cropper/cropper.min.js') }}"></script>
-
 @elseif(Request::path() === "help")
+    <script src="{{ asset('lib/fabric.js') }}"></script>
 
 @endif

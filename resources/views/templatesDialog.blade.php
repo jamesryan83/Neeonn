@@ -49,7 +49,7 @@
         </tr>
         <tr>
             <td><label>Category</label></td>
-            <td><select id="selectCategory" /></td>
+            <td><div id="selectCategoryContainer"><select id="selectCategory"/></div></td>
         </tr>
         <tr>
             <td><label>First Scene</label></td>
@@ -66,10 +66,10 @@
 
     <div id="divCheckboxes">
         <div>
-            <input type="checkbox" id="checkboxPrivate" class="css-checkbox"/>
+            <input type="checkbox" id="checkboxPrivate" class="css-checkbox" checked/>
             <label for="checkboxPrivate" class="css-label">Private</label>
 
-            <input type="checkbox" id="checkboxAllowComments" class="css-checkbox" checked="checked"/>
+            <input type="checkbox" id="checkboxAllowComments" class="css-checkbox" checked/>
             <label for="checkboxAllowComments" class="css-label">Allow Comments</label>
         </div>
     </div>
@@ -140,7 +140,6 @@
     <h2>Pictures & Background</h2>
 
     <div id="divButtons">
-        <button id="buttonDialogAddPicture" class="buttonCustom1">Add Picture</button>
         <button id="buttonDialogAddBackgroundPicture" class="buttonCustom1">Add Background Picture</button>
         <button id="buttonDialogAddBackgroundColor" class="buttonCustom1">Add Background Color</button>
         <button id="buttonDialogRemoveBackground" class="buttonCustom1">Remove Background</button>
@@ -170,4 +169,81 @@
         <button id="buttonDialogCancel" class="buttonCustom1">Cancel</button>
     </div>
 </div>
+</script>
+
+
+<!-- Position background image dialog -->
+<script type="text/template" id="templateDialogPositionBackgroundImage">
+<div id="divDialogPositionBackgroundImage">
+    <div id="divTitle">
+        <h2>Postion Image</h2>
+    </div>
+
+    <div id="divPictureContainer">
+        <img id="imgPicture" />
+        <div id="divPicture" class="center"></div>
+    </div>
+
+    <div id="divBottom">
+        <table id="tableRangeContainer">
+            <tr>
+                <td><label>Scale</label></td>
+                <td id="tdRange">
+                    <input id="inputRange" type="range" min="10" max="250" step="1" value="100" />
+                </td>
+            </tr>
+        </table>
+
+        <div id="divButtons">
+            <button id="buttonDialogOk" class="buttonCustom1">Ok</button>
+            <button id="buttonDialogCancel" class="buttonCustom1">Cancel</button>
+        </div>
+
+        <div class="clearfix"></div>
+    </div>
+
+
+</div>
+</script>
+
+
+<!-- Emoji dialog -->
+<script type="text/template" id="templateDialogEmoji">
+    <div id="divDialogEmoji" class="center">
+        <div id="divTitle">
+            <h2>Emojis</h2>
+        </div>
+
+        <div id="divImagesBackground">
+        </div>
+
+        <div id="divImages">
+
+        </div>
+
+        <div id="divButtons">
+            <button id="buttonDialogCancel" class="buttonCustom1">Cancel</button>
+        </div>
+    </div>
+</script>
+
+
+<!-- Image Storyboard link dialog -->
+<script type="text/template" id="templateDialogImageStoryboardLink">
+    <div id="divDialogImageStoryboardLink" class="center">
+        <div id="divTitle">
+            <h2>This Image is being used</h2>
+        </div>
+
+        <p>This image is used in the following storyboards</p>
+
+        <div id="divStoryboards">
+            <ul id="ulStoryboards"></ul>
+        </div>
+
+        <div id="divButtons">
+            <button id="buttonDialogDelete" class="buttonCustom1">Delete Anyway</button>
+            <button id="buttonDialogCancel" class="buttonCustom1">Cancel</button>
+        </div>
+    </div>
 </script>

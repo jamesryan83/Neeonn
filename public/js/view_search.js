@@ -64,8 +64,6 @@ app.search.view.Main = Backbone.View.extend({
             self.$el.find("#divSearchResults").empty();
             self.$el.find("#divSearchResults").unbind();
 
-            //console.log(result)
-
             if (success === true) {
 
                 // show no results message

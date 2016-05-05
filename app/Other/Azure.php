@@ -4,6 +4,7 @@ namespace App\Other;
 
 use Log;
 use Imagick;
+use App\Other\Util;
 use WindowsAzure\Common\ServicesBuilder;
 use WindowsAzure\Blob\Models\CreateContainerOptions;
 use WindowsAzure\Blob\Models\CreateBlobOptions;
@@ -21,6 +22,9 @@ class Azure
 
     private static function getConnectionString()
     {
+        // DEBUGmode
+        //return "UseDevelopmentStorage=true";
+
         return "DefaultEndpointsProtocol=https;" .
             "AccountName=shoterate;" .
             "AccountKey=88Id5x/G1nHMCHjmT0R6pvcB0cSfaRT1un28cS6wz6O/I+fY7" .
@@ -30,16 +34,17 @@ class Azure
 
 
     // Create a Container for a User
-    public static function createContainer($userId)
+    public static function createContainer($user_id)
     {
-        $containerName = "user" . $userId;
+        $containerName = "user" . $user_id;
 
         $createContainerOptions = new CreateContainerOptions();
         $createContainerOptions->setPublicAccess(PublicAccessType::BLOBS_ONLY);
 
         try
         {
-            $blobRestProxy = ServicesBuilder::getInstance()->createBlobService(Azure::getConnectionString());
+            $blobRestProxy = ServicesBuilder::getInstance()
+                ->createBlobService(Azure::getConnectionString());
             $blobRestProxy->createContainer($containerName, $createContainerOptions);
             return true;
         }
@@ -55,13 +60,14 @@ class Azure
 
 
     // Delete a Container for a User
-    public static function deleteContainer($userId)
+    public static function deleteContainer($user_id)
     {
-        $containerName = "user" . $userId;
+        $containerName = "user" . $user_id;
 
         try
         {
-            $blobRestProxy = ServicesBuilder::getInstance()->createBlobService(Azure::getConnectionString());
+            $blobRestProxy = ServicesBuilder::getInstance()
+                ->createBlobService(Azure::getConnectionString());
             $blobRestProxy->deleteContainer($containerName);
             return true;
         }
@@ -70,6 +76,7 @@ class Azure
             $code = $e->getCode();
             $error_message = $e->getMessage();
             Log::info($code.": ".$error_message);
+            Log::info("Error deleting azure container for user: " . $user_id);
             return false;
         }
     }
@@ -77,13 +84,14 @@ class Azure
 
 
     // Get all image thumbnails from a container
-    public static function getImageThumbnailFiles($userId)
+    public static function getImageThumbnailFiles($user_id)
     {
-        $containerName = "user" . $userId;
+        $containerName = "user" . $user_id;
 
         try
         {
-            $blobRestProxy = ServicesBuilder::getInstance()->createBlobService(Azure::getConnectionString());
+            $blobRestProxy = ServicesBuilder::getInstance()
+                ->createBlobService(Azure::getConnectionString());
             $blob_list = $blobRestProxy->listBlobs($containerName);
             $blobs = $blob_list->getBlobs();
 
@@ -120,26 +128,27 @@ class Azure
 
 
     // Upload image
-    public static function uploadImage($userId, $imageFileName, $image)
+    public static function uploadImage($user_id, $imageFileName, $image)
     {
-        $containerName = "user" . $userId;
+        $containerName = "user" . $user_id;
 
         try
         {
             // send file to azure blob storage
             $imageData = file_get_contents($image);
-            $blobRestProxy = ServicesBuilder::getInstance()->createBlobService(Azure::getConnectionString());
+            $blobRestProxy = ServicesBuilder::getInstance()
+                ->createBlobService(Azure::getConnectionString());
             $blobRestProxy->createBlockBlob($containerName, $imageFileName, $imageData);
 
             // create thumbnail and also send to azure
             $thumb = new Imagick();
             $thumb->readImageBlob($imageData);
-            $thumb->thumbnailImage (110, 110, true);
+            $thumb->thumbnailImage (145, 145, true);
             $blobRestProxy->createBlockBlob($containerName, "thumb_" . $imageFileName,
                                             $thumb->getImageBlob());
 
             return array("filename" => $imageFileName,
-                         "url_thumb" => "https://shoterate.blob.core.windows.net/" .
+                         "url_thumb" => Util::getBlobHostUrl() .
                             $containerName . "/thumb_" . $imageFileName);
         }
         catch(ServiceException $e)
@@ -153,14 +162,15 @@ class Azure
 
 
     // Delete image
-    public static function deleteImage($userId, $imageName)
+    public static function deleteImage($user_id, $imageName)
     {
-        $containerName = "user" . $userId;
+        $containerName = "user" . $user_id;
 
         try
         {
-            // send file to azure blob storage
-            $blobRestProxy = ServicesBuilder::getInstance()->createBlobService(Azure::getConnectionString());
+            // delete file from azure blob storage
+            $blobRestProxy = ServicesBuilder::getInstance()
+                ->createBlobService(Azure::getConnectionString());
             $blobRestProxy->deleteBlob($containerName, $imageName);
             $blobRestProxy->deleteBlob($containerName, "thumb_" . $imageName);
 

@@ -13,50 +13,57 @@ app.items.view.SceneItem = Backbone.View.extend({
     template: _.template($("#templateStoryboardSceneItemBasic").html()),
 
     events: {
-        "click .divSettingsButton": "settings",
         "click .divMoveUpButton": "moveUp",
         "click .divMoveDownButton": "moveDown",
         "click .divDeleteSceneButton": "deleteScene",
         "click .divTextContainer": "focusTextArea",
         "click .divActualText": "startCkEditor",
         "click .canvasMain": "canvasClicked",
+        "focusin .divActualText": "startSaveText",
+        "focusout .divActualText": "endSaveText",
+        "focusin .divCanvasContainer": "startSaveCanvas",
+        "focusout .divCanvasContainer": "endSaveCanvas",
 
         "click .divCanvasButtonSelect": function () { this.canvasAction("select"); },
         "click .divCanvasButtonSketch": function () { this.canvasAction("sketch"); },
         "click .divCanvasButtonText": function () { this.canvasAction("text"); },
         "click .divCanvasButtonPicture": function () { this.canvasAction("picture"); },
-        "click .divCanvasButtonCircle": function () { this.canvasAction("circle"); },
-        "click .divCanvasButtonTriangle": function () { this.canvasAction("triangle"); },
-        "click .divCanvasButtonRectangle": function () { this.canvasAction("rectangle"); },
-        "click .divCanvasButtonStar": function () { this.canvasAction("star"); },
-        "click .divCanvasButtonMoveBottom": function () { this.canvasAction("moveBottom"); },
-        "click .divCanvasButtonMoveDown": function () { this.canvasAction("moveDown"); },
-        "click .divCanvasButtonMoveUp": function () { this.canvasAction("moveUp"); },
-        "click .divCanvasButtonMoveTop": function () { this.canvasAction("moveTop"); },
+        "click .divCanvasButtonEmoji": function () { this.canvasAction("emoji"); },
         "click .divCanvasButtonClear": function () { this.canvasAction("clear"); },
         "change .selectPathThickness": "setPathThickness"
     },
 
 
-    initialize: function (type, data) {
+    initialize: function (data) {
         var self = this;
-        this.type = type;
+        this.scene_id = data.scene_id;
         this.data = data;
-        this.canvasSelectedColor = app.data.colorNeonPink;
+        this.canvasSelectedColor = "#000000";
+        this.textSelectedColor = "#000000";
         this.canvasIsRedoing = false;
         this.canvasItems = []; // TODO : update when items loaded from server
+        this.lastText = data.text;
+        this.lastCanvas = data.canvas_data_json;
+        this.image_name = null;
+        this.debugSaveOff = false;
         this.render();
 
         // after render is finished
         setTimeout(function () {
 
             // setup canvas if required
-            if (self.type === "canvastext" || self.type === "textcanvas" || self.type === "canvas") {
+            if (self.data.type === "canvastext" || self.data.type === "textcanvas" ||
+                    self.data.type === "canvas") {
                 self.canvas = new fabric.Canvas("canvas" + self.data.storyboard_index);
                 self.canvas.selection = true;
                 self.canvas.freeDrawingBrush.width = 5;
                 self.canvas.freeDrawingBrush.color = app.data.colorNeonPink;
 
+                console.log(data)
+                self.image_name = app.data.image_name;
+                if (self.image_name === undefined) {
+                    self.image_name = null;
+                }
 
                 // store fabricjs reference on canvas for access outside this view
                 document.getElementById("canvas" + self.data.storyboard_index).fabric = self.canvas;
@@ -88,8 +95,8 @@ app.items.view.SceneItem = Backbone.View.extend({
 
                 // load existing canvas data
                 if (self.data.canvas_data_json && self.data.canvas_data_json.length > 0) {
-                    self.canvas.loadFromJSON(self.data.canvas_data_json, self.canvas.renderAll.bind(self.canvas));
-                    //self.canvas.renderAll();
+                    self.canvas.loadFromJSON(self.data.canvas_data_json,
+                                             self.canvas.renderAll.bind(self.canvas));
                 }
 
 
@@ -101,12 +108,19 @@ app.items.view.SceneItem = Backbone.View.extend({
                         self.canvasAction("redo");
                     } else if (e.ctrlKey && e.keyCode == 90) { // ctrl + z
                         self.canvasAction("undo");
+                    } else if (e.keyCode == 38) { // up arrow
+                        e.preventDefault();
+                        self.canvasAction("moveUp");
+                    } else if (e.keyCode == 40) { // down arrow
+                        e.preventDefault();
+                        self.canvasAction("undo");
+                        self.canvasAction("moveDown");
                     }
                 });
 
 
                 // setup canvas color picker
-                $("#inputColorPicker" + self.data.storyboard_index).spectrum({
+                $("#inputCanvasColorPicker" + self.data.storyboard_index).spectrum({
                     showPalette: true,
                     showAlpha: true,
                     color: self.canvasSelectedColor,
@@ -115,7 +129,8 @@ app.items.view.SceneItem = Backbone.View.extend({
                         // event to select same color when choose is clicked
                         // (instead of change event which doesn't fire when same color is picked)
                         $("body > .sp-container").find(".sp-choose").on("click.myChooseClick", function () {
-                            self.updateSelectedColor($("#inputColorPicker" + self.data.storyboard_index)
+                            self.updateSelectedCanvasColor(
+                                $("#inputCanvasColorPicker" + self.data.storyboard_index)
                                 .spectrum("get").toHexString());
                         });
                     },
@@ -123,7 +138,31 @@ app.items.view.SceneItem = Backbone.View.extend({
                         $("body > .sp-container").find(".sp-choose").off("click.myChooseClick");
                     }
                 });
+            }
 
+
+            if (self.data.type === "canvastext" || self.data.type === "textcanvas" ||
+                    self.data.type === "text") {
+
+                // setup text color picker
+                $("#inputTextColorPicker" + self.data.storyboard_index).spectrum({
+                    showPalette: true,
+                    showAlpha: true,
+                    color: self.textSelectedColor,
+                    clickoutFiresChange: false,
+                    show: function () {
+                        // event to select same color when choose is clicked
+                        // (instead of change event which doesn't fire when same color is picked)
+                        $("body > .sp-container").find(".sp-choose").on("click.myChooseClick", function () {
+                            self.updateSelectedTextColor(
+                                $("#inputTextColorPicker" + self.data.storyboard_index)
+                                .spectrum("get").toHexString());
+                        });
+                    },
+                    hide: function () {
+                        $("body > .sp-container").find(".sp-choose").off("click.myChooseClick");
+                    }
+                });
             }
 
         }, 0);
@@ -131,10 +170,14 @@ app.items.view.SceneItem = Backbone.View.extend({
 
 
     render: function () {
-        this.$el.html(this.template({ sceneType: this.type, sceneIndex: this.data.storyboard_index }));
+        this.$el.html(this.template({
+            scene_id: this.data.scene_id,
+            type: this.data.type,
+            storyboard_index: this.data.storyboard_index
+        }));
 
         // show html elements based on scene type
-        switch (this.type) {
+        switch (this.data.type) {
             case "canvastext":
             case "textcanvas":
                 this.$el.find("canvas").attr("width", app.data.sceneWidthHalf);
@@ -155,24 +198,19 @@ app.items.view.SceneItem = Backbone.View.extend({
         }
 
 
-
-        // when text is on the right float the editor to the right
-        if (this.type === "canvastext") {
-            this.$el.find(".editorTop").css({ "float": "right" });
-        }
-
         // Add type to scene element
-        this.$el.find(".divInner > div").addClass("divType_" + this.type);
+        this.$el.find(".divInner > div").addClass("divType_" + this.data.type);
 
 
         // Add data to scene
-        if (this.data !== undefined && this.type !== "canvas") {
+        if (this.data !== undefined && this.data.type !== "canvas") {
             this.$el.find(".divActualText").append(this.data.text);
         }
 
 
         // hide canvas controls until canvas is clicked
         this.$el.find(".divCanvasControls").hide();
+
 
         // prevent window scroll when over a div
         app.util.preventWindowScroll(this.$el.find(".divActualText"));
@@ -183,15 +221,7 @@ app.items.view.SceneItem = Backbone.View.extend({
 
 
 
-
-
-
     // ----------------------------------- Scene Actions -----------------------------------
-
-    settings: function () {
-
-    },
-
 
     // Move scene up
     moveUp: function () {
@@ -235,12 +265,11 @@ app.items.view.SceneItem = Backbone.View.extend({
 
     // canvas focused
     canvasClicked: function () {
+        this.$el.find(".divTextControls").hide();
         this.$el.find(".divActualText").attr("contenteditable", false);
         app.editStoryboard.view.main.removeEditorInstances();
         app.editStoryboard.view.main.hideCanvasControls();
         this.$el.find(".divCanvasControls").show();
-        this.$el.find(".divActualText").blur();
-        this.$el.find(".divTextContainer").blur();
     },
 
 
@@ -251,7 +280,7 @@ app.items.view.SceneItem = Backbone.View.extend({
 
 
     // Set the selected color and change color of selected obejct
-    updateSelectedColor: function (color) {
+    updateSelectedCanvasColor: function (color) {
         this.canvasSelectedColor = color;
         this.canvas.freeDrawingBrush.color = color;
 
@@ -274,7 +303,7 @@ app.items.view.SceneItem = Backbone.View.extend({
     addPictureToCanvas: function () {
         var self = this;
 
-        // choose picture dialog
+        // show choose picture dialog
         $("#divDialogContainer").show();
         new app.dialog.view.CanvasChoosePicture(function (success, result) {
             app.util.hideDialog();
@@ -282,47 +311,40 @@ app.items.view.SceneItem = Backbone.View.extend({
             if (success === true) {
 
                 // show picture gallery dialog
-                if (result === "addPicture" || result === "addBackgroundPicture") {
+                if (result === "addBackgroundPicture") {
 
                     $("#divGalleryContainer").show();
-                    new app.dialog.view.PictureGallery(function (success, imageName, editImage) {
+                    new app.dialog.view.PictureGallery(function (success, imageName) {
                         $("#divGalleryContainer").hide();
                         $("#divGalleryContainer").empty();
                         $("#divGalleryContainer").unbind();
 
                         if (success === true) {
+                            var isFullWidth = self.data.type === "canvas" ? true : false;
 
-                            // save storyboard and go to edit-image page
-                            if (editImage === true) {
-                                app.editStoryboard.view.main.save(function (success, result) {
-                                    if (success === true) {
-                                        Cookies.set("previousPage", location.pathname);
-                                        location.href = "/edit-image/" + imageName;
-                                    }
-                                });
-                            } else {
+                            // show position background image dialog
+                            $("#divDialogContainer").show();
+                            new app.dialog.view.PositionBackgroundImage(isFullWidth, imageName,
+                                    function (success, data) {
+                                app.util.hideDialog();
 
-                                // add regular image
-                                if (result === "addPicture") {
+                                if (success === true) {
+                                    // add image to canvas
                                     fabric.Image.fromURL("/image-proxy/" + imageName, function (img) {
-                                        // scale down image to fit canvas
-                                        img.left = 20;
-                                        img.top = 20;
-                                        img.scaleToHeight(app.data.sceneHeight - 100);
-                                        
-                                        self.canvas.add(img);
-                                    });
+                                        self.canvas.setBackgroundImage(img,
+                                            self.canvas.renderAll.bind(self.canvas), {
+                                            left: data.left,
+                                            top: data.top,
+                                            width: data.width,
+                                            height: data.height,
+                                            backgroundImageStretch: false
+                                        });
 
-                                // add full canvas image
-                                } else if (result === "addBackgroundPicture") {
-                                    self.canvas.setBackgroundImage("/image-proxy/" + imageName,
-                                                                self.canvas.renderAll.bind(self.canvas), {
-                                        width: self.canvas.width,
-                                        height: self.canvas.height,
-                                        backgroundImageStretch: false
+                                        self.image_name = imageName;
+                                        self.saveCanvasData();
                                     });
                                 }
-                            }
+                            });
                         }
                     });
 
@@ -336,6 +358,8 @@ app.items.view.SceneItem = Backbone.View.extend({
                     self.canvas.backgroundColor = null;
                     self.canvas.backgroundImage = null;
                     self.canvas.renderAll();
+
+                    self.image_name = null;
                 }
             }
         })
@@ -396,44 +420,26 @@ app.items.view.SceneItem = Backbone.View.extend({
                 this.addPictureToCanvas();
                 break;
 
-            case "circle":
-                newObject = new fabric.Circle({
-                    radius: 20, fill: this.canvasSelectedColor, left: 20, top: 20
-                });
-                break;
 
-            case "triangle":
-                newObject = new fabric.Triangle({
-                    width: 40, height: 40, fill: this.canvasSelectedColor, left: 60, top: 60
-                });
-                break;
+            case "emoji":
+                $("#divGalleryContainer").show();
+                new app.dialog.view.Emoji(function (success, imagePath) {
+                    $("#divGalleryContainer").hide();
+                    $("#divGalleryContainer").empty();
+                    $("#divGalleryContainer").unbind();
 
-            case "rectangle":
-                newObject = new fabric.Rect({
-                    width: 40, height: 40, fill: this.canvasSelectedColor, left: 100, top: 100
-                });
-                break;
+                    if (success === true) {
+                        fabric.Image.fromURL(imagePath, function(img) {
+                            img.scaleToWidth(30);
+                            img.set("left", 100);
+                            img.set("top", 100);
+                            self.canvas.add(img);
 
-            case "star":
-                newObject = new fabric.Polygon([
-                    {x: 36, y: 0},
-                    {x: 46, y: 26},
-                    {x: 72, y: 28},
-                    {x: 54, y: 46},
-                    {x: 62, y: 72},
-                    {x: 36, y: 59},
-                    {x: 10, y: 72},
-                    {x: 18, y: 46},
-                    {x: 0, y: 28},
-                    {x: 26, y: 26}], {
-                    left: 140, top: 140, fill: this.canvasSelectedColor
+                            self.saveCanvasData();
+                        });
+                    }
                 });
-                break;
 
-            case "moveBottom":
-                if (selectedObject !== undefined && selectedObject !== null) {
-                    selectedObject.sendToBack();
-                }
                 break;
 
             case "moveDown":
@@ -445,12 +451,6 @@ app.items.view.SceneItem = Backbone.View.extend({
             case "moveUp":
                 if (selectedObject !== undefined && selectedObject !== null) {
                     selectedObject.bringForward();
-                }
-                break;
-
-            case "moveTop":
-                if (selectedObject !== undefined && selectedObject !== null) {
-                    selectedObject.bringToFront();
                 }
                 break;
 
@@ -487,8 +487,55 @@ app.items.view.SceneItem = Backbone.View.extend({
     },
 
 
+    // Start save canvas timer
+    startSaveCanvas: function () {
+        if (this.debugSaveOff === true) return;
+        var self = this;
+        this.saveCanvasTimer = setInterval(function () {
+            var canvasData = JSON.stringify(self.canvas);
+
+            if (canvasData !== self.lastCanvas) {
+                self.saveCanvasData();
+            }
+
+            self.lastCanvas = canvasData;
+        }, 2000)
+    },
 
 
+    // End save canvas timer
+    endSaveCanvas: function () {
+        if (this.debugSaveOff === true) return;
+        clearInterval(this.saveCanvasTimer);
+        var canvasData = JSON.stringify(this.canvas);
+
+        if (canvasData !== this.lastCanvas) {
+            this.saveCanvasData();
+        }
+
+        this.lastCanvas = canvasData;
+    },
+
+
+    // Save canvas data
+    saveCanvasData: function () {
+        app.server.updateSceneCanvas({
+            scene_id: this.scene_id,
+            image_name: this.image_name,
+            canvas_data_json: JSON.stringify(this.canvas),
+            canvas_data_svg: this.canvas.toSVG({
+                suppressPreamble: true,
+                width: this.data.type === "canvas" ? app.data.sceneWidth : app.data.sceneWidthHalf,
+                height: app.data.sceneHeight,
+                viewBox: {
+                    x: 0,
+                    y: 0,
+                    width: this.data.type === "canvas" ? app.data.sceneWidth : app.data.sceneWidthHalf,
+                    height: app.data.sceneHeight
+                }
+            })
+        }, function (success) { console.log("canvas saved") });
+    },
 
 
 
@@ -520,6 +567,7 @@ app.items.view.SceneItem = Backbone.View.extend({
         // remove other instances
         app.editStoryboard.view.main.removeEditorInstances();
 
+
         // add attributes
         self.$el.find(".divActualText").attr("contenteditable", true);
 
@@ -534,10 +582,74 @@ app.items.view.SceneItem = Backbone.View.extend({
         });
 
         // editor loaded
-        editor.on("instanceReady", function () {
+        editor.on("instanceReady", function (e) {
+            self.$el.find(".divTextControls").css({ "display": "inline-block" });
             app.util.placeCaretAtEnd(self.$el.find(".divActualText")[0]);
+
+            editor.on('afterPaste', function(evt) {
+                // remove &nbsp; and sometimes a <p> is also added at the start
+                var html = editor.getData().replace(/&nbsp;/g, " ");
+                html = html.replace(/<p><\/p>/, "");
+                editor.editable().setHtml(html) // setHtml bypasses html filter
+            });
         });
     },
 
+
+    // Set the selected color and change color of selected obejct
+    updateSelectedTextColor: function (color) {
+        this.textSelectedColor = color;
+
+        var editorId = this.$el.find(".divStoryboardSceneItemBasic").data("storyboard_index");
+        var editor = CKEDITOR.instances["editor" + editorId];
+
+        if (editor.getSelection().getSelectedText().trim().length === 0) {
+            return;
+        }
+
+        editor.applyStyle(new CKEDITOR.style({
+            element: "span",
+            attributes: {
+                "style": "color: " + color
+            }
+        }));
+    },
+
+
+    // Start save text timer
+    startSaveText: function () {
+        if (this.debugSaveOff === true) return;
+        var self = this;
+
+        this.saveTextTimer = setInterval(function () {
+            var text = self.$el.find(".divActualText").html();
+
+            if (text !== self.lastText) {
+                app.server.updateSceneText({
+                    scene_id: self.scene_id,
+                    text: text
+                }, function (success) { console.log(success) });
+            }
+
+            self.lastText = text;
+        }, 20000)
+    },
+
+
+    // End save text timer
+    endSaveText: function () {
+        if (this.debugSaveOff === true) return;
+        clearInterval(this.saveTextTimer);
+        var text = this.$el.find(".divActualText").html();
+
+        if (text !== this.lastText) {
+            app.server.updateSceneText({
+                scene_id: this.scene_id,
+                text: text
+            }, function (success) { console.log("text saved") });
+        }
+
+        this.lastText = text;
+    },
 
 });

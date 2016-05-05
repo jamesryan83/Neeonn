@@ -137,3 +137,4 @@ app.util.placeCaretAtEnd = function (el) {
         textRange.select();
     }
 }
+

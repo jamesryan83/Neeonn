@@ -12,7 +12,7 @@ app.main.view.Main = Backbone.View.extend({
     el: "#divContentApp",
 
     events: {
-        "click #divGoToTop": "scrollToTop"
+        "click #divGoToTop": "scrollToTop"        
     },
 
     initialize: function () {
@@ -40,6 +40,7 @@ app.main.view.Main = Backbone.View.extend({
             }
         });
     }
+
 });
 
 new app.main.view.Main();

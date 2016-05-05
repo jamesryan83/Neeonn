@@ -3,9 +3,9 @@
  * For licensing, see LICENSE.md or http://ckeditor.com/license
  */
 
-CKEDITOR.editorConfig = function( config ) {
+CKEDITOR.editorConfig = function (config) {
 
-    config.extraPlugins = "sharedspace";
+    config.extraPlugins = "sharedspace,justify";
 
 	config.toolbarGroups = [
 		{ name: "document", groups: [ "mode", "document", "doctools" ] },
@@ -16,7 +16,8 @@ CKEDITOR.editorConfig = function( config ) {
 		{ name: "paragraph", groups: [ "list", "indent", "blocks", "align", "bidi", "paragraph" ] },
 		{ name: "links", groups: [ "links" ] },
 		{ name: "insert", groups: [ "insert" ] },
-		{ name: "styles", groups: [ "styles" ] },
+		{ name: 'alignment', groups : [ 'JustifyLeft', 'JustifyCenter', 'JustifyRight' ] },
+        { name: "styles", groups: [ "styles" ] },
 		{ name: "colors", groups: [ "colors" ] },
 		{ name: "tools", groups: [ "tools" ] },
 		{ name: "others", groups: [ "others" ] },
@@ -24,7 +25,7 @@ CKEDITOR.editorConfig = function( config ) {
 	];
 
     // Remove automatic insertion of &nbsp; instead of space in text
-    config.fillEmptyBlocks = false;
+    //config.fillEmptyBlocks = false;
 
     // Custom format names
     config.format_Normal = { element: "p", name: "Normal" };
@@ -35,7 +36,7 @@ CKEDITOR.editorConfig = function( config ) {
 	config.removeButtons = "Cut,Copy,Paste,Undo,Redo,Anchor,About,Outdent,Indent,Strike,Subscript,Superscript,Link,Unlink";
     config.removePlugins = "resize";
 
-    CKEDITOR.editorConfig = function(config) {
-        config.allowedContent = true;
-    }
+    config.allowedContent = true;
+    config.extraAllowedContent = 'span[*]{*};';
+    //config.pasteFilter.allow("span[*]{*};");
 };
