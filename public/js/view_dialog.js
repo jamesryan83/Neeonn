@@ -208,16 +208,23 @@ app.dialog.view.CreateStoryboard = Backbone.View.extend({
                 app.data.categories[i] + "</option>");
         }
 
+        var isIE = false;
+        if (navigator.userAgent.indexOf('MSIE') !== -1 || navigator.appVersion.indexOf('Trident/') > 0) {
+            isIE = true;
+        }
 
-        // shorten select menu height
-        $("#selectCategory").on("mousedown", function () {
-            if (this.options.length > 5) {
-                this.size = 8;
-            }
-        });
-        $("#selectCategory").on("change blur", function () {
-            this.size = 0;
-        });
+        // select crashes on internet explorer because of this.size = 0 in onchange
+        if (isIE === false) {
+            // shorten select menu height
+            $("#selectCategory").on("mousedown", function () {
+                if (this.options.length > 5) {
+                    this.size = 8;
+                }
+            });
+            $("#selectCategory").on("change blur", function () {
+                this.size = 0;
+            });
+        }
 
 
 
