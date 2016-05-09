@@ -507,7 +507,7 @@ app.items.view.SceneItem = Backbone.View.extend({
     // End save canvas timer
     endSaveCanvas: function () {
         if (this.debugSaveOff === true) return;
-        clearInterval(this.saveCanvasTimer);
+        clearInterval(this.saveCanvasTimer);        
         var canvasData = JSON.stringify(this.canvas);
 
         if (canvasData !== this.lastCanvas) {

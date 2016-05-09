@@ -35,8 +35,8 @@
 
         <!-- Backbone Scripts -->
         <!-- DEBUGmode -->
-        @include('scriptsBodyPro')
-        {{-- @include('scriptsBodyDev') --}}
+         @include('scriptsBodyPro') 
+        {{--@include('scriptsBodyDev')--}}
 
     </body>
 </html>
