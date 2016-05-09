@@ -72,7 +72,7 @@ app.items.view.StoryboardItem = Backbone.View.extend({
             this.setSelectedScene();
 
             // hide navgation arrows when only 1 scene
-            if (this.data.scenes.length === 1) {
+            if (this.data.scenes.length <= 1) {
                 this.$el.find(".divNavPrevious").hide();
                 this.$el.find(".divNavNext").hide();
             }

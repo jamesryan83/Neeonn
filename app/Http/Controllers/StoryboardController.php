@@ -194,4 +194,13 @@ class StoryboardController extends Controller
     }
 
 
+    // Delete comment
+    public function deleteComment(Request $request)
+    {
+        if (Auth::check()) {
+            return Storyboards::deleteComment(Auth::user()->user_id, $request->data);
+        } else {
+            return array("success" => false, "message" => "unauthorized");
+        }
+    }
 }

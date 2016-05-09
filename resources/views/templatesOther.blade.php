@@ -96,9 +96,9 @@
             <div class="divIconPrivate" title="This Storyboard is Private"></div>
             <label class="divCommentNumber imgText" title="Number of Comments"><%- num_comments %></label>
             <div class="divButtonComment" title="Comment"></div>
-            <label class="divStarNumber imgText" title="Number of Stars">0</label>
-            <div class="divButtonStar" title="Star"></div>
-            <div class="divButtonShare" title="Share"></div>
+            <label class="divStarNumber imgText" title="Number of Stars"  style="display: none;">0</label>
+            <div class="divButtonStar" title="Star"  style="display: none;"></div>
+            <div class="divButtonShare" title="Share"  style="display: none;"></div>
             <div class="divButtonExpand" title="View Full Screen"></div>
             <div class="divButtonEdit" title="Edit this Storyboard"></div>
             <div class="divButtonDelete" title="Delete this Storyboard"></div>
@@ -144,7 +144,8 @@
     <div class="divRight">
         <div class="divCommentItemAboveText">
             <div class="divCommentItemUsername">
-                <a href="javascript:void(0);" class="aCommentItemUsername"><%- username %></a>
+                <!-- <a href="javascript:void(0);" class="aCommentItemUsername"></a> -->
+                <%- username %>
             </div>
 
             <div class="divCommentItemPoints">Points <%- points %></div>

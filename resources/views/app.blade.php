@@ -9,32 +9,14 @@
         <title>Neeonn</title>
         <link rel="shortcut icon" href="{{ asset('favicon.ico') }}">
 
-        <link rel="stylesheet" href="{{ asset('lib/normalize.css') }}" />
+        <!-- DEBUGmode -->
+        @include('scriptsHeadPro')
+        {{-- @include('scriptsHeadDev') --}}
+
         <link rel="stylesheet" href="{{ asset('lib/jquery-toast/jquery.toast.min.css') }}" />
-        <link rel="stylesheet" href="{{ asset('lib/rangeslider/rangeslider.css') }}" />
+        <script src="{{ asset('lib/ckeditor/ckeditor.js') }}"></script>
 
         <link href="{{ elixir('css/app.css') }}" rel="stylesheet">
-
-        <script src="{{ asset('lib/jquery-2.1.4.js') }}"></script>
-        <script src="{{ asset('lib/underscore.js') }}"></script>
-        <script src="{{ asset('lib/backbone.js') }}"></script>
-        <script src="{{ asset('lib/jquery-file-upload/jquery.ui.widget.js') }}"></script>
-        <script src="{{ asset('lib/jquery-file-upload/canvas-to-blob.js') }}"></script>
-        <script src="{{ asset('lib/jquery-file-upload/jquery.iframe-transport.js') }}"></script>
-        <script src="{{ asset('lib/jquery-file-upload/jquery.fileupload.js') }}"></script>
-        <script src="{{ asset('lib/jquery-file-upload/jquery.fileupload-process.js') }}"></script>
-        <script src="{{ asset('lib/jquery-file-upload/jquery.fileupload-validate.js') }}"></script>
-        <script src="{{ asset('lib/jquery-toast/jquery.toast.min.js') }}"></script>
-        <script src="{{ asset('lib/imagesloaded.min.js') }}"></script>
-        <script src="{{ asset('lib/timeago.js') }}"></script>
-        <script src="{{ asset('lib/rangeslider/rangeslider.js') }}"></script>
-        <script src="{{ asset('lib/Sortable.min.js') }}"></script>
-
-        <script src="{{ asset('js/data.js') }}"></script>
-        <script src="{{ asset('js/util.js') }}"></script>
-        <script src="{{ asset('js/server.js') }}"></script>
-
-        @include('scriptsHead')
     </head>
 
 
@@ -51,11 +33,10 @@
         @include('templatesDialog')
         @include('templatesOther')
 
-        <script src="{{ asset('js/view_main.js') }}"></script>
-        <script src="{{ asset('js/galleryBase.js') }}"></script>
-        <script src="{{ asset('js/view_dialog.js') }}"></script>
-
         <!-- Backbone Scripts -->
-        @include('scripts')
+        <!-- DEBUGmode -->
+        @include('scriptsBodyPro')
+        {{-- @include('scriptsBodyDev') --}}
+
     </body>
 </html>

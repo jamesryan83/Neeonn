@@ -30,7 +30,7 @@ app.account.view.Storyboards = Backbone.View.extend({
                 if (data.length === 0) {
                     self.hideStoryboards();
                 } else {
-                    self.showStoryboards();                                        
+                    self.showStoryboards();
 
                     // append loaded storyboards
                     for (var i = 0; i < data.length; i++) {
@@ -100,4 +100,4 @@ app.account.view.Storyboards = Backbone.View.extend({
 });
 
 
-app.account.view.storyboards = new app.account.view.Storyboards();
+

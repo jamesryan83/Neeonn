@@ -20,11 +20,11 @@
             <hr>
         </div>
 
-        <div id="divTabSocial"
+        <!-- <div id="divTabSocial"
                 class="divTabMain {{Request::is( 'account/social' ) ? 'tabSelected' : '' }}">
             <a href="{{ url('/account/social') }}">Social</a>
             <hr>
-        </div>
+        </div> -->
 
         <div id="divTabSettings"
                 class="divTabMain {{Request::is( 'account/settings' ) ? 'tabSelected' : '' }}">

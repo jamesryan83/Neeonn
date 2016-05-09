@@ -92,7 +92,7 @@ app.dialog.view.PictureGallery = app.base.view.GalleryBase.extend({
         // call base initialize and add cancel event
         app.base.view.GalleryBase.prototype.initialize.apply(this);
         this.delegateEvents(_.extend(_.clone(this.events), {
-            "click .divItemButtonsBottom": "selectImage",
+            "click .divItemImage": "selectImage",
             "click #buttonDialogCancel": function () { this.callback(false); }
         }));
     },
@@ -127,9 +127,9 @@ app.dialog.view.PictureGallery = app.base.view.GalleryBase.extend({
                             data.url_thumb + "?" + new Date().getTime() + "' />" +
                 "</div>" +
 
-                "<div class='divItemButtonsBottom'>" +
-                    "<label><b>Select</b></label>" +
-                "</div>" +
+//                "<div class='divItemButtonsBottom'>" +
+//                    "<label><b>Select</b></label>" +
+//                "</div>" +
             "</div>";
 
         this.$el.find("#divPictures").prepend($(galleryItemTemplate));
@@ -501,8 +501,10 @@ app.dialog.view.PositionBackgroundImage = Backbone.View.extend({
 
         // set initial height/width of image when its loaded
         this.$el.find("#imgPicture").imagesLoaded(function () {
+            try {  // gives error if user clicks cancel before image is loaded
             self.originalImgWidth = self.$el.find("#imgPicture")[0].offsetWidth;
             self.originalImgHeight = self.$el.find("#imgPicture")[0].offsetHeight;
+            } catch (e) {}
         })
 
 

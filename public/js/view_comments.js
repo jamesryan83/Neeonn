@@ -36,12 +36,14 @@ app.comments.view.Main = Backbone.View.extend({
             if (success === true) {
                 var i = 0;
                 var commentList = self.$el.find("#divCommentsList");
-                
+
                 // add comments to commentList
                 for (i = 0; i < data.comments.length; i++) {
                     var comment = new app.comments.view.CommentItem(data.comments[i]);
 
-                    if (data.user_id !== undefined) {
+                    if (data.comments[i].is_deleted !== undefined && data.comments[i].is_deleted == 1) {
+                        comment.isDeleted();
+                    } else if (data.user_id !== undefined) {
                         if (data.user_id == data.comments[i].user_id) {
                             comment.showEditAndDelete();
                         }
@@ -246,6 +248,7 @@ app.comments.view.CommentInputs = Backbone.View.extend({
                     }
 
                     comment.setUpvote();
+                    comment.showEditAndDelete();
 
                     // hide input box
                     if (!self.isMainCommentInput) {
@@ -346,7 +349,18 @@ app.comments.view.CommentItem = Backbone.View.extend({
 
     // Delete comment
     deleteComment: function () {
+        var self = this;
 
+        var data = {
+            comment_id: this.data.comment_id
+        }
+
+        app.server.deleteComment(data, function (success) {
+            console.log(success);
+            if (success === true) {
+                self.isDeleted();
+            }
+        });
     },
 
 
@@ -370,6 +384,18 @@ app.comments.view.CommentItem = Backbone.View.extend({
         this.$el.find(".divCommentItemDelete").first().css({ "display": "inline-block" });
     },
 
+
+    // Hide stuff when comment is deleted
+    isDeleted: function () {
+        this.$el.find(".divCommentItemText").first().text("Comment Deleted");
+
+        this.$el.find(".divCommentItemVoteButtons").first().children().hide();
+        this.$el.find(".divCommentItemUsername").first().hide();
+        this.$el.find(".divCommentItemPoints").first().hide();
+        this.$el.find(".divCommentItemEdit").first().hide();
+        this.$el.find(".divCommentItemReply").first().hide();
+        this.$el.find(".divCommentItemDelete").first().hide();
+    },
 
 
     // ------------------------------------- Voting -------------------------------------
@@ -447,4 +473,4 @@ app.comments.view.CommentItem = Backbone.View.extend({
 
 
 
-app.comments.view.main = new app.comments.view.Main();
+

@@ -97,6 +97,7 @@ Route::group(["middleware" => "web"], function () {
     Route::post("/make-comment", "StoryboardController@makeComment");
     Route::post("/update-comment", "StoryboardController@updateComment");
     Route::post("/vote-on-comment", "StoryboardController@voteOnComment");
+    Route::post("/delete-comment", "StoryboardController@deleteComment");
 
     // Search
     Route::post("/search", "SearchController@search");

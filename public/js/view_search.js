@@ -117,4 +117,4 @@ app.search.view.Main = Backbone.View.extend({
 
 
 
-new app.search.view.Main();
+

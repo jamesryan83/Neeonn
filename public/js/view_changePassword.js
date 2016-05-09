@@ -35,4 +35,4 @@ app.account.view.ChangePassword = Backbone.View.extend({
     }
 });
 
-new app.account.view.ChangePassword();
+

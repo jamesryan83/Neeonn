@@ -16,7 +16,8 @@ class Comment extends Model
         "user_id",
         "text",
         "parent_id",
-        "points"
+        "points",
+        "is_deleted"
     ];
 
     public function user()

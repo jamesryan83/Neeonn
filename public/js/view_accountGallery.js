@@ -12,4 +12,4 @@ app.account.view.Gallery = app.base.view.GalleryBase.extend({
 
 
 
-new app.account.view.Gallery();
+

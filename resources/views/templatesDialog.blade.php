@@ -137,10 +137,10 @@
 <!-- Canvas Choose Picture dialog -->
 <script type="text/template" id="templateDialogCanvasChoosePicture">
 <div id="divDialogCanvasChoosePicture">
-    <h2>Pictures & Background</h2>
+    <h2>Images & Background</h2>
 
     <div id="divButtons">
-        <button id="buttonDialogAddBackgroundPicture" class="buttonCustom1">Add Background Picture</button>
+        <button id="buttonDialogAddBackgroundPicture" class="buttonCustom1">Add Background Image</button>
         <button id="buttonDialogAddBackgroundColor" class="buttonCustom1">Add Background Color</button>
         <button id="buttonDialogRemoveBackground" class="buttonCustom1">Remove Background</button>
         <button id="buttonDialogCancel" class="buttonCustom1">Cancel</button>

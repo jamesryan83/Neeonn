@@ -11,7 +11,7 @@ app.help.view.Main = Backbone.View.extend({
     el: "#divHelp",
 
     events: {
-        
+
     },
 
     initialize: function () {
@@ -20,4 +20,4 @@ app.help.view.Main = Backbone.View.extend({
 });
 
 
-new app.help.view.Main();
+

@@ -177,11 +177,16 @@ app.server.updateComment = function (data, callback) {
 app.server.voteOnComment = function (data, callback) {
     app.server.ajaxRequest("POST", "/vote-on-comment", {
         data: data
-    }, "Error voting on comment", callback);
+    }, "Error voting on Comment", callback);
 }
 
 
-
+// Delete comment
+app.server.deleteComment = function (data, callback) {
+    app.server.ajaxRequest("POST", "/delete-comment", {
+        data: data
+    }, "Error deleting Comment", callback);
+}
 
 
 

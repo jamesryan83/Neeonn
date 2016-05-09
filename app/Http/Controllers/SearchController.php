@@ -91,10 +91,10 @@ class SearchController extends Controller
 
             // sort
             ->when($sortBy == "Latest", function ($query) use ($searchTerm) {
-                return $query->orderBy("storyboards.updated_at", "asc");
+                return $query->orderBy("storyboards.created_at", "desc");
             })
             ->when($sortBy == "Oldest", function ($query) use ($searchTerm) {
-                return $query->orderBy("storyboards.updated_at", "desc");
+                return $query->orderBy("storyboards.created_at", "asc");
             })
 
             ->skip(0)
@@ -167,10 +167,10 @@ class SearchController extends Controller
 
             // sort
             ->when($sortBy == "Latest", function ($query) use ($searchTerm) {
-                return $query->orderBy("storyboards.updated_at", "asc");
+                return $query->orderBy("storyboards.created_at", "desc");
             })
             ->when($sortBy == "Oldest", function ($query) use ($searchTerm) {
-                return $query->orderBy("storyboards.updated_at", "desc");
+                return $query->orderBy("storyboards.created_at", "asc");
             })
 
             ->skip(0)

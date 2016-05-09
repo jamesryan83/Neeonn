@@ -334,4 +334,4 @@ app.editStoryboard.view.Main = Backbone.View.extend({
 });
 
 
-app.editStoryboard.view.main = new app.editStoryboard.view.Main();
+

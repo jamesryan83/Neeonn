@@ -86,4 +86,4 @@ app.account.view.Settings = Backbone.View.extend({
     }
 });
 
-new app.account.view.Settings();
+

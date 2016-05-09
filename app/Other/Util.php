@@ -48,7 +48,7 @@ class Util
     public static function getBlobHostUrl()
     {
         // DEBUGmode
-        //return "http://127.0.0.1:10000/devstoreaccount1/";
+//        return "http://127.0.0.1:10000/devstoreaccount1/";
         return "http://shoterate.blob.core.windows.net/";
     }
 

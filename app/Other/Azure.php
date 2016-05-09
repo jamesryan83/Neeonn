@@ -23,7 +23,7 @@ class Azure
     private static function getConnectionString()
     {
         // DEBUGmode
-        //return "UseDevelopmentStorage=true";
+//        return "UseDevelopmentStorage=true";
 
         return "DefaultEndpointsProtocol=https;" .
             "AccountName=shoterate;" .

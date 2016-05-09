@@ -9,7 +9,7 @@ use App\Models\User;
 use App\Models\Storyboard;
 use App\Models\Scene;
 use App\Models\Comment;
-use App\Models\CommentVotes;
+use App\Models\CommentVote;
 
 
 class Storyboards
@@ -152,7 +152,7 @@ class Storyboards
 
         try {
             // Delete comment votes
-            CommentVotes::where("storyboard_id", $storyboard_id)->delete();
+            CommentVote::where("storyboard_id", $storyboard_id)->delete();
 
             // Delete comments
             Comment::where("storyboard_id", $storyboard_id)->delete();
@@ -399,7 +399,7 @@ class Storyboards
             ]);
 
             // add user vote on comment
-            CommentVotes::create([
+            CommentVote::create([
                 "comment_id" => $comment->comment_id,
                 "storyboard_id" => $data["storyboard_id"],
                 "user_id" => $user_id,
@@ -425,7 +425,7 @@ class Storyboards
 
         $returnData = array("username" => $user->username,
                             "comment_id" => $comment->comment_id,
-                            "created_at" => $comment->created_at);
+                            "updated_at" => $comment->updated_at);
 
         return array("success" => true, "data" => $returnData);
     }
@@ -480,7 +480,7 @@ class Storyboards
                 if (count($previousDirection) == 0) {
                     $previousDirection = "n";
 
-                    CommentVotes::create([
+                    CommentVote::create([
                         "comment_id" => $data["comment_id"],
                         "storyboard_id" => $data["storyboard_id"],
                         "user_id" => $user_id,
@@ -547,7 +547,35 @@ class Storyboards
     }
 
 
+    // Delete comment
+    public static function deleteComment($user_id, $data)
+    {
+        DB::beginTransaction();
 
+        try {
+            // delete votes
+            CommentVote::where("comment_id", $data["comment_id"])->delete();
+
+            // mark comment as deleted and remove text/points
+            $comment = Comment::where([
+                ["comment_id", $data["comment_id"]],
+                ["user_id", $user_id]
+            ])->first();
+
+            $comment->is_deleted = 1;
+            $comment->text = "";
+            $comment->points = 0;
+            $comment->save();
+
+        } catch (Exception $e) {
+            Log::info($e);
+            DB::rollback();
+            return array("success" => false, "message" => "Error deleting comment");
+        }
+
+        DB::commit();
+        return array("success" => true);
+    }
 
 
 
