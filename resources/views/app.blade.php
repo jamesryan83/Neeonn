@@ -11,7 +11,7 @@
 
         <!-- DEBUGmode -->
         @include('scriptsHeadPro')
-         {{--@include('scriptsHeadDev') --}}
+         {{-- @include('scriptsHeadDev') --}}
 
         <link rel="stylesheet" href="{{ asset('lib/jquery-toast/jquery.toast.min.css') }}" />
         <script src="{{ asset('lib/ckeditor/ckeditor.js') }}"></script>

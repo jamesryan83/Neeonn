@@ -279,6 +279,10 @@ app.dialog.view.StoryboardFullScreen = Backbone.View.extend({
             category: this.data.category
         }));
 
+        this.$el.find("#divDialogStoryboardFullScreen").css({
+            "width": app.data.sceneWidth + 40
+        });
+
         this.$el.find("#divContent").append($("<div class='divSceneGap'></div>"));
 
         // append scenes
