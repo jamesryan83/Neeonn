@@ -8,8 +8,8 @@
     <div id="divControls">
         <button id="buttonCreateStoryboard" class="buttonCustom1">Create New Storyboard</button>
 
-        <label>Search</label>
-        <input id="inputSearch" />
+        <!-- <label>Search</label>
+        <input id="inputSearch" /> -->
     </div>
 
 

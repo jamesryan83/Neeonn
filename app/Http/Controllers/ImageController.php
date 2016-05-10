@@ -94,7 +94,20 @@ class ImageController extends Controller
                                  "Not allowed to download file from this url");
                 }
 
-                if ($head["content-length"] <= 1000000) {
+                $contentLength = 999999999;
+
+                if (is_array($head["content-length"])) {
+                    $contentLength = max($head["content-length"]);
+                } else {
+                    $contentLength = $head["content-length"];
+                }
+
+                if ($contentLength === 0) {
+                    return array("success" => false, "message" =>
+                                 "Could not download file from this url");
+                }                
+
+                if ($contentLength <= 1000000) {
                     // upload file to azure
                     $result = Azure::uploadImage(Auth::user()->user_id, $imageFileName, $request->url);
 

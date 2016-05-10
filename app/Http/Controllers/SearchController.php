@@ -29,12 +29,26 @@ class SearchController extends Controller
         //DB::enableQueryLog();
 
 
+        $itemsPerPage = 6;
+        $selectedPage;
+
         $searchTerm = $request->data["searchTerm"];
         $category = $request->data["category"];
         $sortBy = $request->data["sortBy"];
         $searchTitles = $request->data["searchTitles"];
         $searchUsernames = $request->data["searchUsernames"];
         $searchText = $request->data["searchText"];
+
+
+        // set page offset
+        $selectedPage = $request->data["selectedPage"];
+        $itemOffset = ($selectedPage- 1) * $itemsPerPage;
+
+
+        // get total number of storyboards
+        $numStoryboards = DB::table("storyboards")
+            ->where("storyboards.is_private", "0")
+            ->count();
 
 
         // if search text is true
@@ -97,8 +111,8 @@ class SearchController extends Controller
                 return $query->orderBy("storyboards.created_at", "asc");
             })
 
-            ->skip(0)
-            ->take(10)
+            ->skip($itemOffset)
+            ->take($itemsPerPage)
             ->get();
 
 
@@ -127,6 +141,9 @@ class SearchController extends Controller
 
             $finalResult["storyboards"] = $result2;
             $finalResult["scenes"] = $result3;
+            $finalResult["numStoryboards"] = $numStoryboards;
+            $finalResult["itemsPerPage"] = $itemsPerPage;
+            $finalResult["selectedPage"] = $selectedPage;
 
             return array("success" => true, "data" => $finalResult);
 
@@ -173,8 +190,8 @@ class SearchController extends Controller
                 return $query->orderBy("storyboards.created_at", "asc");
             })
 
-            ->skip(0)
-            ->take(10)
+            ->skip($itemOffset)
+            ->take($itemsPerPage)
             ->get();
 
             // if no results
@@ -207,6 +224,9 @@ class SearchController extends Controller
 
             $finalResult["storyboards"] = $result;
             $finalResult["scenes"] = $result2;
+            $finalResult["numStoryboards"] = $numStoryboards;
+            $finalResult["itemsPerPage"] = $itemsPerPage;
+            $finalResult["selectedPage"] = $selectedPage;
 
             //Log::info(DB::getQueryLog());
 

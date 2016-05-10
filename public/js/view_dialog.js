@@ -105,46 +105,15 @@ app.dialog.view.PictureGallery = app.base.view.GalleryBase.extend({
 
     // Select clicked
     selectImage: function (e) {
-        var imageName = this.getImageNameFromClickedElement(e.target);
-        this.callback(true, imageName);
-    },
-
-
-    // Appends a new gallery item
-    appendGalleryItem: function (data) {
-
-        var fileName = data.filename.replace("thumb_", "");
-
-        var galleryItemTemplate =
-            "<div class='divGalleryItem noselect'>" +
-                "<div class='divItemButtons'>" +
-                    "<div class='divGalleryIconDelete' data-imgname='" + fileName+ "' title='Delete'></div>" +
-                    "<div class='clearfix'></div>" +
-                "</div>" +
-
-                "<div class='divItemImage'>" +
-                    "<img class='imgItem center' src='" +
-                            data.url_thumb + "?" + new Date().getTime() + "' />" +
-                "</div>" +
-
-//                "<div class='divItemButtonsBottom'>" +
-//                    "<label><b>Select</b></label>" +
-//                "</div>" +
-            "</div>";
-
-        this.$el.find("#divPictures").prepend($(galleryItemTemplate));
-    },
-
-
-    // Returns image name + extension without thumb_
-    getImageNameFromClickedElement: function (element) {
-        var imgUrl = $(element).closest(".divGalleryItem")
+        var imgUrl = $(e.target).closest(".divGalleryItem")
             .find("img")[0].src.replace("thumb_", "");
 
         var tempArray = imgUrl.split("/"); // remove stuff before name
         var tempName = tempArray[tempArray.length - 1];
-        return tempName.split("?")[0]; // remove cache-breaker date
-    }
+        var imageName = tempName.split("?")[0]; // remove cache-breaker date
+
+        this.callback(true, imageName);
+    },
 
 });
 

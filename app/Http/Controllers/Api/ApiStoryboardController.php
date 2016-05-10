@@ -36,7 +36,7 @@ class ApiStoryboardController extends Controller
         if ($user === null || count($user) == 0) {
             return Util::getInvalidApiTokenResponse();
         } else {
-            return Storyboards::getStoryboard($user[0], $storyboard_id);
+            return Storyboards::getStoryboard($storyboard_id);
         }
     }
 

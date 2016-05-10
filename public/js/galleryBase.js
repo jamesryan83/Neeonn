@@ -47,7 +47,7 @@ app.base.view.GalleryBase = Backbone.View.extend({
                         }
                     });
 
-                    // restore gallery order
+                    // restore gallery order                    
                     if (data.order !== null && data.order.length > 0) {
                         var order = data.order.split("|");
                         if (order.length > 1) {

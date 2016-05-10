@@ -10,8 +10,8 @@
         <link rel="shortcut icon" href="{{ asset('favicon.ico') }}">
 
         <!-- DEBUGmode -->
-        {{--@include('scriptsHeadPro') --}}
-         @include('scriptsHeadDev')
+        @include('scriptsHeadPro')
+         {{--@include('scriptsHeadDev') --}}
 
         <link rel="stylesheet" href="{{ asset('lib/jquery-toast/jquery.toast.min.css') }}" />
         <script src="{{ asset('lib/ckeditor/ckeditor.js') }}"></script>
@@ -35,8 +35,8 @@
 
         <!-- Backbone Scripts -->
         <!-- DEBUGmode -->
-        {{-- @include('scriptsBodyPro') --}}
-        @include('scriptsBodyDev')
+        @include('scriptsBodyPro')
+        {{-- @include('scriptsBodyDev') --}}
 
     </body>
 </html>
