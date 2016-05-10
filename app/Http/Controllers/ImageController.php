@@ -79,7 +79,7 @@ class ImageController extends Controller
     {
         // validate file extension
         $path_parts = pathinfo($request->url);
-        $ext = $path_parts["extension"];
+        $ext = strtolower($path_parts["extension"]);
         if ($ext == "jpg" || $ext == "jpeg" || $ext == "gif" || $ext == "png") {
 
             // create file name

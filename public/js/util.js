@@ -29,6 +29,7 @@ app.util.stringStartsWithHttpOrHttps = function (text) {
 
 // check string ends with jpg, jpeg, png or gif
 app.util.stringEndsWithImageExtension = function (text) {
+    text = text.toLowerCase();
     if (app.util.stringEndsWith(text, ".jpg") === false &&
             app.util.stringEndsWith(text, ".jpeg") === false &&
             app.util.stringEndsWith(text, ".png") === false &&
