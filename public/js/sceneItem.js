@@ -413,6 +413,7 @@ app.items.view.SceneItem = Backbone.View.extend({
             case "text":
                 newObject = new fabric.IText("Text", {
                     fontSize: 20,
+                    fontFamily: "open-sans, Helvetica Neue, Helvetica, Arial, sans-serif",
                     fill: this.canvasSelectedColor
                 });
                 break;
@@ -507,7 +508,7 @@ app.items.view.SceneItem = Backbone.View.extend({
     // End save canvas timer
     endSaveCanvas: function () {
         if (this.debugSaveOff === true) return;
-        clearInterval(this.saveCanvasTimer);        
+        clearInterval(this.saveCanvasTimer);
         var canvasData = JSON.stringify(this.canvas);
 
         if (canvasData !== this.lastCanvas) {
@@ -597,6 +598,7 @@ app.items.view.SceneItem = Backbone.View.extend({
     },
 
 
+    // TODO : color doesn't seem to be working
     // Set the selected color and change color of selected obejct
     updateSelectedTextColor: function (color) {
         this.textSelectedColor = color;
