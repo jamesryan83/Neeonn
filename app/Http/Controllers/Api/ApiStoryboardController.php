@@ -34,9 +34,9 @@ class ApiStoryboardController extends Controller
     {
         $user = User::where("api_token", $api_token)->get();
         if ($user === null || count($user) == 0) {
-            return Util::getInvalidApiTokenResponse();
+            return Storyboards::getStoryboard($storyboard_id, false);
         } else {
-            return Storyboards::getStoryboard($storyboard_id);
+            return Storyboards::getStoryboard($storyboard_id, true);
         }
     }
 
