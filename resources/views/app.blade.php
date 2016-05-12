@@ -36,7 +36,7 @@
         <!-- Backbone Scripts -->
         <!-- DEBUGmode -->
          @include('scriptsBodyPro')
-        {{-- @include('scriptsBodyDev')  --}}
+        {{-- @include('scriptsBodyDev') --}}
 
     </body>
 </html>

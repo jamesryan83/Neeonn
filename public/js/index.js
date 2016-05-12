@@ -11,7 +11,10 @@ var app = app || {};
     app.account.view.storyboards = null;
     app.comments.view.main = null;
 
-    if (app.util.stringStartsWith(path, "/search")) {
+    if (path === "/") {
+        new app.home.view.Main();
+
+    } else if (app.util.stringStartsWith(path, "/search")) {
         new app.search.view.Main();
 
     } else if (app.util.stringStartsWith(path, "/account/storyboards")) {

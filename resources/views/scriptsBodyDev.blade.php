@@ -14,5 +14,6 @@
 <script src="{{ asset('js/view_dialog.js') }}"></script>
 <script src="{{ asset('js/view_editStoryboard.js') }}"></script>
 <script src="{{ asset('js/view_help.js') }}"></script>
+<script src="{{ asset('js/view_home.js') }}"></script>
 <script src="{{ asset('js/view_search.js') }}"></script>
 <script src="{{ asset('js/index.js') }}"></script>
